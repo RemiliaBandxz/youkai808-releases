@@ -1,0 +1,23 @@
+{
+  "publisher": "YoukaiDigital",
+  "hub": {
+    "version": "1.0",
+    "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-v1.0-Windows.zip",
+    "mac": ""
+  },
+  "bundle": { "id": "bundle", "name": "Everything Bundle", "store_product_ids": [] },
+  "products": [
+    {
+      "id": "youkai808",
+      "name": "Youkai808",
+      "registry": "Youkai808",
+      "includes": "Youkai808 + Youkai808 Synth",
+      "tagline": "Experimental 808 destroyer: light bitcrush to blown-out, whining, comedic subs. Retro Remilia CRT UI.",
+      "trial": "3 presets",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "versions": "versions.json"
+    }
+  ]
+}
