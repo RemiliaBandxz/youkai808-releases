@@ -1,0 +1,22 @@
+{
+  "hub": {
+    "version": "1.0",
+    "windows": "hub/YoukaiDigitalHub-v1.0-Windows.zip",
+    "mac": "hub/YoukaiDigitalHub-v1.0-Mac.zip"
+  },
+  "products": [
+    {
+      "id": "Y808",
+      "name": "Youkai808",
+      "tagline": "Experimental 808 distortion + Youkai808 Synth",
+      "versions": "versions.json",
+      "windows_key": "Youkai808",
+      "mac_files": [
+        "/Library/Audio/Plug-Ins/VST3/Youkai808.vst3",
+        "/Library/Audio/Plug-Ins/VST3/Youkai808 Synth.vst3",
+        "/Library/Audio/Plug-Ins/Components/Youkai808.component",
+        "/Library/Audio/Plug-Ins/Components/Youkai808 Synth.component"
+      ]
+    }
+  ]
+}
