@@ -1,0 +1,50 @@
+{
+  "product": "Youkai808",
+  "publisher": "YoukaiDigital Inc.",
+  "latest": "1.8",
+  "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
+  "versions": [
+    {
+      "version": "1.8",
+      "windows": "releases/Youkai808-v1.8-Installer.zip",
+      "mac": "releases/Youkai808-v1.8-Mac.zip",
+      "synth": true
+    },
+    {
+      "version": "1.7",
+      "windows": "releases/Youkai808-v1.7-Installer.zip",
+      "mac": "releases/Youkai808-v1.7-Mac.zip",
+      "synth": true
+    },
+    {
+      "version": "1.6",
+      "windows": "releases/Youkai808-v1.6-Installer.zip",
+      "mac": "releases/Youkai808-v1.6-Mac.zip",
+      "synth": true
+    },
+    {
+      "version": "1.5",
+      "windows": "releases/Youkai808-v1.5-Installer.zip",
+      "mac": "releases/Youkai808-v1.5-Mac.zip",
+      "synth": true
+    },
+    {
+      "version": "1.4",
+      "windows": "releases/Youkai808-v1.4-Installer.zip",
+      "mac": "releases/Youkai808-v1.4-Mac.zip",
+      "synth": false
+    },
+    {
+      "version": "1.3",
+      "windows": "releases/Youkai808-v1.3-Installer.zip",
+      "mac": "releases/Youkai808-v1.3-Mac.zip",
+      "synth": false
+    },
+    {
+      "version": "1.2",
+      "windows": "releases/Youkai808-v1.2-Installer.zip",
+      "mac": "releases/Youkai808-v1.2-Mac.zip",
+      "synth": false
+    }
+  ]
+}
