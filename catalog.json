@@ -11,7 +11,7 @@
       "id": "youkai808",
       "name": "Youkai808",
       "registry": "Youkai808",
-      "includes": "Youkai808 + Youkai808 Synth",
+      "includes": "VST3 · CLAP · AU · includes synth",
       "tagline": "Experimental 808 destroyer: light bitcrush to blown-out, whining, comedic subs. Retro Remilia CRT UI.",
       "trial": "3 presets",
       "price": "$30",

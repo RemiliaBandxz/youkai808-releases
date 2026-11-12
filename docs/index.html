@@ -14,8 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0c0711; --surface:#160e22; --surface2:#1d1430; --line:#2d1d42;
-    --text:#f3ecf9; --muted:#a493bd; --neon:#ff2fa0; --violet:#a855f7;
+    --ink:#0b0610; --surface:#160e22; --surface2:#1d1430; --line:#2d1d42;
+    --text:#f3ecf9; --muted:#a493bd; --neon:#ff2fa0; --violet:#a855f7; --cyan:#58e1ff;
     --radius:16px; --maxw:1080px;
     --sans:"Inter",system-ui,sans-serif; --display:"Space Grotesk",var(--sans);
   }
@@ -23,70 +23,93 @@
   html{scroll-behavior:smooth}
   body{
     margin:0; background:var(--ink); color:var(--text); font-family:var(--sans);
-    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-  body::before{
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background:
-      radial-gradient(900px 520px at 78% -8%, rgba(255,47,160,.18), transparent 60%),
-      radial-gradient(760px 500px at 8% 12%, rgba(168,85,247,.14), transparent 55%);
-  }
+  /* animated aurora + fine grain, layered behind everything */
+  .bg{position:fixed; inset:0; z-index:-2; pointer-events:none; overflow:hidden}
+  .bg::before,.bg::after{content:""; position:absolute; width:120vmax; height:120vmax; border-radius:50%;
+    filter:blur(60px); opacity:.5; mix-blend-mode:screen}
+  .bg::before{top:-55vmax; left:30vmax; background:radial-gradient(circle,rgba(255,47,160,.55),transparent 60%);
+    animation:drift1 24s ease-in-out infinite}
+  .bg::after{top:-40vmax; left:-45vmax; background:radial-gradient(circle,rgba(168,85,247,.5),transparent 60%);
+    animation:drift2 30s ease-in-out infinite}
+  .grain{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-14vmax,10vmax) scale(1.12)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(16vmax,8vmax) scale(1.1)}}
+
   a{color:inherit; text-decoration:none}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
   h1,h2,h3{font-family:var(--display); font-weight:700; letter-spacing:-.02em; line-height:1.08; margin:0}
   p{margin:0}
 
   /* nav */
-  .nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px);
-    background:rgba(12,7,17,.72); border-bottom:1px solid var(--line)}
+  .nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(14px);
+    background:rgba(11,6,16,.68); border-bottom:1px solid var(--line)}
+  .nav::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--neon),var(--violet),transparent); opacity:.6}
   .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:66px}
   .logo{display:flex; align-items:center; gap:11px; font-family:var(--display); font-weight:700; font-size:19px}
-  .logo svg{width:30px; height:30px; filter:drop-shadow(0 0 9px rgba(255,47,160,.55))}
+  .logo svg{width:30px; height:30px; filter:drop-shadow(0 0 9px rgba(255,47,160,.6))}
   .logo span{color:var(--muted); font-weight:500}
   .links{display:flex; align-items:center; gap:28px}
-  .links a{color:var(--muted); font-size:15px; font-weight:500; transition:color .15s}
-  .links a:hover{color:var(--text)}
+  .links a:not(.btn){color:var(--muted); font-size:15px; font-weight:500; position:relative; transition:color .15s}
+  .links a:not(.btn)::after{content:""; position:absolute; left:0; right:100%; bottom:-6px; height:2px;
+    background:var(--neon); border-radius:2px; transition:right .22s ease; box-shadow:0 0 8px var(--neon)}
+  .links a:not(.btn):hover{color:var(--text)} .links a:not(.btn):hover::after{right:0}
   .btn{display:inline-flex; align-items:center; gap:9px; font-family:var(--display); font-weight:600;
     font-size:15px; padding:11px 20px; border-radius:11px; cursor:pointer; border:1px solid transparent;
     transition:transform .14s ease, box-shadow .14s ease, background .15s}
-  .btn-primary{background:var(--neon); color:#190410; box-shadow:0 6px 22px rgba(255,47,160,.32)}
-  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 10px 30px rgba(255,47,160,.5)}
+  .btn-primary{background:linear-gradient(120deg,var(--neon),#ff5bb5); color:#190410; box-shadow:0 6px 22px rgba(255,47,160,.34)}
+  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 34px rgba(255,47,160,.55)}
   .btn-ghost{border-color:var(--line); color:var(--text); background:rgba(255,255,255,.02)}
-  .btn-ghost:hover{border-color:var(--neon); color:#fff}
+  .btn-ghost:hover{border-color:var(--neon); color:#fff; box-shadow:0 0 0 1px rgba(255,47,160,.3)}
   .btn-lg{font-size:17px; padding:15px 28px; border-radius:13px}
 
   /* hero */
-  .hero{padding:84px 0 40px; text-align:center}
-  .kicker{display:inline-block; color:var(--neon); font-family:var(--display); font-weight:600;
-    font-size:14px; margin-bottom:20px}
-  .hero h1{font-size:clamp(40px,7vw,74px); max-width:12ch; margin:0 auto 20px}
-  .hero h1 em{font-style:normal; color:var(--neon); text-shadow:0 0 34px rgba(255,47,160,.45)}
-  .lead{color:var(--muted); font-size:clamp(17px,2.3vw,21px); max-width:60ch; margin:0 auto 32px}
+  .hero{padding:90px 0 40px; text-align:center; position:relative}
+  .kicker{display:inline-flex; align-items:center; gap:9px; color:var(--neon); font-family:var(--display); font-weight:600;
+    font-size:13.5px; margin-bottom:22px; padding:6px 14px; border:1px solid var(--line); border-radius:999px;
+    background:rgba(255,47,160,.06)}
+  .kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--neon); box-shadow:0 0 10px var(--neon);
+    animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-size:clamp(42px,7.4vw,78px); max-width:13ch; margin:0 auto 22px}
+  .hero h1 em{font-style:normal;
+    background:linear-gradient(120deg,var(--neon),var(--violet)); -webkit-background-clip:text; background-clip:text;
+    color:transparent; filter:drop-shadow(0 0 26px rgba(255,47,160,.4))}
+  .lead{color:var(--muted); font-size:clamp(17px,2.3vw,21px); max-width:60ch; margin:0 auto 34px}
   .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
-  .note{color:var(--muted); font-size:14px; margin-top:18px}
-  .shot{position:relative; margin:56px auto 0; max-width:1000px}
-  .shot img{width:100%; height:auto; display:block; border-radius:var(--radius);
-    border:1px solid var(--line); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 1px rgba(255,47,160,.08)}
-  .shot::after{content:""; position:absolute; inset:-1px; border-radius:var(--radius); pointer-events:none;
-    box-shadow:inset 0 0 60px rgba(255,47,160,.1)}
+  .note{color:var(--muted); font-size:14px; margin-top:20px}
+  .shot{position:relative; margin:60px auto 0; max-width:1000px; animation:float 7s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .shot img{width:100%; height:auto; display:block; aspect-ratio:1200/703; object-fit:cover; border-radius:var(--radius);
+    border:1px solid rgba(255,47,160,.25);
+    box-shadow:0 40px 110px rgba(0,0,0,.65), 0 0 60px rgba(255,47,160,.18)}
+  .shot::before{content:""; position:absolute; left:8%; right:8%; bottom:-46px; height:90px; border-radius:50%;
+    background:radial-gradient(ellipse,rgba(255,47,160,.35),transparent 70%); filter:blur(22px)}
 
-  /* daw strip */
-  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:72px}
-  .strip .wrap{display:flex; align-items:center; gap:14px 40px; flex-wrap:wrap; justify-content:center; padding:22px 24px}
-  .strip span{color:var(--muted); font-size:15px; font-weight:500}
-  .strip .host{color:var(--text); font-family:var(--display); font-weight:600; opacity:.85}
+  /* daw marquee */
+  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:84px; overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .track{display:flex; gap:56px; width:max-content; padding:22px 28px; animation:marq 26s linear infinite}
+  .track span{color:var(--muted); font-size:15px; font-weight:500; white-space:nowrap}
+  .track .host{color:var(--text); font-family:var(--display); font-weight:600; opacity:.85}
+  @keyframes marq{to{transform:translateX(-50%)}}
 
-  /* section scaffolding */
-  section{padding:92px 0}
+  /* sections */
+  section{padding:96px 0}
   .head{max-width:60ch; margin:0 0 44px}
-  .head.center{margin:0 auto 52px; text-align:center}
-  .head h2{font-size:clamp(28px,4vw,40px); margin-bottom:14px}
+  .head.center{margin:0 auto 54px; text-align:center}
+  .head h2{font-size:clamp(28px,4vw,42px); margin-bottom:14px}
   .head p{color:var(--muted); font-size:18px}
 
-  /* product split */
   .split{display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center}
-  .split .media img{width:100%; border-radius:var(--radius); border:1px solid var(--line);
-    box-shadow:0 24px 70px rgba(0,0,0,.5)}
+  .split .media{position:relative; align-self:center}
+  .split .media img{width:100%; height:auto; display:block; aspect-ratio:1200/703; object-fit:cover;
+    border-radius:var(--radius); border:1px solid rgba(255,47,160,.22);
+    box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 44px rgba(168,85,247,.15)}
   .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
   .pill{border:1px solid var(--line); color:var(--muted); font-size:13px; font-weight:600;
     padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.02)}
@@ -94,29 +117,30 @@
   .flist li{position:relative; padding:9px 0 9px 30px; color:var(--text)}
   .flist li + li{border-top:1px solid var(--line)}
   .flist li::before{content:""; position:absolute; left:4px; top:17px; width:9px; height:9px; border-radius:2px;
-    background:var(--neon); box-shadow:0 0 10px rgba(255,47,160,.7); transform:rotate(45deg)}
+    background:var(--neon); box-shadow:0 0 10px rgba(255,47,160,.8); transform:rotate(45deg)}
   .price-inline{font-family:var(--display); font-weight:700; font-size:22px}
   .price-inline b{color:var(--neon)}
 
-  /* feature cards */
   .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
     border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
-  .cards .cell{background:var(--surface); padding:30px 26px}
+  .cards .cell{background:var(--surface); padding:30px 26px; transition:background .2s}
+  .cards .cell:hover{background:var(--surface2)}
   .cards .cell h3{font-size:19px; margin-bottom:10px}
   .cards .cell p{color:var(--muted); font-size:15px}
-  .cards .ic{width:40px; height:40px; border-radius:10px; display:grid; place-items:center; margin-bottom:16px;
-    background:rgba(255,47,160,.12); color:var(--neon); font-family:var(--display); font-weight:700}
+  .cards .ic{width:42px; height:42px; border-radius:11px; display:grid; place-items:center; margin-bottom:16px;
+    background:rgba(255,47,160,.12); color:var(--neon); font-family:var(--display); font-weight:700;
+    box-shadow:inset 0 0 0 1px rgba(255,47,160,.25)}
 
-  /* pricing */
   .pricing{display:grid; place-items:center}
   .price-card{width:100%; max-width:460px; background:linear-gradient(180deg,var(--surface2),var(--surface));
-    border:1px solid var(--line); border-radius:22px; padding:38px 34px; text-align:center; position:relative}
+    border:1px solid var(--line); border-radius:22px; padding:40px 34px; text-align:center; position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.5)}
   .price-card::before{content:""; position:absolute; inset:0; border-radius:22px; padding:1px; pointer-events:none;
-    background:linear-gradient(180deg, rgba(255,47,160,.6), transparent 55%);
+    background:linear-gradient(140deg,var(--neon),transparent 45%,transparent 60%,var(--violet));
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
   .price-card .name{font-family:var(--display); font-weight:600; color:var(--muted); font-size:16px}
-  .price-card .amt{font-family:var(--display); font-weight:700; font-size:68px; line-height:1; margin:10px 0 4px}
-  .price-card .amt sup{font-size:26px; top:-26px; color:var(--neon)}
+  .price-card .amt{font-family:var(--display); font-weight:700; font-size:70px; line-height:1; margin:10px 0 4px}
+  .price-card .amt sup{font-size:26px; top:-28px; color:var(--neon)}
   .price-card .once{color:var(--muted); font-size:15px; margin-bottom:26px}
   .price-card ul{list-style:none; padding:0; margin:0 0 28px; text-align:left}
   .price-card li{padding:10px 0 10px 28px; position:relative; color:var(--text); font-size:15px}
@@ -124,15 +148,15 @@
   .price-card li::before{content:"✦"; position:absolute; left:2px; color:var(--neon); font-size:13px; top:11px}
   .price-card .btn{width:100%; justify-content:center}
 
-  /* roadmap */
   .road{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-  .road .r{border:1px dashed var(--line); border-radius:var(--radius); padding:24px; color:var(--muted)}
-  .road .r.live{border-style:solid; border-color:var(--neon); color:var(--text); background:rgba(255,47,160,.05)}
+  .road .r{border:1px dashed var(--line); border-radius:var(--radius); padding:24px; color:var(--muted); transition:transform .18s}
+  .road .r.live{border-style:solid; border-color:rgba(255,47,160,.6); color:var(--text);
+    background:rgba(255,47,160,.06); box-shadow:0 0 36px rgba(255,47,160,.1)}
+  .road .r:hover{transform:translateY(-3px)}
   .road .r h3{font-size:18px; margin-bottom:8px; color:var(--text)}
   .road .state{font-family:var(--display); font-size:13px; font-weight:600; color:var(--neon)}
   .road .r:not(.live) .state{color:var(--muted)}
 
-  /* faq */
   details{border-top:1px solid var(--line); padding:20px 0}
   details:last-of-type{border-bottom:1px solid var(--line)}
   summary{cursor:pointer; list-style:none; font-family:var(--display); font-weight:600; font-size:18px;
@@ -142,18 +166,21 @@
   details[open] summary::after{transform:rotate(45deg)}
   details p{color:var(--muted); margin-top:14px; max-width:68ch}
 
-  /* final cta + footer */
-  .final{text-align:center}
-  .final h2{font-size:clamp(30px,5vw,48px); margin-bottom:18px}
+  .final{text-align:center; position:relative}
+  .final h2{font-size:clamp(32px,5.2vw,52px); margin-bottom:18px}
+  .final h2 em{font-style:normal; background:linear-gradient(120deg,var(--neon),var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent}
   .final p{color:var(--muted); font-size:19px; max-width:52ch; margin:0 auto 30px}
   footer{border-top:1px solid var(--line); padding:40px 0; color:var(--muted); font-size:14px}
   footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
   footer a{color:var(--muted)} footer a:hover{color:var(--text)}
 
-  /* motion: one page-load reveal, staggered */
+  /* page-load reveal (hero) + scroll reveal (sections) */
   .reveal{opacity:0; transform:translateY(16px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}
+  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.34s}
   @keyframes rise{to{opacity:1; transform:none}}
+  .sr{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+  .sr.vis{opacity:1; transform:none}
 
   @media (max-width:860px){
     .split{grid-template-columns:1fr; gap:32px}
@@ -162,19 +189,20 @@
     .links a:not(.btn){display:none}
   }
   @media (max-width:560px){
-    section{padding:64px 0}
+    section{padding:66px 0}
     .cards{grid-template-columns:1fr}
-    .hero{padding:56px 0 24px}
+    .hero{padding:58px 0 24px}
   }
   :focus-visible{outline:2px solid var(--neon); outline-offset:3px; border-radius:6px}
   @media (prefers-reduced-motion:reduce){
-    .reveal{animation:none; opacity:1; transform:none}
+    *,*::before,*::after{animation:none !important}
+    .sr{opacity:1; transform:none; transition:none}
     html{scroll-behavior:auto}
-    .btn,.links a{transition:none}
   }
 </style>
 </head>
 <body>
+<div class="bg"></div><div class="grain"></div>
 
 <nav class="nav">
   <div class="wrap">
@@ -196,7 +224,7 @@
 
   <header class="hero">
     <div class="wrap">
-      <span class="kicker reveal d1">Underground-grade audio tools</span>
+      <span class="kicker reveal d1"><span class="dot"></span>Underground-grade audio tools</span>
       <h1 class="reveal d1">Make your 808s <em>wrong</em> on purpose.</h1>
       <p class="lead reveal d2">Youkai808 takes a clean sub and drags it anywhere — a little dirt, a lot of dirt, whining, folding, comedic blowout. A full effects rack and a built-in synth, inside one retro interface.</p>
       <div class="cta-row reveal d3">
@@ -211,20 +239,16 @@
   </header>
 
   <div class="strip">
-    <div class="wrap">
-      <span>Runs where you work:</span>
-      <span class="host">FL Studio</span>
-      <span class="host">Ableton Live</span>
-      <span class="host">Logic Pro</span>
-      <span class="host">Reaper</span>
-      <span class="host">Bitwig</span>
+    <div class="track" id="marq">
+      <span>Runs where you work:</span><span class="host">FL Studio</span><span class="host">Ableton Live</span><span class="host">Logic Pro</span><span class="host">Reaper</span><span class="host">Bitwig</span><span class="host">Studio One</span>
+      <span>Runs where you work:</span><span class="host">FL Studio</span><span class="host">Ableton Live</span><span class="host">Logic Pro</span><span class="host">Reaper</span><span class="host">Bitwig</span><span class="host">Studio One</span>
     </div>
   </div>
 
   <section id="plugin">
     <div class="wrap">
       <div class="split">
-        <div>
+        <div class="sr">
           <div class="tagrow">
             <span class="pill">VST3</span><span class="pill">CLAP</span><span class="pill">AU</span>
             <span class="pill">30+ effects</span><span class="pill">Built-in synth</span>
@@ -242,7 +266,7 @@
           </ul>
           <div class="price-inline">Unlock everything for <b>$30</b></div>
         </div>
-        <div class="media">
+        <div class="media sr">
           <img src="img/hub.png" alt="Youkai808 inside the Youkai Digital Hub" width="1200" height="703">
         </div>
       </div>
@@ -251,11 +275,11 @@
 
   <section id="features" style="padding-top:0">
     <div class="wrap">
-      <div class="head center">
+      <div class="head center sr">
         <h2>Built to get weird</h2>
         <p>Every module is made for one thing: a low end with character, not a preset.</p>
       </div>
-      <div class="cards">
+      <div class="cards sr">
         <div class="cell"><div class="ic">808</div><h3>Sub distortion</h3><p>From a touch of grit to a fully blown-out, buzzing sub that still hits in the club.</p></div>
         <div class="cell"><div class="ic">FFT</div><h3>Spectral transform</h3><p>Shift, warp and smear the frequency content for textures nothing else makes.</p></div>
         <div class="cell"><div class="ic">FX</div><h3>Full effects rack</h3><p>Reverb, delay, flanger and 30+ modules you stack and reorder freely.</p></div>
@@ -268,10 +292,10 @@
 
   <section id="get">
     <div class="wrap">
-      <div class="head center"><h2>One app installs it all</h2>
+      <div class="head center sr"><h2>One app installs it all</h2>
         <p>The Youkai Digital Hub is your home for every YoukaiDigital plugin — install, update, try and unlock from one place. No website to dig through.</p></div>
-      <div class="pricing">
-        <div class="price-card reveal d1" id="pricing">
+      <div class="pricing sr">
+        <div class="price-card" id="pricing">
           <div class="name">Youkai808</div>
           <div class="amt"><sup>$</sup>30</div>
           <div class="once">One-time purchase · no subscription</div>
@@ -291,8 +315,8 @@
 
   <section id="roadmap" style="padding-top:0">
     <div class="wrap">
-      <div class="head center"><h2>The lineup</h2><p>Youkai808 is the first. More plugins are on the way, and they'll all land in the same Hub.</p></div>
-      <div class="road">
+      <div class="head center sr"><h2>The lineup</h2><p>Youkai808 is the first. More plugins are on the way, and they'll all land in the same Hub.</p></div>
+      <div class="road sr">
         <div class="r live"><div class="state">Available now</div><h3>Youkai808</h3><p>808 distortion, spectral mangling and a built-in synth.</p></div>
         <div class="r"><div class="state">In the works</div><h3>More coming</h3><p>New instruments and effects, built in the same experimental spirit.</p></div>
         <div class="r"><div class="state">In the works</div><h3>More coming</h3><p>Every release shows up in your Hub automatically.</p></div>
@@ -302,18 +326,20 @@
 
   <section id="faq" style="padding-top:0">
     <div class="wrap" style="max-width:800px">
-      <div class="head center"><h2>Questions</h2></div>
+      <div class="head center sr"><h2>Questions</h2></div>
+      <div class="sr">
       <details open><summary>What do I actually get for $30?</summary><p>The full Youkai808 plugin with its built-in synth, in VST3, CLAP and AU formats, plus every future update. It's a one-time purchase, not a subscription.</p></details>
       <details><summary>How do I install it?</summary><p>Download the free Youkai Digital Hub, open it, and install Youkai808 with one click. The Hub also keeps it updated and lets you switch versions.</p></details>
       <details><summary>Can I try before I buy?</summary><p>Yes. The trial gives you a set of presets so you can run it in your own tracks first. When you're ready, you unlock the full plugin for $30 right in the Hub.</p></details>
       <details><summary>What if I get a new computer?</summary><p>Your key works on up to 3 computers at once, and you can move a license off an old machine from inside the Hub. No need to ask for a new key.</p></details>
       <details><summary>Which systems are supported?</summary><p>Windows is available now. A macOS build is on the way and will appear in the Hub when it's ready.</p></details>
+      </div>
     </div>
   </section>
 
   <section class="final">
-    <div class="wrap">
-      <h2>Go break some sub-bass.</h2>
+    <div class="wrap sr">
+      <h2>Go <em>break</em> some sub-bass.</h2>
       <p>Download the Hub, start the trial, and hear what Youkai808 does to your low end.</p>
       <a class="btn btn-primary btn-lg" href="#get">Get Youkai808</a>
     </div>
@@ -332,5 +358,17 @@
   </div>
 </footer>
 
+<script>
+  // scroll-reveal; respects reduced-motion (CSS already shows .sr when reduced)
+  (function(){
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = [].slice.call(document.querySelectorAll('.sr'));
+    if (rm || !('IntersectionObserver' in window)) { els.forEach(function(e){e.classList.add('vis')}); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('vis'); io.unobserve(en.target); } });
+    }, { threshold:.14 });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
 </body>
 </html>
