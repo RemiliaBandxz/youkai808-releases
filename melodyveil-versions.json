@@ -1,0 +1,9 @@
+{
+  "product": "Melody Veil",
+  "publisher": "YoukaiDigital",
+  "latest": "1.0",
+  "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
+  "versions": [
+    { "version": "1.0", "windows": "releases/MelodyVeil-v1.0.0-Installer.zip", "mac": "" }
+  ]
+}
