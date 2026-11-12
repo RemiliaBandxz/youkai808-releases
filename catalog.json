@@ -109,11 +109,11 @@
     },
     {
       "id": "bandotape",
-      "name": "BANDO TAPE",
-      "registry": "BANDO TAPE",
+      "name": "Plugg Bando Tape",
+      "registry": "Plugg Bando Tape",
       "includes": "VST3 · Windows",
       "tagline": "Makes your beat sound like a 2018 SoundCloud plugg tape, then tells you what to fix in the mix.",
-      "about": "BANDO TAPE brings back the beautiful trash of 2017-2018 SoundCloud plugg. Its main mode is built on the sound of Kayy Luciano, the backbone of Remilia Bandxz's plugg music: dark, sub-heavy, with a long soft 808 that the whole beat ducks under. XANGANG mode brings the loud, crunchy 16k-MP3 sound with hiss, and RAW is dense, slammed and melody-forward. A Mix Coach listens to your beat and tells you what to fix.",
+      "about": "Plugg Bando Tape brings back the beautiful trash of 2017-2018 SoundCloud plugg. Its main mode is built on the sound of Kayy Luciano, the backbone of Remilia Bandxz's plugg music: dark, sub-heavy, with a long soft 808 that the whole beat ducks under. XANGANG mode brings the loud, crunchy 16k-MP3 sound with hiss, and RAW is dense, slammed and melody-forward. A Mix Coach listens to your beat and tells you what to fix.",
       "features": [
         "Kayy Luciano, XanGang and RAW modes, tuned from 20 real 2017-2018 reference beats",
         "VOCAL POCKET: carves space in the center at 1-4 kHz where the rapper sits, so the melody stays wide",
