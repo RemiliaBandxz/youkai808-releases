@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.8",
+    "version": "1.9",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
