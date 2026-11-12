@@ -78,6 +78,10 @@
       "about": "Drop it on your beat or your melody bus. Melody Veil only pulls down what is actually too loud - the 808 wash, the mud, melodies piling into your vocal's spot - and brings back drum punch a slammed master flattened. Tuned from real clear vs muddy SoundCloud beats.",
       "features": [
         "VEIL - one knob for how much room to carve",
+        "LEARN - play your beat, it listens 5 s and sets VEIL / LEAD / FOCUS for you",
+        "AUTO FOCUS - FOCUS follows your lead melody by itself",
+        "VOCAL SPACE meter - see how much room is open for your voice (Crowded / OK / Open)",
+        "COMPARE - hear the untouched beat at the same loudness",
         "LEAD + FOCUS - make the catchy lead melody jump out",
         "PUNCH - brings back flattened drum hits",
         "WIDTH - push melodies to the sides, leave the centre for you",
