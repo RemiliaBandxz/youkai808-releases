@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.3",
+    "version": "1.4",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -15,7 +15,7 @@
       "id": "youkai808",
       "name": "Youkai808",
       "registry": "Youkai808",
-      "includes": "VST3 \u00b7 CLAP \u00b7 AU \u00b7 includes synth",
+      "includes": "VST3 · CLAP · AU · includes synth",
       "tagline": "Experimental 808 destroyer: light bitcrush to blown-out, whining, comedic subs.",
       "about": "An experimental 808 destroyer and synth in one plugin. Start from a clean sub and drag it anywhere - a touch of grit, whining overtones, folding, full comedic blowout - then shape it with a stackable effects rack and generate the bassline right inside the plugin.",
       "features": [
@@ -73,7 +73,7 @@
       "id": "melodyveil",
       "name": "Melody Veil",
       "registry": "Melody Veil",
-      "includes": "VST3 \u00b7 Windows",
+      "includes": "VST3 · Windows",
       "tagline": "Makes any beat easy to rap on: carves a pocket so your vocal sits on top.",
       "about": "Drop it on your beat or your melody bus. Melody Veil only pulls down what is actually too loud - the 808 wash, the mud, melodies piling into your vocal's spot - and brings back drum punch a slammed master flattened. Tuned from real clear vs muddy SoundCloud beats.",
       "features": [
@@ -98,7 +98,35 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "versions": "melodyveil-versions.json"
+      "versions": "melodyveil-versions.json",
+      "wip": true
+    },
+    {
+      "id": "bandotape",
+      "name": "BANDO TAPE",
+      "registry": "BANDO TAPE",
+      "includes": "VST3 · Windows",
+      "tagline": "Makes your beat sound like a 2018 SoundCloud plugg tape, then tells you what to fix in the mix.",
+      "about": "Turns a modern beat into a 2018 plugg-type beat. KAYY / XANGANG / RAW modes built from 20 reference beats, a Mix Coach that tells you what to turn up or down, match EQ off a reference, and 12 presets.",
+      "features": [
+        "KAYY, XANGANG and RAW modes, tuned from 20 real 2017-2018 reference beats",
+        "Mix Coach: live tips like \"Turn the bell UP about 3 dB\" or \"Turn the 808 DOWN\"",
+        "CLIP, DUCK and MUD meters",
+        "ADVANCED page: 808 attack and sustain, saturation, exciter, mud, lo-fi, highpass, lowpass, width, tape hiss",
+        "LEARN REF + MATCH EQ: learn any reference beat and push yours toward it",
+        "12 presets, and the edges glow when you push it hard"
+      ],
+      "tips": [
+        "Start on KAYY for classic plugg, switch to XANGANG for darker mixes",
+        "Hit LEARN REF on a beat you love, then MATCH to steal its tone",
+        "Watch the MUD meter - if it's lit, pull the mud slider down"
+      ],
+      "trial": "full plugin, audio dips every 45 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "versions": "bandotape-versions.json"
     }
   ]
 }

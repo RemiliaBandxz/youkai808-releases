@@ -1,0 +1,9 @@
+{
+  "product": "BANDO TAPE",
+  "publisher": "YoukaiDigital",
+  "latest": "1.2",
+  "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
+  "versions": [
+    { "version": "1.2", "windows": "releases/BandoTape-v1.2.0-Installer.zip", "mac": "" }
+  ]
+}
