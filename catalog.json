@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.9",
+    "version": "1.10",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -137,6 +137,65 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/bandotape.png"
+    },
+    {
+      "id": "sukima",
+      "name": "SUKIMA",
+      "registry": "SUKIMA",
+      "includes": "VST3 · Windows",
+      "tagline": "Opens a gap in your beat for the vocal and makes the melody clearer.",
+      "about": "SUKIMA means \"the gap.\" Put it on the beat and it opens a pocket for your voice without touching the groove: it moves a centered melody out to the sides, dips the center only where you rap, pushes the melody back behind you, and un-washes reverb tails so the beat reads clear. Pairs with Melody Veil - Veil carves the EQ, SUKIMA opens the space.",
+      "features": [
+        "SPLIT - moves a centered melody out to left/right (mono-safe) and dips the center only where your voice sits",
+        "DEPTH - pushes the melody behind you so your vocal sits in front",
+        "CLARITY - un-washes reverb tails so the beat stops sounding smeared",
+        "SHINE - adds sparkle on the sides only, keeps the center clean for your voice",
+        "MOVE - opens the gap only while you rap (vocal sidechain)",
+        "Mix Coach: live plain-English tips for what to fix",
+        "Level-matched A/B so you judge the sound, not the volume",
+        "MONO check - make sure the widening still holds up on phone speakers",
+        "15 vocal-focused presets",
+        "VST3, Windows"
+      ],
+      "tips": [
+        "Put it after Melody Veil: Veil carves the EQ, SUKIMA opens the space",
+        "Turn MOVE up and sidechain your vocal so the gap only opens when you rap",
+        "Hit MONO check before you bounce - if the melody disappears, pull SPLIT back"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/sukima.png"
+    },
+    {
+      "id": "onimaster",
+      "name": "ONI MASTER",
+      "registry": "ONI MASTER",
+      "includes": "VST3 · Windows",
+      "tagline": "Auto master for rap songs: loud vocals, crispy or present, with 808 clip, glue and saturation.",
+      "about": "Drop ONI MASTER on your master bus and it finishes the song like a rap mastering engineer would - loud, with the vocal sitting on top, the 808 clipped so it hits without clipping the mix, glue to hold it together and saturation for colour. Every move is subtle: it polishes the song instead of crushing it.",
+      "features": [
+        "LOUD VOCALS - pushes the vocal up front so the whole song reads loud and clear",
+        "CRISPY / PRESENT - pick the top-end tone: airy and crispy, or warm and present",
+        "808 CLIP - clips the 808 so it knocks hard without clipping the master",
+        "GLUE - gentle bus compression that holds the drums, melody and vocal together",
+        "SATURATION - adds colour and warmth so it doesn't sound flat",
+        "Every move is subtle - it polishes, never crushes",
+        "VST3, Windows"
+      ],
+      "tips": [
+        "Put it last on your master bus, after everything else",
+        "Start crispy for bright plugg, switch to present for darker, warmer beats",
+        "If the 808 is too wild, lean on 808 CLIP before you touch anything else"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/onimaster.png"
     }
   ]
 }
