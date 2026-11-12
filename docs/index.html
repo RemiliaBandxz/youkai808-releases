@@ -3,134 +3,334 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YoukaiDigital — Youkai808</title>
-<meta name="description" content="YoukaiDigital makes Youkai808, an experimental 808 distortion plugin (VST3 / CLAP / AU). Buy and install through the Youkai Digital Hub.">
+<title>YoukaiDigital — audio plugins</title>
+<meta name="description" content="YoukaiDigital builds Youkai808, an experimental 808 distortion and synth plugin for VST3, CLAP and AU. Install it through the Youkai Digital Hub.">
 <meta property="og:title" content="YoukaiDigital — Youkai808">
-<meta property="og:description" content="Experimental 808 destroyer. VST3 · CLAP · AU. $30.">
+<meta property="og:description" content="An experimental 808 destroyer and synth. VST3, CLAP, AU. $30.">
 <meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23120b1a'/%3E%3Cpath d='M9 8l7 9 7-9M16 17v7' stroke='%23ff2fa0' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#140a18; --bg2:#1d0f26; --panel:#241233; --line:#3a1f4d;
-    --text:#f3e9f5; --dim:#c4a7d6; --accent:#ff3fb4; --accent2:#c060ff; --good:#58d68d;
+    --ink:#0c0711; --surface:#160e22; --surface2:#1d1430; --line:#2d1d42;
+    --text:#f3ecf9; --muted:#a493bd; --neon:#ff2fa0; --violet:#a855f7;
+    --radius:16px; --maxw:1080px;
+    --sans:"Inter",system-ui,sans-serif; --display:"Space Grotesk",var(--sans);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0; font-family:"Trebuchet MS",Verdana,system-ui,sans-serif; color:var(--text);
-    background:radial-gradient(1200px 700px at 70% -10%, #3a1140 0%, transparent 60%), linear-gradient(180deg,#140a18,#0e0712 60%);
-    line-height:1.55;
+    margin:0; background:var(--ink); color:var(--text); font-family:var(--sans);
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
   }
-  a{color:var(--accent); text-decoration:none}
-  .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
-  header{padding:28px 0 8px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px}
-  .brand{font-size:26px; font-weight:800; letter-spacing:2px; text-transform:uppercase;
-    background:linear-gradient(90deg,#ff3fb4,#c060ff); -webkit-background-clip:text; background-clip:text; color:transparent}
-  nav a{color:var(--dim); margin-left:18px; font-size:14px; font-weight:700; letter-spacing:.5px}
-  nav a:hover{color:var(--text)}
-  .hero{padding:48px 0 24px; text-align:center}
-  .hero h1{font-size:clamp(34px,6vw,60px); margin:0 0 10px; line-height:1.05;
-    text-shadow:0 0 24px rgba(255,63,180,.35)}
-  .hero .sub{font-size:clamp(16px,2.4vw,20px); color:var(--dim); max-width:620px; margin:0 auto 26px}
-  .tags{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:26px}
-  .tag{border:1px solid var(--line); background:rgba(255,63,180,.06); color:var(--dim);
-    padding:6px 14px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px}
-  .cta{display:inline-flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px;
-    padding:15px 30px; border-radius:12px; font-size:17px; border:0; cursor:pointer;
-    background:linear-gradient(90deg,#ff3fb4,#c060ff); color:#fff;
-    box-shadow:0 8px 30px rgba(255,63,180,.35); transition:transform .12s ease, box-shadow .12s ease}
-  .cta:hover{transform:translateY(-2px); box-shadow:0 12px 40px rgba(255,63,180,.5)}
-  .cta.alt{background:transparent; border:1.5px solid var(--accent2); color:var(--text); box-shadow:none}
-  .price{font-size:15px; color:var(--dim); margin-top:14px}
-  .price b{color:var(--text); font-size:17px}
-  .shot{margin:30px auto 0; max-width:960px}
-  .shot img{width:100%; height:auto; border-radius:14px; border:1px solid var(--line);
-    box-shadow:0 20px 70px rgba(0,0,0,.55)}
-  section{padding:46px 0}
-  h2{font-size:28px; margin:0 0 22px; text-align:center}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px}
-  .card{background:linear-gradient(180deg,var(--panel),var(--bg2)); border:1px solid var(--line);
-    border-radius:14px; padding:20px}
-  .card h3{margin:0 0 8px; font-size:17px; color:var(--accent)}
-  .card p{margin:0; color:var(--dim); font-size:14px}
-  .buy{background:linear-gradient(180deg,#2a1438,#1b0d26); border:1px solid var(--line);
-    border-radius:18px; padding:34px; text-align:center; max-width:560px; margin:0 auto}
-  .buy .big{font-size:44px; font-weight:800; margin:6px 0 2px;
-    background:linear-gradient(90deg,#ff3fb4,#c060ff); -webkit-background-clip:text; background-clip:text; color:transparent}
-  .buy .muted{color:var(--dim); font-size:14px; margin:8px 0 22px}
-  .buy .row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
-  .steps{counter-reset:s; max-width:620px; margin:0 auto; padding:0; list-style:none}
-  .steps li{counter-increment:s; position:relative; padding:12px 0 12px 48px; border-bottom:1px solid var(--line); color:var(--dim)}
-  .steps li:before{content:counter(s); position:absolute; left:0; top:10px; width:30px; height:30px;
-    display:grid; place-items:center; border-radius:50%; background:rgba(255,63,180,.15);
-    border:1px solid var(--accent); color:var(--text); font-weight:800; font-size:14px}
-  .steps b{color:var(--text)}
-  footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--dim); font-size:13px; text-align:center}
-  footer a{color:var(--dim)}
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 78% -8%, rgba(255,47,160,.18), transparent 60%),
+      radial-gradient(760px 500px at 8% 12%, rgba(168,85,247,.14), transparent 55%);
+  }
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  h1,h2,h3{font-family:var(--display); font-weight:700; letter-spacing:-.02em; line-height:1.08; margin:0}
+  p{margin:0}
+
+  /* nav */
+  .nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px);
+    background:rgba(12,7,17,.72); border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:66px}
+  .logo{display:flex; align-items:center; gap:11px; font-family:var(--display); font-weight:700; font-size:19px}
+  .logo svg{width:30px; height:30px; filter:drop-shadow(0 0 9px rgba(255,47,160,.55))}
+  .logo span{color:var(--muted); font-weight:500}
+  .links{display:flex; align-items:center; gap:28px}
+  .links a{color:var(--muted); font-size:15px; font-weight:500; transition:color .15s}
+  .links a:hover{color:var(--text)}
+  .btn{display:inline-flex; align-items:center; gap:9px; font-family:var(--display); font-weight:600;
+    font-size:15px; padding:11px 20px; border-radius:11px; cursor:pointer; border:1px solid transparent;
+    transition:transform .14s ease, box-shadow .14s ease, background .15s}
+  .btn-primary{background:var(--neon); color:#190410; box-shadow:0 6px 22px rgba(255,47,160,.32)}
+  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 10px 30px rgba(255,47,160,.5)}
+  .btn-ghost{border-color:var(--line); color:var(--text); background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--neon); color:#fff}
+  .btn-lg{font-size:17px; padding:15px 28px; border-radius:13px}
+
+  /* hero */
+  .hero{padding:84px 0 40px; text-align:center}
+  .kicker{display:inline-block; color:var(--neon); font-family:var(--display); font-weight:600;
+    font-size:14px; margin-bottom:20px}
+  .hero h1{font-size:clamp(40px,7vw,74px); max-width:12ch; margin:0 auto 20px}
+  .hero h1 em{font-style:normal; color:var(--neon); text-shadow:0 0 34px rgba(255,47,160,.45)}
+  .lead{color:var(--muted); font-size:clamp(17px,2.3vw,21px); max-width:60ch; margin:0 auto 32px}
+  .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+  .note{color:var(--muted); font-size:14px; margin-top:18px}
+  .shot{position:relative; margin:56px auto 0; max-width:1000px}
+  .shot img{width:100%; height:auto; display:block; border-radius:var(--radius);
+    border:1px solid var(--line); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 1px rgba(255,47,160,.08)}
+  .shot::after{content:""; position:absolute; inset:-1px; border-radius:var(--radius); pointer-events:none;
+    box-shadow:inset 0 0 60px rgba(255,47,160,.1)}
+
+  /* daw strip */
+  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:72px}
+  .strip .wrap{display:flex; align-items:center; gap:14px 40px; flex-wrap:wrap; justify-content:center; padding:22px 24px}
+  .strip span{color:var(--muted); font-size:15px; font-weight:500}
+  .strip .host{color:var(--text); font-family:var(--display); font-weight:600; opacity:.85}
+
+  /* section scaffolding */
+  section{padding:92px 0}
+  .head{max-width:60ch; margin:0 0 44px}
+  .head.center{margin:0 auto 52px; text-align:center}
+  .head h2{font-size:clamp(28px,4vw,40px); margin-bottom:14px}
+  .head p{color:var(--muted); font-size:18px}
+
+  /* product split */
+  .split{display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center}
+  .split .media img{width:100%; border-radius:var(--radius); border:1px solid var(--line);
+    box-shadow:0 24px 70px rgba(0,0,0,.5)}
+  .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
+  .pill{border:1px solid var(--line); color:var(--muted); font-size:13px; font-weight:600;
+    padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.02)}
+  .flist{list-style:none; padding:0; margin:22px 0 28px}
+  .flist li{position:relative; padding:9px 0 9px 30px; color:var(--text)}
+  .flist li + li{border-top:1px solid var(--line)}
+  .flist li::before{content:""; position:absolute; left:4px; top:17px; width:9px; height:9px; border-radius:2px;
+    background:var(--neon); box-shadow:0 0 10px rgba(255,47,160,.7); transform:rotate(45deg)}
+  .price-inline{font-family:var(--display); font-weight:700; font-size:22px}
+  .price-inline b{color:var(--neon)}
+
+  /* feature cards */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+  .cards .cell{background:var(--surface); padding:30px 26px}
+  .cards .cell h3{font-size:19px; margin-bottom:10px}
+  .cards .cell p{color:var(--muted); font-size:15px}
+  .cards .ic{width:40px; height:40px; border-radius:10px; display:grid; place-items:center; margin-bottom:16px;
+    background:rgba(255,47,160,.12); color:var(--neon); font-family:var(--display); font-weight:700}
+
+  /* pricing */
+  .pricing{display:grid; place-items:center}
+  .price-card{width:100%; max-width:460px; background:linear-gradient(180deg,var(--surface2),var(--surface));
+    border:1px solid var(--line); border-radius:22px; padding:38px 34px; text-align:center; position:relative}
+  .price-card::before{content:""; position:absolute; inset:0; border-radius:22px; padding:1px; pointer-events:none;
+    background:linear-gradient(180deg, rgba(255,47,160,.6), transparent 55%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
+  .price-card .name{font-family:var(--display); font-weight:600; color:var(--muted); font-size:16px}
+  .price-card .amt{font-family:var(--display); font-weight:700; font-size:68px; line-height:1; margin:10px 0 4px}
+  .price-card .amt sup{font-size:26px; top:-26px; color:var(--neon)}
+  .price-card .once{color:var(--muted); font-size:15px; margin-bottom:26px}
+  .price-card ul{list-style:none; padding:0; margin:0 0 28px; text-align:left}
+  .price-card li{padding:10px 0 10px 28px; position:relative; color:var(--text); font-size:15px}
+  .price-card li + li{border-top:1px solid var(--line)}
+  .price-card li::before{content:"✦"; position:absolute; left:2px; color:var(--neon); font-size:13px; top:11px}
+  .price-card .btn{width:100%; justify-content:center}
+
+  /* roadmap */
+  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .road .r{border:1px dashed var(--line); border-radius:var(--radius); padding:24px; color:var(--muted)}
+  .road .r.live{border-style:solid; border-color:var(--neon); color:var(--text); background:rgba(255,47,160,.05)}
+  .road .r h3{font-size:18px; margin-bottom:8px; color:var(--text)}
+  .road .state{font-family:var(--display); font-size:13px; font-weight:600; color:var(--neon)}
+  .road .r:not(.live) .state{color:var(--muted)}
+
+  /* faq */
+  details{border-top:1px solid var(--line); padding:20px 0}
+  details:last-of-type{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer; list-style:none; font-family:var(--display); font-weight:600; font-size:18px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+"; color:var(--neon); font-size:24px; font-weight:400; transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted); margin-top:14px; max-width:68ch}
+
+  /* final cta + footer */
+  .final{text-align:center}
+  .final h2{font-size:clamp(30px,5vw,48px); margin-bottom:18px}
+  .final p{color:var(--muted); font-size:19px; max-width:52ch; margin:0 auto 30px}
+  footer{border-top:1px solid var(--line); padding:40px 0; color:var(--muted); font-size:14px}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+  footer a{color:var(--muted)} footer a:hover{color:var(--text)}
+
+  /* motion: one page-load reveal, staggered */
+  .reveal{opacity:0; transform:translateY(16px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}
+  @keyframes rise{to{opacity:1; transform:none}}
+
+  @media (max-width:860px){
+    .split{grid-template-columns:1fr; gap:32px}
+    .cards{grid-template-columns:1fr 1fr}
+    .road{grid-template-columns:1fr}
+    .links a:not(.btn){display:none}
+  }
+  @media (max-width:560px){
+    section{padding:64px 0}
+    .cards{grid-template-columns:1fr}
+    .hero{padding:56px 0 24px}
+  }
+  :focus-visible{outline:2px solid var(--neon); outline-offset:3px; border-radius:6px}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{animation:none; opacity:1; transform:none}
+    html{scroll-behavior:auto}
+    .btn,.links a{transition:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="brand">Youkai<span style="color:#fff">Digital</span></div>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#get">Get it</a>
-      <a href="#how">How it works</a>
-    </nav>
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="YoukaiDigital home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#160e22"/><path d="M9 8l7 9 7-9M16 17v7" stroke="#ff2fa0" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Youkai<span>Digital</span>
+    </a>
+    <div class="links">
+      <a href="#plugin">Youkai808</a>
+      <a href="#features">Sound</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="#get">Get the Hub</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="kicker reveal d1">Underground-grade audio tools</span>
+      <h1 class="reveal d1">Make your 808s <em>wrong</em> on purpose.</h1>
+      <p class="lead reveal d2">Youkai808 takes a clean sub and drags it anywhere — a little dirt, a lot of dirt, whining, folding, comedic blowout. A full effects rack and a built-in synth, inside one retro interface.</p>
+      <div class="cta-row reveal d3">
+        <a class="btn btn-primary btn-lg" href="#get">Download the Hub</a>
+        <a class="btn btn-ghost btn-lg" href="#plugin">See what it does</a>
+      </div>
+      <p class="note reveal d3">Free trial built in · Windows · VST3, CLAP &amp; AU</p>
+      <div class="shot reveal d4">
+        <img src="img/hub.png" alt="The Youkai Digital Hub app, showing Youkai808 ready to install" width="1200" height="703">
+      </div>
+    </div>
   </header>
 
-  <div class="hero">
-    <div class="tags">
-      <span class="tag">VST3</span><span class="tag">CLAP</span><span class="tag">AU</span><span class="tag">WINDOWS</span>
+  <div class="strip">
+    <div class="wrap">
+      <span>Runs where you work:</span>
+      <span class="host">FL Studio</span>
+      <span class="host">Ableton Live</span>
+      <span class="host">Logic Pro</span>
+      <span class="host">Reaper</span>
+      <span class="host">Bitwig</span>
     </div>
-    <h1>Youkai808</h1>
-    <p class="sub">An experimental 808 destroyer — from light bitcrush to blown-out, whining, comedic subs. Plus a built-in synth. Wrapped in a retro Remilia CRT interface.</p>
-    <a class="cta" href="#get">Get Youkai808 — $30</a>
-    <div class="price">Free trial included (3 presets) · one key, up to 3 computers</div>
-    <div class="shot"><img src="img/hub.png" alt="Youkai Digital Hub showing the Youkai808 plugin"></div>
   </div>
 
-  <section id="features">
-    <h2>What's inside</h2>
-    <div class="grid">
-      <div class="card"><h3>808 Distortion</h3><p>Bitcrush, saturation, fold and drive built for 808s — dial in clean weight or fully blown-out sub.</p></div>
-      <div class="card"><h3>Spectral Transform</h3><p>FFT-based shift, warp, smear and metallic mangling for sounds nothing else makes.</p></div>
-      <div class="card"><h3>Reverb · Delay · Flanger</h3><p>A full modulation and space suite, so the whole chain lives in one plugin.</p></div>
-      <div class="card"><h3>Built-in Synth</h3><p>Youkai808 Synth is included — generate the 808, don't just process it.</p></div>
-      <div class="card"><h3>30+ effects</h3><p>A deep rack of modules you can stack and reorder for your own sound.</p></div>
-      <div class="card"><h3>Retro Remilia UI</h3><p>A gothic pink CRT interface that looks like nothing else in your DAW.</p></div>
+  <section id="plugin">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <div class="tagrow">
+            <span class="pill">VST3</span><span class="pill">CLAP</span><span class="pill">AU</span>
+            <span class="pill">30+ effects</span><span class="pill">Built-in synth</span>
+          </div>
+          <div class="head" style="margin-bottom:0">
+            <h2>Youkai808</h2>
+            <p>An experimental 808 destroyer. Start clean, then push it until it falls apart in exactly the way you want.</p>
+          </div>
+          <ul class="flist">
+            <li>808 distortion — bitcrush, saturation, fold and drive tuned for sub frequencies</li>
+            <li>Spectral Transform — FFT shift, warp, smear and metallic mangling</li>
+            <li>Reverb, delay and flanger built into the same chain</li>
+            <li>A built-in synth, so you can generate the 808, not just process it</li>
+            <li>Retro Remilia interface that looks like nothing else in your DAW</li>
+          </ul>
+          <div class="price-inline">Unlock everything for <b>$30</b></div>
+        </div>
+        <div class="media">
+          <img src="img/hub.png" alt="Youkai808 inside the Youkai Digital Hub" width="1200" height="703">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center">
+        <h2>Built to get weird</h2>
+        <p>Every module is made for one thing: a low end with character, not a preset.</p>
+      </div>
+      <div class="cards">
+        <div class="cell"><div class="ic">808</div><h3>Sub distortion</h3><p>From a touch of grit to a fully blown-out, buzzing sub that still hits in the club.</p></div>
+        <div class="cell"><div class="ic">FFT</div><h3>Spectral transform</h3><p>Shift, warp and smear the frequency content for textures nothing else makes.</p></div>
+        <div class="cell"><div class="ic">FX</div><h3>Full effects rack</h3><p>Reverb, delay, flanger and 30+ modules you stack and reorder freely.</p></div>
+        <div class="cell"><div class="ic">SYN</div><h3>Built-in synth</h3><p>Youkai808 Synth is included — write the bassline right inside the plugin.</p></div>
+        <div class="cell"><div class="ic">UI</div><h3>Retro interface</h3><p>A gothic CRT look that makes the plugin as much fun to see as to hear.</p></div>
+        <div class="cell"><div class="ic">∞</div><h3>Lifetime updates</h3><p>New effects and versions arrive through the Hub. Buy once, keep it forever.</p></div>
+      </div>
     </div>
   </section>
 
   <section id="get">
-    <div class="buy">
-      <div style="color:var(--dim);font-size:14px;letter-spacing:2px;font-weight:700">YOUKAI808</div>
-      <div class="big">$30</div>
-      <div class="muted">One-time purchase · lifetime updates · VST3 / CLAP / AU</div>
-      <div class="row">
-        <a class="cta" href="https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-v1.0-Windows.zip">Download the Hub (Windows)</a>
-        <a class="cta alt" href="#how">How buying works</a>
+    <div class="wrap">
+      <div class="head center"><h2>One app installs it all</h2>
+        <p>The Youkai Digital Hub is your home for every YoukaiDigital plugin — install, update, try and unlock from one place. No website to dig through.</p></div>
+      <div class="pricing">
+        <div class="price-card reveal d1" id="pricing">
+          <div class="name">Youkai808</div>
+          <div class="amt"><sup>$</sup>30</div>
+          <div class="once">One-time purchase · no subscription</div>
+          <ul>
+            <li>Youkai808 plugin + built-in synth</li>
+            <li>VST3, CLAP and AU formats</li>
+            <li>One key works on up to 3 computers</li>
+            <li>Lifetime updates through the Hub</li>
+            <li>Free trial before you buy</li>
+          </ul>
+          <a class="btn btn-primary btn-lg" href="https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-v1.0-Windows.zip">Download the Hub for Windows</a>
+          <p class="note">Install free, try it, then unlock for $30 inside the app.</p>
+        </div>
       </div>
-      <div class="price" style="margin-top:18px">Install the free Youkai Digital Hub, start the trial, and unlock the full plugin for $30 right inside the app.</div>
     </div>
   </section>
 
-  <section id="how">
-    <h2>How it works</h2>
-    <ol class="steps">
-      <li><b>Download the Youkai Digital Hub</b> — one free app that installs and updates every YoukaiDigital plugin.</li>
-      <li><b>Try Youkai808 free</b> — the trial gives you 3 presets so you can hear it in your own tracks.</li>
-      <li><b>Unlock for $30</b> — buy in the Hub. Your key works on up to 3 computers, no account needed.</li>
-      <li><b>Keep it forever</b> — updates and new versions arrive through the Hub automatically.</li>
-    </ol>
+  <section id="roadmap" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center"><h2>The lineup</h2><p>Youkai808 is the first. More plugins are on the way, and they'll all land in the same Hub.</p></div>
+      <div class="road">
+        <div class="r live"><div class="state">Available now</div><h3>Youkai808</h3><p>808 distortion, spectral mangling and a built-in synth.</p></div>
+        <div class="r"><div class="state">In the works</div><h3>More coming</h3><p>New instruments and effects, built in the same experimental spirit.</p></div>
+        <div class="r"><div class="state">In the works</div><h3>More coming</h3><p>Every release shows up in your Hub automatically.</p></div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    © 2026 YoukaiDigital · Youkai808 is a registered product of YoukaiDigital. All rights reserved.<br>
-    <a href="https://github.com/RemiliaBandxz/youkai808-releases">Releases &amp; downloads on GitHub</a>
-  </footer>
+  <section id="faq" style="padding-top:0">
+    <div class="wrap" style="max-width:800px">
+      <div class="head center"><h2>Questions</h2></div>
+      <details open><summary>What do I actually get for $30?</summary><p>The full Youkai808 plugin with its built-in synth, in VST3, CLAP and AU formats, plus every future update. It's a one-time purchase, not a subscription.</p></details>
+      <details><summary>How do I install it?</summary><p>Download the free Youkai Digital Hub, open it, and install Youkai808 with one click. The Hub also keeps it updated and lets you switch versions.</p></details>
+      <details><summary>Can I try before I buy?</summary><p>Yes. The trial gives you a set of presets so you can run it in your own tracks first. When you're ready, you unlock the full plugin for $30 right in the Hub.</p></details>
+      <details><summary>What if I get a new computer?</summary><p>Your key works on up to 3 computers at once, and you can move a license off an old machine from inside the Hub. No need to ask for a new key.</p></details>
+      <details><summary>Which systems are supported?</summary><p>Windows is available now. A macOS build is on the way and will appear in the Hub when it's ready.</p></details>
+    </div>
+  </section>
 
-</div>
+  <section class="final">
+    <div class="wrap">
+      <h2>Go break some sub-bass.</h2>
+      <p>Download the Hub, start the trial, and hear what Youkai808 does to your low end.</p>
+      <a class="btn btn-primary btn-lg" href="#get">Get Youkai808</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="font-size:16px">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#160e22"/><path d="M9 8l7 9 7-9M16 17v7" stroke="#ff2fa0" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Youkai<span style="color:var(--muted);font-weight:500">Digital</span>
+    </div>
+    <div>© 2026 YoukaiDigital. Proprietary — all rights reserved.</div>
+    <a href="https://github.com/RemiliaBandxz/youkai808-releases">Downloads on GitHub</a>
+  </div>
+</footer>
+
 </body>
 </html>
