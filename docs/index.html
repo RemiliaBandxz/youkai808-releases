@@ -168,6 +168,21 @@
   .price-card li::before{content:"✦"; position:absolute; left:2px; color:var(--neon); font-size:13px; top:11px}
   .price-card .btn{width:100%; justify-content:center}
 
+  /* beat demos */
+  .beats{max-width:760px; margin:0 auto; display:grid; gap:10px}
+  .beat{display:flex; align-items:center; gap:14px; padding:14px 16px; border:1px solid var(--line); border-radius:14px;
+    background:linear-gradient(180deg,var(--surface2),var(--surface)); transition:border-color .18s, box-shadow .18s}
+  .beat:hover{border-color:rgba(255,47,160,.45)}
+  .beat.playing{border-color:var(--neon); box-shadow:0 0 30px rgba(255,47,160,.18)}
+  .beat .play{flex:none; width:44px; height:44px; border-radius:50%; border:none; cursor:pointer; display:grid; place-items:center;
+    background:linear-gradient(120deg,var(--neon),#ff5bb5); color:#190410; box-shadow:0 4px 16px rgba(255,47,160,.35)}
+  .beat .play svg{width:18px; height:18px; display:block}
+  .beat .meta{flex:1; min-width:0}
+  .beat .name{font-family:var(--display); font-weight:600; font-size:16px}
+  .beat .bar{height:5px; border-radius:3px; background:rgba(255,255,255,.08); margin-top:8px; overflow:hidden}
+  .beat .fill{height:100%; width:0; background:linear-gradient(90deg,var(--neon),var(--violet)); border-radius:3px}
+  .beat .time{flex:none; color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; min-width:42px; text-align:right}
+
   .road{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
   .road .r{border:1px dashed var(--line); border-radius:var(--radius); padding:24px; color:var(--muted); transition:transform .18s}
   .road .r.live{border-style:solid; border-color:rgba(255,47,160,.6); color:var(--text);
@@ -233,6 +248,7 @@
     <div class="links">
       <a href="#plugin">Youkai808</a>
       <a href="#features">Sound</a>
+      <a href="#beats">Beats</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a class="btn btn-primary" href="#get">Get the Hub</a>
@@ -253,7 +269,7 @@
       </div>
       <p class="note reveal d3">Free trial built in · Windows · VST3, CLAP &amp; AU</p>
       <div class="shot reveal d4">
-        <img src="img/hub.png" alt="The Youkai Digital Hub app, showing Youkai808 ready to install" width="1200" height="703">
+        <img src="img/youkai808.png" alt="The Youkai808 plugin interface" width="1180" height="690" style="aspect-ratio:1180/690">
       </div>
     </div>
   </header>
@@ -306,6 +322,20 @@
         <div class="cell"><div class="ic">SYN</div><h3>Built-in synth</h3><p>Youkai808 Synth is included — write the bassline right inside the plugin.</p></div>
         <div class="cell"><div class="ic">MB</div><h3>Multiband distortion</h3><p>Split the signal into bands and mangle each one — pre/post filtering keeps the low end controlled.</p></div>
         <div class="cell"><div class="ic">∞</div><h3>Lifetime updates</h3><p>New effects and versions arrive through the Hub. Buy once, keep it forever.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="beats" style="padding-top:0">
+    <div class="wrap">
+      <div class="head center sr"><h2>Beats made with it</h2>
+        <p>Real tracks built with Youkai808. Tap play.</p></div>
+      <div class="beats sr">
+        <div class="beat" data-src="audio/skam.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Lil Skam Cypher</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+        <div class="beat" data-src="audio/skam2.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Lil Skam Cypher II</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+        <div class="beat" data-src="audio/water.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Watergoingnorth</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+        <div class="beat" data-src="audio/f452.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">452hz</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+        <div class="beat" data-src="audio/search.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Search</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
       </div>
     </div>
   </section>
@@ -399,6 +429,29 @@
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('vis'); io.unobserve(en.target); } });
     }, { threshold:.14 });
     els.forEach(function(e){ io.observe(e); });
+  })();
+
+  // beat demo players — one <audio> shared, only one plays at a time
+  (function(){
+    var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+    function fmt(s){ s=Math.max(0,s|0); return (s/60|0)+':'+('0'+(s%60)).slice(-2); }
+    var rows = [].slice.call(document.querySelectorAll('.beat')), audio = new Audio(), cur = null;
+    rows.forEach(function(e){ e.querySelector('.play').innerHTML = PLAY; });
+    function stopUI(){ if(cur){ cur.classList.remove('playing'); cur.querySelector('.play').innerHTML = PLAY;
+      cur.querySelector('.fill').style.width='0'; cur.querySelector('.time').textContent='0:00'; } }
+    rows.forEach(function(row){
+      row.querySelector('.play').addEventListener('click', function(){
+        if(cur === row){ if(audio.paused){ audio.play(); } else { audio.pause(); } return; }
+        stopUI(); cur = row; audio.src = row.getAttribute('data-src'); audio.play();
+      });
+    });
+    audio.addEventListener('play', function(){ if(cur){ cur.classList.add('playing'); cur.querySelector('.play').innerHTML = PAUSE; } });
+    audio.addEventListener('pause', function(){ if(cur){ cur.querySelector('.play').innerHTML = PLAY; } });
+    audio.addEventListener('timeupdate', function(){ if(!cur||!audio.duration) return;
+      cur.querySelector('.fill').style.width = (100*audio.currentTime/audio.duration)+'%';
+      cur.querySelector('.time').textContent = fmt(audio.currentTime); });
+    audio.addEventListener('ended', function(){ stopUI(); cur = null; });
   })();
 </script>
 </body>
