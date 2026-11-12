@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.10",
+    "version": "1.11",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -196,6 +196,222 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/onimaster.png"
+    },
+    {
+      "id": "tanukijuice",
+      "name": "Tanuki Juice",
+      "registry": "Tanuki Juice",
+      "includes": "VST3 · Windows",
+      "tagline": "one knob that makes it sound better, not just louder.",
+      "about": "One knob. Turn it up and your beat or vocal just sounds better - richer, fuller, more finished - without only getting louder. Tanuki Juice leans on saturation, gentle EQ and glue under the hood so you don't have to think about any of it.",
+      "features": [
+        "JUICE - one knob for instantly fuller, better sound",
+        "Adds warmth and body, not just volume",
+        "Level-matched so you hear the tone change, not a loudness jump",
+        "Works on vocals, melodies or the whole beat"
+      ],
+      "tips": [
+        "Put it on anything that sounds flat and turn JUICE up till it feels right",
+        "A/B against the dry sound - you want richer, not louder"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/tanukijuice.png"
+    },
+    {
+      "id": "kirinverb",
+      "name": "Kirin Verb",
+      "registry": "Kirin Verb",
+      "includes": "VST3 · Windows",
+      "tagline": "vocal reverb that stays out of the way of the words.",
+      "about": "A vocal reverb that adds space without smearing your words. Kirin Verb ducks and carves itself around the vocal so the tail sits behind you and the lyrics stay clear and up front.",
+      "features": [
+        "Reverb that ducks around the vocal so words stay clear",
+        "Space and depth without washing out the lyrics",
+        "Tail sits behind the voice, not on top of it",
+        "Vocal-first presets"
+      ],
+      "tips": [
+        "Turn it up more than you think - it clears itself out of the way",
+        "Great on the main vocal and the adlibs both"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/kirinverb.png"
+    },
+    {
+      "id": "kodamaadlib",
+      "name": "Kodama Adlib",
+      "registry": "Kodama Adlib",
+      "includes": "VST3 · Windows",
+      "tagline": "adlib FX: phone, radio, megaphone and ping-pong throws.",
+      "about": "An adlib effects box. Run your adlibs through phone, radio and megaphone tones, then throw them around the stereo field with ping-pong delays. One plugin for every adlib trick.",
+      "features": [
+        "Phone, radio and megaphone voice tones",
+        "Ping-pong throws that bounce the adlib across the mix",
+        "Instant classic adlib textures",
+        "Adlib-focused presets"
+      ],
+      "tips": [
+        "Put it on your adlib bus, not the main vocal",
+        "Pick a throw preset and match the timing to the beat"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/kodamaadlib.png"
+    },
+    {
+      "id": "nuephase",
+      "name": "Nue Phase",
+      "registry": "Nue Phase",
+      "includes": "VST3 · Windows",
+      "tagline": "thick chorus and flanger that keeps your low end.",
+      "about": "Thick chorus and flanger that widens and moves your sound without hollowing out the bottom. Nue Phase keeps the low end mono and solid while the top shimmers and swirls.",
+      "features": [
+        "Lush chorus and flanger in one",
+        "Keeps the low end mono and solid - no thin bass",
+        "Width and movement up top only",
+        "Modulation presets from subtle to wild"
+      ],
+      "tips": [
+        "Great on melodies and plucks that need movement",
+        "Keep the low end locked - that's what it's built to protect"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/nuephase.png"
+    },
+    {
+      "id": "umibozuir",
+      "name": "Umibozu IR",
+      "registry": "Umibozu IR",
+      "includes": "VST3 · Windows",
+      "tagline": "13 real-sounding spaces for vocals.",
+      "about": "13 real-sounding spaces for your vocal, captured as impulse responses - rooms, chambers, plates and halls that sound like real places instead of a cheap digital reverb. Pick a space and your vocal is in it.",
+      "features": [
+        "13 real-sounding spaces: rooms, chambers, plates, halls",
+        "Convolution reverb - sounds like a real place",
+        "Built and voiced for rap vocals",
+        "Simple space picker, no deep tweaking"
+      ],
+      "tips": [
+        "Try a small room first - glue without obvious reverb",
+        "Bigger halls for hooks, tight rooms for verses"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/umibozuir.png"
+    },
+    {
+      "id": "mononokewash",
+      "name": "Mononoke Wash",
+      "registry": "Mononoke Wash",
+      "includes": "VST3 · Windows",
+      "tagline": "a flanger melting into a dreamy wash.",
+      "about": "A flanger that melts into a dreamy, washed-out cloud. Mononoke Wash takes your sound from a tight jet-plane flange all the way into a soft ambient wash - great for intros, bridges and dreamy hooks.",
+      "features": [
+        "Flanger that melts into an ambient wash",
+        "From tight jet-flange to soft dreamy cloud",
+        "Perfect for intros, bridges and dreamy sections",
+        "Washed-out, cinematic presets"
+      ],
+      "tips": [
+        "Automate it opening into the wash on a hook",
+        "Beautiful on a reversed or held-out sound"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/mononokewash.png"
+    },
+    {
+      "id": "yureistop",
+      "name": "Yurei Stop",
+      "registry": "Yurei Stop",
+      "includes": "VST3 · Windows",
+      "tagline": "tempo-synced tapestops, spinbacks and scratches.",
+      "about": "Tempo-synced tapestops, spinbacks and scratches on tap. Yurei Stop locks to your beat so every stop and rewind lands in time - perfect for transitions and drops.",
+      "features": [
+        "Tapestops, spinbacks and scratches",
+        "Tempo-synced so every move lands in time",
+        "Built for transitions and drops",
+        "One-tap trigger, a preset for each move"
+      ],
+      "tips": [
+        "Drop a tapestop right before the beat comes back in",
+        "Automate a spinback at the end of a section"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/yureistop.png"
+    },
+    {
+      "id": "tenguhats",
+      "name": "Tengu Hats",
+      "registry": "Tengu Hats",
+      "includes": "VST3 · Windows",
+      "tagline": "hi-hat pattern machine with rolls and reverse hits.",
+      "about": "A hi-hat pattern machine. Tengu Hats builds trap-style hat patterns with rolls, triplets and reverse hits so you can lay down hats fast without programming every note by hand.",
+      "features": [
+        "Hi-hat pattern machine with rolls and triplets",
+        "Reverse hits and stutters built in",
+        "Trap-style patterns in a couple of clicks",
+        "Pattern presets you can tweak"
+      ],
+      "tips": [
+        "Start from a preset pattern, then add rolls where it needs energy",
+        "Reverse hits sound great leading into the snare"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/tenguhats.png"
+    },
+    {
+      "id": "remisauce2",
+      "name": "RemiSauce 2",
+      "registry": "RemiSauce 2",
+      "includes": "VST3 · Windows",
+      "tagline": "vocal prep before RVC: clean, level, de-ess.",
+      "about": "Vocal prep for RVC. RemiSauce 2 cleans, levels and de-esses your raw vocal before it goes through RVC, so the model gets a clean, consistent input and gives you a better result. Rebuilt from the original RemiSauce.",
+      "features": [
+        "Cleans up the raw vocal: noise and rumble",
+        "Levels the vocal so it's consistent for RVC",
+        "De-ess to tame harsh S sounds",
+        "Tuned specifically for RVC input"
+      ],
+      "tips": [
+        "Run it on your dry vocal before RVC, not after",
+        "Consistent level in means steadier RVC out"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/remisauce2.png"
     }
   ]
 }
