@@ -1,17 +1,21 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.0",
+    "version": "1.1",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
-  "bundle": { "id": "bundle", "name": "Everything Bundle", "store_product_ids": [] },
+  "bundle": {
+    "id": "bundle",
+    "name": "Everything Bundle",
+    "store_product_ids": []
+  },
   "products": [
     {
       "id": "youkai808",
       "name": "Youkai808",
       "registry": "Youkai808",
-      "includes": "VST3 · CLAP · AU · includes synth",
+      "includes": "VST3 \u00b7 CLAP \u00b7 AU \u00b7 includes synth",
       "tagline": "Experimental 808 destroyer: light bitcrush to blown-out, whining, comedic subs. Retro Remilia CRT UI.",
       "about": "An experimental 808 destroyer and synth in one plugin. Start from a clean sub and drag it anywhere - a touch of grit, whining overtones, folding, full comedic blowout - then shape it with a stackable effects rack and generate the bassline right inside the plugin.",
       "features": [
@@ -33,7 +37,7 @@
       ],
       "trial": "3 presets",
       "price": "$30",
-      "buy_url": "",
+      "buy_url": "https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757",
       "store_product_ids": [],
       "versions": "versions.json"
     }
