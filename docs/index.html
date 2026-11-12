@@ -131,6 +131,26 @@
     background:rgba(255,47,160,.12); color:var(--neon); font-family:var(--display); font-weight:700;
     box-shadow:inset 0 0 0 1px rgba(255,47,160,.25)}
 
+  /* free Hub vs paid plugin — two clearly distinct cards */
+  .get-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch; max-width:940px; margin:0 auto}
+  .free-card{position:relative; display:flex; flex-direction:column; text-align:center; padding:40px 34px; border-radius:22px;
+    background:linear-gradient(180deg,rgba(88,225,255,.09),var(--surface)); border:1px solid rgba(88,225,255,.32);
+    box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .free-card h3{font-size:27px; margin:14px 0 10px}
+  .free-card p:not(.note){color:var(--muted); font-size:15px; margin-bottom:24px}
+  .free-card .btn{margin-top:auto; width:100%; justify-content:center;
+    background:linear-gradient(120deg,var(--cyan),#8af0ff); color:#06222b; box-shadow:0 6px 22px rgba(88,225,255,.3)}
+  .free-card .btn:hover{transform:translateY(-1px); box-shadow:0 12px 34px rgba(88,225,255,.5)}
+  .tag-badge{align-self:center; font-family:var(--display); font-weight:700; font-size:12.5px; letter-spacing:.09em;
+    padding:5px 16px; border-radius:999px}
+  .tag-free{color:#06222b; background:var(--cyan); box-shadow:0 0 20px rgba(88,225,255,.5)}
+  .tag-paid{color:#190410; background:linear-gradient(120deg,var(--neon),#ff5bb5); box-shadow:0 0 20px rgba(255,47,160,.5)}
+  .get-grid .price-card{max-width:none; width:100%; text-align:center; padding-top:40px}
+  .price-card .amt sup{font-weight:700}
+  .buyline{font-family:var(--display); font-weight:600; color:var(--muted); font-size:14.5px; margin-top:2px}
+  .buyline b{color:var(--neon)}
+  @media (max-width:860px){ .get-grid{grid-template-columns:1fr; max-width:460px} }
+
   .pricing{display:grid; place-items:center}
   .price-card{width:100%; max-width:460px; background:linear-gradient(180deg,var(--surface2),var(--surface));
     border:1px solid var(--line); border-radius:22px; padding:40px 34px; text-align:center; position:relative;
@@ -267,7 +287,7 @@
           <div class="price-inline">Unlock everything for <b>$30</b></div>
         </div>
         <div class="media sr">
-          <img src="img/hub.png" alt="Youkai808 inside the Youkai Digital Hub" width="1200" height="703">
+          <img src="img/youkai808.png" alt="The Youkai808 plugin interface" width="1180" height="690" style="aspect-ratio:1180/690">
         </div>
       </div>
     </div>
@@ -292,13 +312,23 @@
 
   <section id="get">
     <div class="wrap">
-      <div class="head center sr"><h2>One app installs it all</h2>
-        <p>The Youkai Digital Hub is your home for every YoukaiDigital plugin — install, update, try and unlock from one place. No website to dig through.</p></div>
-      <div class="pricing sr">
+      <div class="head center sr"><h2>Get Youkai808</h2>
+        <p>Two steps: download the <b>free</b> Hub, then unlock the plugin inside it. The Hub itself never costs anything.</p></div>
+      <div class="get-grid sr">
+
+        <div class="free-card">
+          <span class="tag-badge tag-free">FREE · THE APP</span>
+          <h3>Youkai Digital Hub</h3>
+          <p>The free app that installs, updates and unlocks every YoukaiDigital plugin. Start here — no account, no cost.</p>
+          <a class="btn btn-primary btn-lg" href="https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe">Download the Hub — free</a>
+          <p class="note">Windows · VST3, CLAP &amp; AU</p>
+        </div>
+
         <div class="price-card" id="pricing">
-          <div class="name">Youkai808</div>
+          <span class="tag-badge tag-paid">$30 · THE PLUGIN</span>
+          <div class="name" style="margin-top:14px">Youkai808 plugin</div>
           <div class="amt"><sup>$</sup>30</div>
-          <div class="once">One-time purchase · no subscription</div>
+          <div class="once">One-time · unlock inside the Hub</div>
           <ul>
             <li>Youkai808 plugin + built-in synth</li>
             <li>VST3, CLAP and AU formats</li>
@@ -306,9 +336,9 @@
             <li>Lifetime updates through the Hub</li>
             <li>Free trial before you buy</li>
           </ul>
-          <a class="btn btn-primary btn-lg" href="https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe">Download the Hub for Windows</a>
-          <p class="note">Install free, try it, then unlock for $30 inside the app.</p>
+          <div class="buyline">Install the free Hub, try it, then unlock for <b>$30</b> in the app.</div>
         </div>
+
       </div>
     </div>
   </section>
