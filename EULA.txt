@@ -1,0 +1,52 @@
+YOUKAIDIGITAL END USER LICENSE AGREEMENT
+Youkai808, Youkai808 Synth, and the Youkai Digital Hub
+Copyright (c) 2026 YoukaiDigital. All rights reserved.
+
+By downloading, installing, activating, or using this software ("the Software"),
+you agree to this Agreement. If you do not agree, do not install or use it.
+
+1. LICENSE
+   The Software is licensed, not sold. Subject to this Agreement and payment of
+   any applicable fee, YoukaiDigital grants you a personal, non-exclusive,
+   non-transferable license to install and use the Software on the number of
+   computers permitted by your license key. A free trial version may be used
+   with limited features for evaluation only.
+
+2. OWNERSHIP
+   The Software, including its code, user interface, artwork, sounds, presets,
+   and design, is the property of YoukaiDigital and is protected by copyright
+   and other laws. You receive no ownership rights, only the license above.
+
+3. RESTRICTIONS
+   You may NOT, in whole or in part:
+   a) decompile, disassemble, reverse-engineer, or attempt to derive the source
+      code or algorithms of the Software;
+   b) modify, patch, crack, or create derivative works of the Software;
+   c) remove, disable, or circumvent any license check, activation, or copy
+      protection;
+   d) copy, resell, rent, lend, sublicense, share, or redistribute the Software
+      or your license key to any other person;
+   e) generate, distribute, or use unauthorized license keys.
+
+4. LICENSE KEYS
+   License keys are tied to your computer and verified online. Sharing, leaking,
+   or tampering with a key will cause it to stop working, and YoukaiDigital may
+   revoke it. Keys issued free to friends are for that one person's computer.
+
+5. ENFORCEMENT
+   Violating section 3 immediately terminates your license and may infringe
+   YoukaiDigital's copyright. Unauthorized circumvention of the copy protection
+   may also violate anti-circumvention law (including the U.S. Digital Millennium
+   Copyright Act, 17 U.S.C. section 1201, and similar laws elsewhere).
+   YoukaiDigital reserves all rights and remedies available to it.
+
+6. NO WARRANTY
+   The Software is provided "AS IS", without warranty of any kind. To the fullest
+   extent permitted by law, YoukaiDigital is not liable for any damages arising
+   from its use.
+
+7. REFUNDS AND PAYMENTS
+   Purchases are processed by a third-party merchant of record. Refunds, when
+   granted, revoke the associated license key.
+
+Questions: contact YoukaiDigital through the store page you bought from.
