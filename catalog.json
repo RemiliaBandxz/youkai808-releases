@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.5",
+    "version": "1.7",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -67,7 +67,8 @@
       "price": "$30",
       "buy_url": "https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757",
       "store_product_ids": [],
-      "versions": "versions.json"
+      "versions": "versions.json",
+      "image": "hub-art/youkai808.png"
     },
     {
       "id": "melodyveil",
@@ -78,6 +79,10 @@
       "about": "Drop it on your beat or your melody bus. Melody Veil only pulls down what is actually too loud - the 808 wash, the mud, melodies piling into your vocal's spot - and brings back drum punch a slammed master flattened. Tuned from real clear vs muddy SoundCloud beats.",
       "features": [
         "VEIL - one knob for how much room to carve",
+        "LEARN - play your beat, it listens 5 s and sets VEIL / LEAD / FOCUS for you",
+        "AUTO FOCUS - FOCUS follows your lead melody by itself",
+        "VOCAL SPACE meter - see how much room is open for your voice (Crowded / OK / Open)",
+        "COMPARE - hear the untouched beat at the same loudness",
         "LEAD + FOCUS - make the catchy lead melody jump out",
         "PUNCH - brings back flattened drum hits",
         "WIDTH - push melodies to the sides, leave the centre for you",
@@ -98,8 +103,8 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "versions": "melodyveil-versions.json",
-      "wip": true
+      "wip": true,
+      "image": "hub-art/melodyveil.png"
     },
     {
       "id": "bandotape",
@@ -107,14 +112,17 @@
       "registry": "BANDO TAPE",
       "includes": "VST3 · Windows",
       "tagline": "Makes your beat sound like a 2018 SoundCloud plugg tape, then tells you what to fix in the mix.",
-      "about": "Turns a modern beat into a 2018 plugg-type beat. KAYY / XANGANG / RAW modes built from 20 reference beats, a Mix Coach that tells you what to turn up or down, match EQ off a reference, and 12 presets.",
+      "about": "BANDO TAPE brings back the beautiful trash of 2017-2018 SoundCloud plugg. Its main mode is built on the sound of Kayy Luciano, the backbone of Remilia Bandxz's plugg music: dark, sub-heavy, with a long soft 808 that the whole beat ducks under. XANGANG mode brings the loud, crunchy 16k-MP3 sound with hiss, and RAW is dense, slammed and melody-forward. A Mix Coach listens to your beat and tells you what to fix.",
       "features": [
-        "KAYY, XANGANG and RAW modes, tuned from 20 real 2017-2018 reference beats",
+        "Kayy Luciano, XanGang and RAW modes, tuned from 20 real 2017-2018 reference beats",
+        "VOCAL POCKET: carves space in the center at 1-4 kHz where the rapper sits, so the melody stays wide",
         "Mix Coach: live tips like \"Turn the bell UP about 3 dB\" or \"Turn the 808 DOWN\"",
+        "WOBBLE: warped-cassette wow and flutter",
+        "A/B button: hear the beat without the plugin at the same loudness, so you judge the sound not the volume",
         "CLIP, DUCK and MUD meters",
         "ADVANCED page: 808 attack and sustain, saturation, exciter, mud, lo-fi, highpass, lowpass, width, tape hiss",
         "LEARN REF + MATCH EQ: learn any reference beat and push yours toward it",
-        "12 presets, and the edges glow when you push it hard"
+        "15 presets (incl. KAYY Warped Cassette, XANGANG Ready To Rap, RAW Bando Tape), edges glow when you push it hard"
       ],
       "tips": [
         "Start on KAYY for classic plugg, switch to XANGANG for darker mixes",
@@ -126,7 +134,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "versions": "bandotape-versions.json"
+      "image": "hub-art/bandotape.png"
     }
   ]
 }
