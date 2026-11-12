@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.7",
+    "version": "1.8",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -79,6 +79,7 @@
       "about": "Drop it on your beat or your melody bus. Melody Veil only pulls down what is actually too loud - the 808 wash, the mud, melodies piling into your vocal's spot - and brings back drum punch a slammed master flattened. Tuned from real clear vs muddy SoundCloud beats.",
       "features": [
         "VEIL - one knob for how much room to carve",
+        "LEVEL - auto-matches the melody to a full-beat level so it sits right under your vocal",
         "LEARN - play your beat, it listens 5 s and sets VEIL / LEAD / FOCUS for you",
         "AUTO FOCUS - FOCUS follows your lead melody by itself",
         "VOCAL SPACE meter - see how much room is open for your voice (Crowded / OK / Open)",
@@ -92,7 +93,7 @@
         "Evens out melodies that jump in level (that one loud piano)",
         "Mono low end so the 808 stays centred",
         "Auto gain + soft clip: never quieter, never clipping",
-        "20 presets: everyday, lead/melody, fix-the-beat, vocal key, creative"
+        "12 vocal-first presets: everyday, lead/melody, fix-the-beat, vocal key, creative"
       ],
       "tips": [
         "Slammed YouTube type beat? Start on Unsquash",
@@ -116,6 +117,7 @@
       "features": [
         "Kayy Luciano, XanGang and RAW modes, tuned from 20 real 2017-2018 reference beats",
         "VOCAL POCKET: carves space in the center at 1-4 kHz where the rapper sits, so the melody stays wide",
+        "Resonant LOWPASS knob: the dark, muffled-but-clear Kayy Luciano filter (Fruity Filter sound)",
         "Mix Coach: live tips like \"Turn the bell UP about 3 dB\" or \"Turn the 808 DOWN\"",
         "WOBBLE: warped-cassette wow and flutter",
         "A/B button: hear the beat without the plugin at the same loudness, so you judge the sound not the volume",
