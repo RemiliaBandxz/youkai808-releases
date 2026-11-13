@@ -12,6 +12,10 @@ for p in cat.get("products", []):
         errs.append(f"{pid}: no 'image' field (tile would be blank)")
     elif not img.startswith("http") and not os.path.isfile(os.path.join(root, img)):
         errs.append(f"{pid}: image file missing: {img}")
+    for c in p.get("clips", []):
+        u = c.get("url", "")
+        if u and not u.startswith("http") and not os.path.isfile(os.path.join(root, u)):
+            errs.append(f"{pid}: clip file missing: {u}")
     if p.get("wip"):
         if "versions" in p:
             errs.append(f"{pid}: WIP plugin must not have a 'versions' field (not installable)")

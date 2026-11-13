@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.13",
+    "version": "1.14",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -68,7 +68,33 @@
       "buy_url": "https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757",
       "store_product_ids": [],
       "versions": "versions.json",
-      "image": "hub-art/youkai808.png"
+      "image": "hub-art/youkai808.png",
+      "clips": [
+        {
+          "label": "Lil Skam Cypher",
+          "url": "hub-clips/demo_skam.ogg"
+        },
+        {
+          "label": "Lil Skam Cypher II",
+          "url": "hub-clips/demo_skam2.ogg"
+        },
+        {
+          "label": "Watergoingnorth",
+          "url": "hub-clips/demo_water.ogg"
+        },
+        {
+          "label": "452hz",
+          "url": "hub-clips/demo_f452.ogg"
+        },
+        {
+          "label": "Search",
+          "url": "hub-clips/demo_search.ogg"
+        },
+        {
+          "label": "808 Cypher (158 BPM)",
+          "url": "hub-clips/demo_chypher.ogg"
+        }
+      ]
     },
     {
       "id": "melodyveil",
@@ -105,7 +131,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/melodyveil.png"
+      "image": "hub-art/melodyveil.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_mv_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_mv_after.ogg"
+        }
+      ]
     },
     {
       "id": "bandotape",
@@ -138,7 +174,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/bandotape.png"
+      "image": "hub-art/bandotape.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_bando_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_bando_after.ogg"
+        }
+      ]
     },
     {
       "id": "sukima",
@@ -169,7 +215,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/sukima.png"
+      "image": "hub-art/sukima.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_sukima_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_sukima_after.ogg"
+        }
+      ]
     },
     {
       "id": "onimaster",
@@ -197,7 +253,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/onimaster.png"
+      "image": "hub-art/onimaster.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_oni_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_oni_after.ogg"
+        }
+      ]
     },
     {
       "id": "tanukijuice",
@@ -221,7 +287,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/tanukijuice.png"
+      "image": "hub-art/tanukijuice.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_tanukijuice_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_tanukijuice_after.ogg"
+        }
+      ]
     },
     {
       "id": "kirinverb",
@@ -245,7 +321,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/kirinverb.png"
+      "image": "hub-art/kirinverb.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_kirinverb_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_kirinverb_after.ogg"
+        }
+      ]
     },
     {
       "id": "kodamaadlib",
@@ -269,7 +355,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/kodamaadlib.png"
+      "image": "hub-art/kodamaadlib.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_kodamaadlib_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_kodamaadlib_after.ogg"
+        }
+      ]
     },
     {
       "id": "nuephase",
@@ -293,7 +389,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/nuephase.png"
+      "image": "hub-art/nuephase.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_nuephase_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_nuephase_after.ogg"
+        }
+      ]
     },
     {
       "id": "umibozuir",
@@ -317,7 +423,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/umibozuir.png"
+      "image": "hub-art/umibozuir.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_umibozuir_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_umibozuir_after.ogg"
+        }
+      ]
     },
     {
       "id": "mononokewash",
@@ -341,7 +457,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/mononokewash.png"
+      "image": "hub-art/mononokewash.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_mononokewash_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_mononokewash_after.ogg"
+        }
+      ]
     },
     {
       "id": "yureistop",
@@ -365,7 +491,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/yureistop.png"
+      "image": "hub-art/yureistop.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_yureistop_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_yureistop_after.ogg"
+        }
+      ]
     },
     {
       "id": "tenguhats",
@@ -389,7 +525,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/tenguhats.png"
+      "image": "hub-art/tenguhats.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_tenguhats_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_tenguhats_after.ogg"
+        }
+      ]
     },
     {
       "id": "remisauce2",
@@ -413,7 +559,17 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/remisauce2.png"
+      "image": "hub-art/remisauce2.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_remisauce2_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_remisauce2_after.ogg"
+        }
+      ]
     }
   ]
 }
