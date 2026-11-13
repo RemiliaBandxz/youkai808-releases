@@ -120,6 +120,7 @@
         "Resonant LOWPASS knob: the dark, muffled-but-clear Kayy Luciano filter (Fruity Filter sound)",
         "LOWPASS + RESONANCE: the ringing, dark Purity-style filter from Kayy Luciano beats (resonance rings ~8 kHz)",
         "Mix Coach: tells you which part to fix (chords, lead, bell, 808, hats), what to EQ, and when to widen or add a lowpass, steering toward a Kayy Luciano or XanGang mix",
+        "EQ PRESETS: turns the Mix Coach tips into drag-in EQ presets per part (808, Chords, Lead, Bells, Hats) for FL Parametric EQ 2 and FabFilter Pro-Q 4",
         "WOBBLE: warped-cassette wow and flutter",
         "A/B button: hear the beat without the plugin at the same loudness, so you judge the sound not the volume",
         "CLIP, DUCK and MUD meters",
