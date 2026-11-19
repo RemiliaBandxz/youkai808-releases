@@ -570,6 +570,43 @@
           "url": "hub-clips/demo_remisauce2_after.ogg"
         }
       ]
+    },
+    {
+      "id": "nurikabe",
+      "name": "NURIKABE",
+      "registry": "NURIKABE",
+      "includes": "VST3 · Windows",
+      "tagline": "Saturation for thin vocals: body and warmth, no harshness.",
+      "about": "Thin, brittle vocal? NURIKABE gives it the weight and warmth a good saturator adds - body, heat and thickness - without the harsh, fizzy top that cheap saturation leaves behind. Pick a flavor and dial in how much.",
+      "features": [
+        "TUBE / TAPE / CRUNCH - three saturation flavors, warm to gritty",
+        "BODY - fills out a thin vocal so it sits in the beat",
+        "HEAT - adds warmth and rich harmonics",
+        "THICK - more weight and density up front",
+        "SMOOTH - tames harshness so the saturation never gets fizzy",
+        "VST3, Windows"
+      ],
+      "tips": [
+        "Thin SoundCloud vocal? Start on TUBE with a little BODY and HEAT",
+        "If the top gets fizzy, bring SMOOTH up",
+        "TAPE for warm and vintage, CRUNCH when you want it aggressive"
+      ],
+      "trial": "full plugin, audio dips every 5 s",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "wip": true,
+      "image": "hub-art/nurikabe.png",
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/demo_nurikabe_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/demo_nurikabe_after.ogg"
+        }
+      ]
     }
   ]
 }
