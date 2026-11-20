@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.15",
+    "version": "1.16",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -330,25 +330,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/kirinverb.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_kirinverb_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_kirinverb_after.ogg"
-        },
-        {
-          "label": "MUD 0%",
-          "url": "hub-clips/demo_kirinverb_mud0.ogg"
-        },
-        {
-          "label": "MUD 80%",
-          "url": "hub-clips/demo_kirinverb_mud80.ogg"
-        }
-      ]
+      "image": "hub-art/kirinverb.png"
     },
     {
       "id": "kodamaadlib",
@@ -372,17 +354,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/kodamaadlib.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_kodamaadlib_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_kodamaadlib_after.ogg"
-        }
-      ]
+      "image": "hub-art/kodamaadlib.png"
     },
     {
       "id": "nuephase",
@@ -406,17 +378,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/nuephase.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_nuephase_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_nuephase_after.ogg"
-        }
-      ]
+      "image": "hub-art/nuephase.png"
     },
     {
       "id": "umibozuir",
@@ -440,17 +402,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/umibozuir.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_umibozuir_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_umibozuir_after.ogg"
-        }
-      ]
+      "image": "hub-art/umibozuir.png"
     },
     {
       "id": "mononokewash",
@@ -474,17 +426,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/mononokewash.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_mononokewash_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_mononokewash_after.ogg"
-        }
-      ]
+      "image": "hub-art/mononokewash.png"
     },
     {
       "id": "yureistop",
@@ -576,17 +518,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "wip": true,
-      "image": "hub-art/remisauce2.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_remisauce2_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_remisauce2_after.ogg"
-        }
-      ]
+      "image": "hub-art/remisauce2.png"
     },
     {
       "id": "nurikabe",
