@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.14",
+    "version": "1.15",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -184,6 +184,14 @@
         {
           "label": "AFTER",
           "url": "hub-clips/demo_bando_after.ogg"
+        },
+        {
+          "label": "KAYY - Counter",
+          "url": "hub-clips/demo_bando_counter.ogg"
+        },
+        {
+          "label": "KAYY - Counter 2",
+          "url": "hub-clips/demo_bando_counter2.ogg"
         }
       ]
     },
@@ -331,6 +339,14 @@
         {
           "label": "AFTER",
           "url": "hub-clips/demo_kirinverb_after.ogg"
+        },
+        {
+          "label": "MUD 0%",
+          "url": "hub-clips/demo_kirinverb_mud0.ogg"
+        },
+        {
+          "label": "MUD 80%",
+          "url": "hub-clips/demo_kirinverb_mud80.ogg"
         }
       ]
     },
