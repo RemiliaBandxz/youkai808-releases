@@ -133,16 +133,7 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/melodyveil.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_mv_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_mv_after.ogg"
-        }
-      ]
+      "clips": []
     },
     {
       "id": "bandotape",
@@ -280,16 +271,7 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/tanukijuice.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_tanukijuice_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_tanukijuice_after.ogg"
-        }
-      ]
+      "clips": []
     },
     {
       "id": "kirinverb",
@@ -434,16 +416,7 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/yureistop.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_yureistop_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_yureistop_after.ogg"
-        }
-      ]
+      "clips": []
     },
     {
       "id": "tenguhats",
@@ -468,40 +441,7 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/tenguhats.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_tenguhats_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_tenguhats_after.ogg"
-        }
-      ]
-    },
-    {
-      "id": "remisauce2",
-      "name": "RemiSauce 2",
-      "registry": "RemiSauce 2",
-      "includes": "VST3 · Windows",
-      "tagline": "vocal prep before RVC: clean, level, de-ess.",
-      "about": "Vocal prep for RVC. RemiSauce 2 cleans, levels and de-esses your raw vocal before it goes through RVC, so the model gets a clean, consistent input and gives you a better result. Rebuilt from the original RemiSauce.",
-      "features": [
-        "Cleans up the raw vocal: noise and rumble",
-        "Levels the vocal so it's consistent for RVC",
-        "De-ess to tame harsh S sounds",
-        "Tuned specifically for RVC input"
-      ],
-      "tips": [
-        "Run it on your dry vocal before RVC, not after",
-        "Consistent level in means steadier RVC out"
-      ],
-      "trial": "full plugin, audio dips every 5 s",
-      "price": "",
-      "buy_url": "",
-      "store_product_ids": [],
-      "wip": true,
-      "image": "hub-art/remisauce2.png"
+      "clips": []
     },
     {
       "id": "nurikabe",
@@ -529,16 +469,7 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/nurikabe.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_nurikabe_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_nurikabe_after.ogg"
-        }
-      ]
+      "clips": []
     }
   ]
 }
