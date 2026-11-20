@@ -240,11 +240,11 @@
       "clips": [
         {
           "label": "BEFORE",
-          "url": "hub-clips/demo_oni_before.ogg"
+          "url": "hub-clips/demo_oni_before2.ogg"
         },
         {
           "label": "AFTER",
-          "url": "hub-clips/demo_oni_after.ogg"
+          "url": "hub-clips/demo_oni_after2.ogg"
         }
       ]
     },
@@ -302,12 +302,12 @@
       "name": "Kodama Adlib",
       "registry": "Kodama Adlib",
       "includes": "VST3 · Windows",
-      "tagline": "adlib FX: phone, radio, megaphone and ping-pong throws.",
-      "about": "An adlib effects box. Run your adlibs through phone, radio and megaphone tones, then throw them around the stereo field with ping-pong delays. One plugin for every adlib trick.",
+      "tagline": "adlib FX: phone, radio, megaphone, lush reverb and ping-pong throws.",
+      "about": "An adlib effects box. Run your adlibs through phone, radio and megaphone tones, then throw them around the stereo field with ping-pong delays. A big lush reverb (on by default) washes them into the beat so nothing sounds dry.",
       "features": [
         "Phone, radio and megaphone voice tones",
+        "Big lush reverb on by default - no more dry adlibs (REVERB knob)",
         "Ping-pong throws that bounce the adlib across the mix",
-        "Instant classic adlib textures",
         "Adlib-focused presets"
       ],
       "tips": [
@@ -327,11 +327,11 @@
       "registry": "Nue Phase",
       "includes": "VST3 · Windows",
       "tagline": "thick chorus and flanger that keeps your low end.",
-      "about": "Thick chorus and flanger that widens and moves your sound without hollowing out the bottom. Nue Phase keeps the low end mono and solid while the top shimmers and swirls.",
+      "about": "Thick chorus and flanger that widens and moves your sound without hollowing out the bottom. Nue Phase keeps the low end mono and solid while the top shimmers and swirls, and an AIR exciter adds shine up top.",
       "features": [
         "Lush chorus and flanger in one",
         "Keeps the low end mono and solid - no thin bass",
-        "Width and movement up top only",
+        "AIR: top-end exciter for extra shine and air",
         "Modulation presets from subtle to wild"
       ],
       "tips": [
@@ -374,13 +374,13 @@
       "name": "Mononoke Wash",
       "registry": "Mononoke Wash",
       "includes": "VST3 · Windows",
-      "tagline": "a flanger melting into a dreamy wash.",
-      "about": "A flanger that melts into a dreamy, washed-out cloud. Mononoke Wash takes your sound from a tight jet-plane flange all the way into a soft ambient wash - great for intros, bridges and dreamy hooks.",
+      "tagline": "Ambient melody plugin: melts loops into a dreamy bed.",
+      "about": "An ambient melody plugin. Drop in a loop or a few notes and Mononoke Wash melts them into a soft, dreamy bed of pads, bells and washed-out keys - made for intros, bridges and dreamy hooks.",
       "features": [
-        "Flanger that melts into an ambient wash",
-        "From tight jet-flange to soft dreamy cloud",
-        "Perfect for intros, bridges and dreamy sections",
-        "Washed-out, cinematic presets"
+        "Melts loops and melodies into a dreamy ambient bed",
+        "Presets: Melody, Bells, Pad, Keys and Guitar",
+        "Soft, washed-out, cinematic textures",
+        "Great for intros, bridges and dreamy hooks"
       ],
       "tips": [
         "Automate it opening into the wash on a hook",
