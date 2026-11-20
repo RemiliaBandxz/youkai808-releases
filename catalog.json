@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.18",
+    "version": "1.19",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -102,7 +102,7 @@
       "registry": "Melody Veil",
       "includes": "VST3 · Windows",
       "tagline": "Makes any beat easy to rap on: carves a pocket so your vocal sits on top.",
-      "about": "Drop it on your beat and leave the fader up. RAP-READY (the default) pulls only your vocal's range down to where it sits in beats that are easy to rap on, so the 808, kick and hats stay loud and you don't have to turn the whole beat down. On a melody bus it carves gently and never warbles. Tuned on Remilia's own beats.",
+      "about": "Super Early Development: Melody Veil Is Brand New And Will Probably Go Through A Million Updates. You Get Every One Free. Drop it on your beat and leave the fader up. RAP-READY (the default) pulls only your vocal's range down to where it sits in beats that are easy to rap on, so the 808, kick and hats stay loud and you don't have to turn the whole beat down. On a melody bus it carves gently and never warbles. Tuned on Remilia's own beats.",
       "features": [
         "RAP-READY - keep the beat at full volume and still rap on it: only your vocal range comes down (up to 10 dB), 808 + drums stay",
         "VEIL - one knob for how much room to carve",
@@ -128,12 +128,13 @@
         "Want the pocket only while you rap? Duck When I Rap preset + sidechain your vocal"
       ],
       "trial": "first 2 presets, audio cuts out every 5 s",
-      "price": "",
-      "buy_url": "",
+      "price": "$20",
+      "buy_url": "https://koumakandigital.lemonsqueezy.com/checkout/buy/947189ff-2014-47cb-982d-6ed6d8ea9ca1",
       "store_product_ids": [],
-      "wip": true,
+      "wip": false,
       "image": "hub-art/melodyveil.png",
-      "clips": []
+      "clips": [],
+      "versions": "melodyveil-versions.json"
     }
   ]
 }
