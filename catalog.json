@@ -176,24 +176,7 @@
       "store_product_ids": [],
       "wip": true,
       "image": "hub-art/bandotape.png",
-      "clips": [
-        {
-          "label": "BEFORE",
-          "url": "hub-clips/demo_bando_before.ogg"
-        },
-        {
-          "label": "AFTER",
-          "url": "hub-clips/demo_bando_after.ogg"
-        },
-        {
-          "label": "KAYY - Counter",
-          "url": "hub-clips/demo_bando_counter.ogg"
-        },
-        {
-          "label": "KAYY - Counter 2",
-          "url": "hub-clips/demo_bando_counter2.ogg"
-        }
-      ]
+      "clips": []
     },
     {
       "id": "sukima",
