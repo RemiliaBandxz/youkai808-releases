@@ -139,11 +139,11 @@
   ],
   "programs": [
     {
-      "id": "snipper",
-      "name": "VRChat Snipper",
+      "id": "autosnip",
+      "name": "AutoSnip",
       "includes": "Standalone · Windows",
-      "tagline": "Drop Your VRChat Clips In, Get A Finished Edit Out.",
-      "about": "Coming Soon — Drop In Your VRChat Dance Clips And It Cuts Them Into Clean, Ready-To-Post Snippets. Still In The Oven.",
+      "tagline": "Drop A Long Clip In, Get The Best Parts Out.",
+      "about": "Coming Soon — Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips.",
       "wip": true,
       "image": ""
     }
