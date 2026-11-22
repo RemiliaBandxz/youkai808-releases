@@ -189,7 +189,7 @@
           <p>Experimental 808 Destroyer. Light Bitcrush To Blown-Out, Whining, Comedic Subs. 30+ Effects, Spectral Mangling And A Built-In Synth.</p>
           <div class="buy">
             <div class="price">$30<span>one-time</span></div>
-            <a class="btn primary" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757">Buy Youkai808</a>
+            <a class="btn primary" data-product="youkai808" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757">Buy Youkai808</a>
           </div>
         </div>
       </article>
@@ -201,7 +201,7 @@
           <p>Makes Any Beat Easy To Rap On. Carves A Pocket In The Melody So Your Vocal Sits Right On Top.</p>
           <div class="buy">
             <div class="price">$20<span>one-time</span></div>
-            <a class="btn primary" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/947189ff-2014-47cb-982d-6ed6d8ea9ca1">Buy Melody Veil</a>
+            <a class="btn primary" data-product="melodyveil" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/947189ff-2014-47cb-982d-6ed6d8ea9ca1">Buy Melody Veil</a>
           </div>
           <p class="note">Early Access: Still Being Polished. Updates Land Free In The Hub.</p>
         </div>
@@ -339,6 +339,28 @@
       cur.querySelector('.time').textContent=fmt(audio.currentTime);
     });
     audio.addEventListener('ended',stop);
+  })();
+</script>
+<script>
+  // Paddle checkout. Until token + price IDs are filled in, Buy buttons keep their Lemon Squeezy links.
+  // shortcut: LS links stay as the fallback until Paddle is verified live, then swap hrefs or delete them.
+  var PADDLE = {
+    env: 'sandbox',          // 'sandbox' while testing, 'production' when live
+    token: '',               // Paddle client-side token (test_... or live_...), safe to be public
+    prices: { youkai808: '', melodyveil: '' }  // Paddle price IDs (pri_...)
+  };
+  (function(){
+    if(!PADDLE.token) return;
+    var s=document.createElement('script'); s.src='https://cdn.paddle.com/paddle/v2/paddle.js';
+    s.onload=function(){
+      if(PADDLE.env==='sandbox') Paddle.Environment.set('sandbox');
+      Paddle.Initialize({token:PADDLE.token});
+      document.querySelectorAll('[data-product]').forEach(function(a){
+        var price=PADDLE.prices[a.dataset.product]; if(!price) return;
+        a.addEventListener('click',function(e){ e.preventDefault(); Paddle.Checkout.open({items:[{priceId:price,quantity:1}]}); });
+      });
+    };
+    document.head.appendChild(s);
   })();
 </script>
 </body>
