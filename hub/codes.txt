@@ -1,4 +1,5 @@
 # Live Youkai Digital homie code IDs. Delete a line to turn that code off.
 3QR3D2
 7YKHJ8
+WFZVUW
 Z549LL
