@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.26",
+    "version": "1.27",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -143,9 +143,11 @@
       "name": "AutoSnip",
       "includes": "Standalone \u00b7 Windows",
       "tagline": "Drop A Long Clip In, Get The Best Parts Out.",
-      "about": "Coming Soon \u2014 Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips.",
-      "wip": true,
-      "image": ""
+      "about": "Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips.",
+      "wip": false,
+      "image": "",
+      "registry": "AutoSnip",
+      "versions": "autosnip-versions.json"
     }
   ]
 }

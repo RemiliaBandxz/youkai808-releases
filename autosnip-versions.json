@@ -1,0 +1,9 @@
+{
+  "product": "AutoSnip",
+  "publisher": "YoukaiDigital",
+  "latest": "0.1.0",
+  "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
+  "versions": [
+    { "version": "0.1.0", "windows": "https://github.com/RemiliaBandxz/youkai808-source/releases/download/autosnip-v0.1.0/AutoSnip-v0.1.0-Setup.exe" }
+  ]
+}
