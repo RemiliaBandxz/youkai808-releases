@@ -312,7 +312,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="img/koumakan-logo.webp" alt="" width="30" height="30">Koumakan Digital</a>
     <span>© 2026 Koumakan Digital. All Rights Reserved.</span>
-    <a href="https://github.com/RemiliaBandxz/youkai808-releases">Downloads</a>
+    <span class="legal"><a href="terms/">Terms</a> · <a href="privacy/">Privacy</a> · <a href="refunds/">Refunds</a></span>
   </div>
 </footer>
 
@@ -345,18 +345,21 @@
   // Paddle checkout. Until token + price IDs are filled in, Buy buttons keep their Lemon Squeezy links.
   // shortcut: LS links stay as the fallback until Paddle is verified live, then swap hrefs or delete them.
   var PADDLE = {
-    env: 'sandbox',          // 'sandbox' while testing, 'production' when live
-    token: '',               // Paddle client-side token (test_... or live_...), safe to be public
-    prices: { youkai808: '', melodyveil: '' }  // Paddle price IDs (pri_...)
+    // Live: fill in after Paddle approves the account. Until then real buyers keep the Lemon Squeezy links.
+    live:    { token: '', prices: { youkai808: '', melodyveil: '' } },
+    // Sandbox (test cards only). Active only when the URL has ?paddletest, so real buyers never hit it.
+    sandbox: { token: 'test_6e43ebd39b0169c666d7efde260',
+               prices: { youkai808: 'pri_01m82xta4pgfvfc27v7n5neg08', melodyveil: 'pri_01m82xv97bqjybf8gyg7b489cv' } }
   };
   (function(){
-    if(!PADDLE.token) return;
+    var test=/[?&]paddletest/.test(location.search), cfg=test?PADDLE.sandbox:PADDLE.live;
+    if(!cfg.token) return;
     var s=document.createElement('script'); s.src='https://cdn.paddle.com/paddle/v2/paddle.js';
     s.onload=function(){
-      if(PADDLE.env==='sandbox') Paddle.Environment.set('sandbox');
-      Paddle.Initialize({token:PADDLE.token});
+      if(test) Paddle.Environment.set('sandbox');
+      Paddle.Initialize({token:cfg.token});
       document.querySelectorAll('[data-product]').forEach(function(a){
-        var price=PADDLE.prices[a.dataset.product]; if(!price) return;
+        var price=cfg.prices[a.dataset.product]; if(!price) return;
         a.addEventListener('click',function(e){ e.preventDefault(); Paddle.Checkout.open({items:[{priceId:price,quantity:1}]}); });
       });
     };
