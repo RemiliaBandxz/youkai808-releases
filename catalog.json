@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.25",
+    "version": "1.26",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -15,7 +15,7 @@
       "id": "youkai808",
       "name": "Youkai808",
       "registry": "Youkai808",
-      "includes": "VST3 · CLAP · AU · includes synth",
+      "includes": "VST3 \u00b7 CLAP \u00b7 AU \u00b7 includes synth",
       "tagline": "Experimental 808 destroyer: light bitcrush to blown-out, whining, comedic subs.",
       "about": "An experimental 808 destroyer and synth in one plugin. Start from a clean sub and drag it anywhere - a touch of grit, whining overtones, folding, full comedic blowout - then shape it with a stackable effects rack and generate the bassline right inside the plugin.",
       "features": [
@@ -100,7 +100,7 @@
       "id": "melodyveil",
       "name": "Melody Veil",
       "registry": "Melody Veil",
-      "includes": "VST3 · Windows",
+      "includes": "VST3 \u00b7 Windows",
       "tagline": "Makes any beat easy to rap on: carves a pocket so your vocal sits on top.",
       "about": "Super Early Development: Melody Veil Is Brand New And Will Probably Go Through A Million Updates. You Get Every One Free. Drop it on your beat and leave the fader up. RAP-READY (the default) pulls only your vocal's range down to where it sits in beats that are easy to rap on, so the 808, kick and hats stay loud and you don't have to turn the whole beat down. On a melody bus it carves gently and never warbles. Tuned on Remilia's own beats.",
       "features": [
@@ -141,9 +141,9 @@
     {
       "id": "autosnip",
       "name": "AutoSnip",
-      "includes": "Standalone · Windows",
+      "includes": "Standalone \u00b7 Windows",
       "tagline": "Drop A Long Clip In, Get The Best Parts Out.",
-      "about": "Coming Soon — Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips.",
+      "about": "Coming Soon \u2014 Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips.",
       "wip": true,
       "image": ""
     }
