@@ -346,14 +346,16 @@
   // shortcut: LS links stay as the fallback until Paddle is verified live, then swap hrefs or delete them.
   var PADDLE = {
     // Live: fill in after Paddle approves the account. Until then real buyers keep the Lemon Squeezy links.
-    live:    { token: '', prices: { youkai808: '', melodyveil: '' } },
+    // on: flip to true once Paddle approves the account + domain (live checkout errors before that).
+    live:    { on: false, token: 'live_53c0502c4b436dc1b9d35a43f34',
+               prices: { youkai808: 'pri_01m8302mqfw0qcw3vemcqbftax', melodyveil: 'pri_01m8304kea64hve92h7v29e5f7' } },
     // Sandbox (test cards only). Active only when the URL has ?paddletest, so real buyers never hit it.
     sandbox: { token: 'test_6e43ebd39b0169c666d7efde260',
                prices: { youkai808: 'pri_01m82xta4pgfvfc27v7n5neg08', melodyveil: 'pri_01m82xv97bqjybf8gyg7b489cv' } }
   };
   (function(){
     var test=/[?&]paddletest/.test(location.search), cfg=test?PADDLE.sandbox:PADDLE.live;
-    if(!cfg.token) return;
+    if(!cfg.token || cfg.on===false) return;
     var s=document.createElement('script'); s.src='https://cdn.paddle.com/paddle/v2/paddle.js';
     s.onload=function(){
       if(test) Paddle.Environment.set('sandbox');
