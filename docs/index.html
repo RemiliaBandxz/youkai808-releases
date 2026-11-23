@@ -3,456 +3,367 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YoukaiDigital — audio plugins</title>
-<meta name="description" content="YoukaiDigital builds Youkai808, an experimental 808 distortion and synth plugin for VST3, CLAP and AU. Install it through the Youkai Digital Hub.">
-<meta property="og:title" content="YoukaiDigital — Youkai808">
-<meta property="og:description" content="An experimental 808 destroyer and synth. VST3, CLAP, AU. $30.">
+<title>Koumakan Digital — Plugins For Rappers</title>
+<meta name="description" content="Koumakan Digital makes audio plugins and tools for SoundCloud rappers. Youkai808 and Melody Veil are out now, with more on the way. Everything installs through the free Youkai Digital Hub.">
+<meta property="og:title" content="Koumakan Digital">
+<meta property="og:description" content="Plugins Made So You Spend More Time Rapping. Youkai808 + Melody Veil Out Now.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23120b1a'/%3E%3Cpath d='M9 8l7 9 7-9M16 17v7' stroke='%23ff2fa0' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:image" content="img/koumakan-logo.webp">
+<link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0b0610; --surface:#160e22; --surface2:#1d1430; --line:#2d1d42;
-    --text:#f3ecf9; --muted:#a493bd; --neon:#ff2fa0; --violet:#a855f7; --cyan:#58e1ff;
-    --radius:16px; --maxw:1080px;
-    --sans:"Inter",system-ui,sans-serif; --display:"Space Grotesk",var(--sans);
+    --ink:#07030a; --surface:#130810; --surface2:#1c0b17; --line:#3a1427;
+    --text:#fbeef4; --muted:#c09aae; --crimson:#d3123f; --pink:#ff7aa8; --moon:#ffb3cb;
+    --radius:16px; --maxw:1140px;
+    --sans:"Inter",system-ui,sans-serif; --display:"Cinzel",Georgia,serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--ink); color:var(--text); font-family:var(--sans);
-    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-  }
-  /* animated aurora + fine grain, layered behind everything */
-  .bg{position:fixed; inset:0; z-index:-2; pointer-events:none; overflow:hidden}
-  .bg::before,.bg::after{content:""; position:absolute; width:120vmax; height:120vmax; border-radius:50%;
-    filter:blur(60px); opacity:.5; mix-blend-mode:screen}
-  .bg::before{top:-55vmax; left:30vmax; background:radial-gradient(circle,rgba(255,47,160,.55),transparent 60%);
-    animation:drift1 24s ease-in-out infinite}
-  .bg::after{top:-40vmax; left:-45vmax; background:radial-gradient(circle,rgba(168,85,247,.5),transparent 60%);
-    animation:drift2 30s ease-in-out infinite}
-  .grain{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-14vmax,10vmax) scale(1.12)}}
-  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(16vmax,8vmax) scale(1.1)}}
-
+  body{margin:0; background:var(--ink); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(211,18,63,.35),transparent 70%),
+               radial-gradient(ellipse 50% 40% at 100% 60%,rgba(255,122,168,.10),transparent 70%)}
   a{color:inherit; text-decoration:none}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
-  h1,h2,h3{font-family:var(--display); font-weight:700; letter-spacing:-.02em; line-height:1.08; margin:0}
+  img{max-width:100%; display:block}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+  h1,h2,h3{font-family:var(--display); font-weight:700; line-height:1.15; margin:0; letter-spacing:.01em}
   p{margin:0}
+  section{padding:72px 0}
+  .head{text-align:center; margin-bottom:36px}
+  .head h2{font-size:clamp(26px,4vw,38px)}
+  .head p{color:var(--muted); margin-top:10px}
+  .eyebrow{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--pink); margin-bottom:10px}
 
   /* nav */
-  .nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(14px);
-    background:rgba(11,6,16,.68); border-bottom:1px solid var(--line)}
-  .nav::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px;
-    background:linear-gradient(90deg,transparent,var(--neon),var(--violet),transparent); opacity:.6}
-  .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:66px}
-  .logo{display:flex; align-items:center; gap:11px; font-family:var(--display); font-weight:700; font-size:19px}
-  .logo svg{width:30px; height:30px; filter:drop-shadow(0 0 9px rgba(255,47,160,.6))}
-  .logo span{color:var(--muted); font-weight:500}
-  .links{display:flex; align-items:center; gap:28px}
-  .links a:not(.btn){color:var(--muted); font-size:15px; font-weight:500; position:relative; transition:color .15s}
-  .links a:not(.btn)::after{content:""; position:absolute; left:0; right:100%; bottom:-6px; height:2px;
-    background:var(--neon); border-radius:2px; transition:right .22s ease; box-shadow:0 0 8px var(--neon)}
-  .links a:not(.btn):hover{color:var(--text)} .links a:not(.btn):hover::after{right:0}
-  .btn{display:inline-flex; align-items:center; gap:9px; font-family:var(--display); font-weight:600;
-    font-size:15px; padding:11px 20px; border-radius:11px; cursor:pointer; border:1px solid transparent;
-    transition:transform .14s ease, box-shadow .14s ease, background .15s}
-  .btn-primary{background:linear-gradient(120deg,var(--neon),#ff5bb5); color:#190410; box-shadow:0 6px 22px rgba(255,47,160,.34)}
-  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 34px rgba(255,47,160,.55)}
-  .btn-ghost{border-color:var(--line); color:var(--text); background:rgba(255,255,255,.02)}
-  .btn-ghost:hover{border-color:var(--neon); color:#fff; box-shadow:0 0 0 1px rgba(255,47,160,.3)}
-  .btn-lg{font-size:17px; padding:15px 28px; border-radius:13px}
+  .nav{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px); background:rgba(7,3,10,.78); border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px; gap:12px}
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:18px; white-space:nowrap}
+  .brand img{width:40px; height:40px}
+  .links{display:flex; align-items:center; gap:24px}
+  .links a:not(.btn){color:var(--muted); font-size:14px; font-weight:600}
+  .links a:not(.btn):hover{color:var(--text)}
+
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:15px;
+    padding:12px 22px; border-radius:999px; border:1px solid transparent; transition:transform .15s, box-shadow .15s, background .15s; white-space:nowrap}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(180deg,#e8204f,#b30d34); color:#fff; box-shadow:0 6px 24px rgba(211,18,63,.4)}
+  .btn.primary:hover{box-shadow:0 8px 30px rgba(211,18,63,.6)}
+  .btn.ghost{border-color:var(--line); background:rgba(255,255,255,.03)}
+  .btn.ghost:hover{border-color:var(--pink)}
+  .btn.sm{padding:9px 16px; font-size:14px}
 
   /* hero */
-  .hero{padding:90px 0 40px; text-align:center; position:relative}
-  .kicker{display:inline-flex; align-items:center; gap:9px; color:var(--neon); font-family:var(--display); font-weight:600;
-    font-size:13.5px; margin-bottom:22px; padding:6px 14px; border:1px solid var(--line); border-radius:999px;
-    background:rgba(255,47,160,.06)}
-  .kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--neon); box-shadow:0 0 10px var(--neon);
-    animation:pulse 2.2s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .hero h1{font-size:clamp(42px,7.4vw,78px); max-width:13ch; margin:0 auto 22px}
-  .hero h1 em{font-style:normal;
-    background:linear-gradient(120deg,var(--neon),var(--violet)); -webkit-background-clip:text; background-clip:text;
-    color:transparent; filter:drop-shadow(0 0 26px rgba(255,47,160,.4))}
-  .lead{color:var(--muted); font-size:clamp(17px,2.3vw,21px); max-width:60ch; margin:0 auto 34px}
-  .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
-  .note{color:var(--muted); font-size:14px; margin-top:20px}
-  .shot{position:relative; margin:60px auto 0; max-width:1000px; animation:float 7s ease-in-out infinite}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-  .shot img{width:100%; height:auto; display:block; aspect-ratio:1200/703; object-fit:cover; border-radius:var(--radius);
-    border:1px solid rgba(255,47,160,.25);
-    box-shadow:0 40px 110px rgba(0,0,0,.65), 0 0 60px rgba(255,47,160,.18)}
-  .shot::before{content:""; position:absolute; left:8%; right:8%; bottom:-46px; height:90px; border-radius:50%;
-    background:radial-gradient(ellipse,rgba(255,47,160,.35),transparent 70%); filter:blur(22px)}
+  .hero{padding:56px 0 40px; text-align:center}
+  .hero .crest{width:min(300px,70vw); margin:0 auto 18px; filter:drop-shadow(0 0 40px rgba(211,18,63,.45))}
+  .hero h1{font-size:clamp(30px,5.4vw,56px); max-width:820px; margin:0 auto}
+  .hero h1 em{font-style:normal; color:var(--pink)}
+  .hero p{color:var(--muted); max-width:620px; margin:16px auto 0; font-size:17px}
+  .hero .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:28px}
+  .hero small{display:block; color:var(--muted); margin-top:14px; font-size:13px}
 
-  /* daw marquee */
-  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:84px; overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-  .track{display:flex; gap:56px; width:max-content; padding:22px 28px; animation:marq 26s linear infinite}
-  .track span{color:var(--muted); font-size:15px; font-weight:500; white-space:nowrap}
-  .track .host{color:var(--text); font-family:var(--display); font-weight:600; opacity:.85}
-  @keyframes marq{to{transform:translateX(-50%)}}
+  /* product cards */
+  .grid{display:grid; gap:20px}
+  .grid.now{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+  .grid.soon{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+  .card{background:linear-gradient(180deg,var(--surface2),var(--surface)); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column; min-width:0}
+  .card .shot{aspect-ratio:16/10; overflow:hidden; background:#000; position:relative}
+  .card .shot img{width:100%; height:100%; object-fit:cover; object-position:top center}
+  .card .body{padding:20px; display:flex; flex-direction:column; gap:10px; flex:1}
+  .card h3{font-size:22px}
+  .card p{color:var(--muted); font-size:15px}
+  .tags{display:flex; gap:6px; flex-wrap:wrap}
+  .tag{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:999px;
+    border:1px solid var(--line); color:var(--moon)}
+  .tag.live{background:rgba(211,18,63,.18); border-color:rgba(211,18,63,.6); color:#ff9db8}
+  .buy{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:auto; padding-top:8px; flex-wrap:wrap}
+  .price{font-family:var(--display); font-size:30px; font-weight:900}
+  .price span{font-family:var(--sans); font-size:13px; color:var(--muted); font-weight:500; margin-left:4px}
+  .card.now-card{border-color:rgba(211,18,63,.45); box-shadow:0 10px 40px rgba(211,18,63,.12)}
+  .note{font-size:13px !important; color:var(--muted)}
 
-  /* sections */
-  section{padding:96px 0}
-  .head{max-width:60ch; margin:0 0 44px}
-  .head.center{margin:0 auto 54px; text-align:center}
-  .head h2{font-size:clamp(28px,4vw,42px); margin-bottom:14px}
-  .head p{color:var(--muted); font-size:18px}
+  .card.soon-card .shot img{filter:grayscale(.55) brightness(.55) blur(1.5px); transform:scale(1.04)}
+  .card.soon-card .shot::after{content:"Coming Soon"; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#fff;
+    background:rgba(7,3,10,.72); border:1px solid rgba(255,122,168,.5); padding:7px 14px; border-radius:999px; white-space:nowrap}
+  .card.soon-card h3{font-size:18px}
+  .card.soon-card .body{padding:16px; gap:6px}
+  .card.soon-card p{font-size:14px}
+  .ph{width:100%; height:100%; display:grid; place-items:center;
+    background:radial-gradient(circle at 50% 40%,rgba(255,122,168,.25),transparent 60%),repeating-linear-gradient(135deg,#1a0912 0 14px,#130710 14px 28px)}
+  .ph svg{width:64px; height:64px; opacity:.85}
 
-  .split{display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center}
-  .split .media{position:relative; align-self:center}
-  .split .media img{width:100%; height:auto; display:block; aspect-ratio:1200/703; object-fit:cover;
-    border-radius:var(--radius); border:1px solid rgba(255,47,160,.22);
-    box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 44px rgba(168,85,247,.15)}
-  .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
-  .pill{border:1px solid var(--line); color:var(--muted); font-size:13px; font-weight:600;
-    padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.02)}
-  .flist{list-style:none; padding:0; margin:22px 0 28px}
-  .flist li{position:relative; padding:9px 0 9px 30px; color:var(--text)}
-  .flist li + li{border-top:1px solid var(--line)}
-  .flist li::before{content:""; position:absolute; left:4px; top:17px; width:9px; height:9px; border-radius:2px;
-    background:var(--neon); box-shadow:0 0 10px rgba(255,47,160,.8); transform:rotate(45deg)}
-  .price-inline{font-family:var(--display); font-weight:700; font-size:22px}
-  .price-inline b{color:var(--neon)}
+  /* hub */
+  .hub{display:grid; grid-template-columns:1.1fr 1fr; gap:36px; align-items:center;
+    background:linear-gradient(135deg,rgba(211,18,63,.14),rgba(19,8,16,.9)); border:1px solid var(--line); border-radius:22px; padding:36px}
+  .hub img{border-radius:12px; border:1px solid var(--line)}
+  .hub h2{font-size:clamp(24px,3.4vw,34px)}
+  .hub p{color:var(--muted); margin-top:12px}
+  .hub ol{color:var(--muted); padding-left:20px; margin:16px 0 22px}
+  .hub ol li{margin:4px 0}
+  .hub ol b{color:var(--text)}
+  .hub .cta{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+  .hub .cta small{color:var(--muted); font-size:13px}
 
-  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
-    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
-  .cards .cell{background:var(--surface); padding:30px 26px; transition:background .2s}
-  .cards .cell:hover{background:var(--surface2)}
-  .cards .cell h3{font-size:19px; margin-bottom:10px}
-  .cards .cell p{color:var(--muted); font-size:15px}
-  .cards .ic{width:42px; height:42px; border-radius:11px; display:grid; place-items:center; margin-bottom:16px;
-    background:rgba(255,47,160,.12); color:var(--neon); font-family:var(--display); font-weight:700;
-    box-shadow:inset 0 0 0 1px rgba(255,47,160,.25)}
-
-  /* free Hub vs paid plugin — two clearly distinct cards */
-  .get-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch; max-width:940px; margin:0 auto}
-  .free-card{position:relative; display:flex; flex-direction:column; text-align:center; padding:40px 34px; border-radius:22px;
-    background:linear-gradient(180deg,rgba(88,225,255,.09),var(--surface)); border:1px solid rgba(88,225,255,.32);
-    box-shadow:0 30px 80px rgba(0,0,0,.5)}
-  .free-card h3{font-size:27px; margin:14px 0 10px}
-  .free-card p:not(.note){color:var(--muted); font-size:15px; margin-bottom:24px}
-  .free-card .btn{margin-top:auto; width:100%; justify-content:center;
-    background:linear-gradient(120deg,var(--cyan),#8af0ff); color:#06222b; box-shadow:0 6px 22px rgba(88,225,255,.3)}
-  .free-card .btn:hover{transform:translateY(-1px); box-shadow:0 12px 34px rgba(88,225,255,.5)}
-  .tag-badge{align-self:center; font-family:var(--display); font-weight:700; font-size:12.5px; letter-spacing:.09em;
-    padding:5px 16px; border-radius:999px}
-  .tag-free{color:#06222b; background:var(--cyan); box-shadow:0 0 20px rgba(88,225,255,.5)}
-  .tag-paid{color:#190410; background:linear-gradient(120deg,var(--neon),#ff5bb5); box-shadow:0 0 20px rgba(255,47,160,.5)}
-  .get-grid .price-card{max-width:none; width:100%; text-align:center; padding-top:40px}
-  .price-card .amt sup{font-weight:700}
-  .buyline{font-family:var(--display); font-weight:600; color:var(--muted); font-size:14.5px; margin-top:2px}
-  .buyline b{color:var(--neon)}
-  @media (max-width:860px){ .get-grid{grid-template-columns:1fr; max-width:460px} }
-
-  .pricing{display:grid; place-items:center}
-  .price-card{width:100%; max-width:460px; background:linear-gradient(180deg,var(--surface2),var(--surface));
-    border:1px solid var(--line); border-radius:22px; padding:40px 34px; text-align:center; position:relative;
-    box-shadow:0 30px 80px rgba(0,0,0,.5)}
-  .price-card::before{content:""; position:absolute; inset:0; border-radius:22px; padding:1px; pointer-events:none;
-    background:linear-gradient(140deg,var(--neon),transparent 45%,transparent 60%,var(--violet));
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
-  .price-card .name{font-family:var(--display); font-weight:600; color:var(--muted); font-size:16px}
-  .price-card .amt{font-family:var(--display); font-weight:700; font-size:70px; line-height:1; margin:10px 0 4px}
-  .price-card .amt sup{font-size:26px; top:-28px; color:var(--neon)}
-  .price-card .once{color:var(--muted); font-size:15px; margin-bottom:26px}
-  .price-card ul{list-style:none; padding:0; margin:0 0 28px; text-align:left}
-  .price-card li{padding:10px 0 10px 28px; position:relative; color:var(--text); font-size:15px}
-  .price-card li + li{border-top:1px solid var(--line)}
-  .price-card li::before{content:"✦"; position:absolute; left:2px; color:var(--neon); font-size:13px; top:11px}
-  .price-card .btn{width:100%; justify-content:center}
-
-  /* beat demos */
-  .beats{max-width:760px; margin:0 auto; display:grid; gap:10px}
-  .beat{display:flex; align-items:center; gap:14px; padding:14px 16px; border:1px solid var(--line); border-radius:14px;
-    background:linear-gradient(180deg,var(--surface2),var(--surface)); transition:border-color .18s, box-shadow .18s}
-  .beat:hover{border-color:rgba(255,47,160,.45)}
-  .beat.playing{border-color:var(--neon); box-shadow:0 0 30px rgba(255,47,160,.18)}
-  .beat .play{flex:none; width:44px; height:44px; border-radius:50%; border:none; cursor:pointer; display:grid; place-items:center;
-    background:linear-gradient(120deg,var(--neon),#ff5bb5); color:#190410; box-shadow:0 4px 16px rgba(255,47,160,.35)}
-  .beat .play svg{width:18px; height:18px; display:block}
+  /* beats */
+  .beats{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:12px; max-width:900px; margin:0 auto}
+  .beat{display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:10px 14px; min-width:0}
+  .play{flex:none; width:38px; height:38px; border-radius:50%; border:0; cursor:pointer; background:var(--crimson); position:relative}
+  .play::before{content:""; position:absolute; left:14px; top:11px; border-left:13px solid #fff; border-top:8px solid transparent; border-bottom:8px solid transparent}
+  .beat.on .play::before{left:12px; top:12px; width:4px; height:14px; border:0; background:#fff; box-shadow:9px 0 0 #fff}
   .beat .meta{flex:1; min-width:0}
-  .beat .name{font-family:var(--display); font-weight:600; font-size:16px}
-  .beat .bar{height:5px; border-radius:3px; background:rgba(255,255,255,.08); margin-top:8px; overflow:hidden}
-  .beat .fill{height:100%; width:0; background:linear-gradient(90deg,var(--neon),var(--violet)); border-radius:3px}
-  .beat .time{flex:none; color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; min-width:42px; text-align:right}
+  .beat .name{font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .beat .bar{height:4px; background:var(--line); border-radius:4px; margin-top:6px; overflow:hidden; cursor:pointer}
+  .beat .fill{height:100%; width:0; background:var(--pink)}
+  .beat .time{flex:none; font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
 
-  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-  .road .r{border:1px dashed var(--line); border-radius:var(--radius); padding:24px; color:var(--muted); transition:transform .18s}
-  .road .r.live{border-style:solid; border-color:rgba(255,47,160,.6); color:var(--text);
-    background:rgba(255,47,160,.06); box-shadow:0 0 36px rgba(255,47,160,.1)}
-  .road .r:hover{transform:translateY(-3px)}
-  .road .r h3{font-size:18px; margin-bottom:8px; color:var(--text)}
-  .road .state{font-family:var(--display); font-size:13px; font-weight:600; color:var(--neon)}
-  .road .r:not(.live) .state{color:var(--muted)}
+  /* faq */
+  .faq{max-width:760px; margin:0 auto; display:grid; gap:10px}
+  details{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 18px}
+  summary{cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; gap:12px}
+  summary::after{content:"+"; color:var(--pink); font-weight:700}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted); margin-top:10px; font-size:15px}
 
-  details{border-top:1px solid var(--line); padding:20px 0}
-  details:last-of-type{border-bottom:1px solid var(--line)}
-  summary{cursor:pointer; list-style:none; font-family:var(--display); font-weight:600; font-size:18px;
-    display:flex; justify-content:space-between; align-items:center; gap:16px}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"+"; color:var(--neon); font-size:24px; font-weight:400; transition:transform .2s}
-  details[open] summary::after{transform:rotate(45deg)}
-  details p{color:var(--muted); margin-top:14px; max-width:68ch}
+  footer{border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:13px}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap}
+  footer .brand{font-size:15px; color:var(--text)} footer .brand img{width:30px; height:30px}
+  footer a:hover{color:var(--text)}
 
-  .final{text-align:center; position:relative}
-  .final h2{font-size:clamp(32px,5.2vw,52px); margin-bottom:18px}
-  .final h2 em{font-style:normal; background:linear-gradient(120deg,var(--neon),var(--violet));
-    -webkit-background-clip:text; background-clip:text; color:transparent}
-  .final p{color:var(--muted); font-size:19px; max-width:52ch; margin:0 auto 30px}
-  footer{border-top:1px solid var(--line); padding:40px 0; color:var(--muted); font-size:14px}
-  footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
-  footer a{color:var(--muted)} footer a:hover{color:var(--text)}
-
-  /* page-load reveal (hero) + scroll reveal (sections) */
-  .reveal{opacity:0; transform:translateY(16px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.34s}
-  @keyframes rise{to{opacity:1; transform:none}}
-  .sr{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
-  .sr.vis{opacity:1; transform:none}
-
-  @media (max-width:860px){
-    .split{grid-template-columns:1fr; gap:32px}
-    .cards{grid-template-columns:1fr 1fr}
-    .road{grid-template-columns:1fr}
+  @media (max-width:820px){
     .links a:not(.btn){display:none}
+    .hub{grid-template-columns:1fr; padding:22px}
+    section{padding:52px 0}
   }
-  @media (max-width:560px){
-    section{padding:66px 0}
-    .cards{grid-template-columns:1fr}
-    .hero{padding:58px 0 24px}
+  @media (max-width:420px){
+    .brand span{display:none}
   }
-  :focus-visible{outline:2px solid var(--neon); outline-offset:3px; border-radius:6px}
-  @media (prefers-reduced-motion:reduce){
-    *,*::before,*::after{animation:none !important}
-    .sr{opacity:1; transform:none; transition:none}
-    html{scroll-behavior:auto}
-  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important}}
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="grain"></div>
 
 <nav class="nav">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="YoukaiDigital home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#160e22"/><path d="M9 8l7 9 7-9M16 17v7" stroke="#ff2fa0" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Youkai<span>Digital</span>
-    </a>
+    <a class="brand" href="#top"><img src="img/koumakan-logo.webp" alt="" width="40" height="40"><span>Koumakan Digital</span></a>
     <div class="links">
-      <a href="#plugin">Youkai808</a>
-      <a href="#features">Sound</a>
-      <a href="#beats">Beats</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#soon">Coming Soon</a>
+      <a href="#hub">The Hub</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-primary" href="#get">Get the Hub</a>
+      <a class="btn primary sm" href="h/">Get The Hub</a>
     </div>
   </div>
 </nav>
 
-<main id="top">
-
-  <header class="hero">
-    <div class="wrap">
-      <span class="kicker reveal d1"><span class="dot"></span>Underground-grade audio tools</span>
-      <h1 class="reveal d1">Make your 808s <em>wrong</em> on purpose.</h1>
-      <p class="lead reveal d2">Youkai808 takes a clean sub and drags it anywhere — a little dirt, a lot of dirt, whining, folding, comedic blowout. A full effects rack and a built-in synth, in one plugin.</p>
-      <div class="cta-row reveal d3">
-        <a class="btn btn-primary btn-lg" href="#get">Download the Hub</a>
-        <a class="btn btn-ghost btn-lg" href="#plugin">See what it does</a>
-      </div>
-      <p class="note reveal d3">Free trial built in · Windows · VST3, CLAP &amp; AU</p>
-      <div class="shot reveal d4">
-        <img src="img/youkai808.png" alt="The Youkai808 plugin interface" width="1180" height="690" style="aspect-ratio:1180/690">
-      </div>
+<header class="hero" id="top">
+  <div class="wrap">
+    <img class="crest" src="img/koumakan-logo.webp" alt="Koumakan Digital" width="300" height="300">
+    <h1>Plugins Made So You Spend More Time <em>Rapping</em></h1>
+    <p>Tools Built For SoundCloud Rappers. Less Knob Twisting, More Time On The Mic. Everything Installs Through One Free App.</p>
+    <div class="cta">
+      <a class="btn primary" href="#plugins">Shop Plugins</a>
+      <a class="btn ghost" href="h/">Download The Free Hub</a>
     </div>
-  </header>
+    <small>Windows · VST3, CLAP &amp; AU · One-Time Purchase, No Subscription</small>
+  </div>
+</header>
 
-  <div class="strip">
-    <div class="track" id="marq">
-      <span>Runs where you work:</span><span class="host">FL Studio</span><span class="host">Ableton Live</span><span class="host">Logic Pro</span><span class="host">Reaper</span><span class="host">Bitwig</span><span class="host">Studio One</span>
-      <span>Runs where you work:</span><span class="host">FL Studio</span><span class="host">Ableton Live</span><span class="host">Logic Pro</span><span class="host">Reaper</span><span class="host">Bitwig</span><span class="host">Studio One</span>
+<section id="plugins">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Out Now</span>
+      <h2>Available Now</h2>
+      <p>Buy Once, Keep It Forever. Every Key Works On Up To 3 Computers.</p>
+    </div>
+    <div class="grid now">
+      <article class="card now-card">
+        <div class="shot"><img src="img/p/youkai808.webp" alt="Youkai808 plugin screenshot" width="900" height="526" loading="lazy"></div>
+        <div class="body">
+          <div class="tags"><span class="tag live">Out Now</span><span class="tag">808 FX + Synth</span></div>
+          <h3>Youkai808</h3>
+          <p>Experimental 808 Destroyer. Light Bitcrush To Blown-Out, Whining, Comedic Subs. 30+ Effects, Spectral Mangling And A Built-In Synth.</p>
+          <div class="buy">
+            <div class="price">$30<span>one-time</span></div>
+            <a class="btn primary" data-product="youkai808" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757">Buy Youkai808</a>
+          </div>
+        </div>
+      </article>
+      <article class="card now-card">
+        <div class="shot"><img src="img/p/melodyveil.webp" alt="Melody Veil plugin screenshot" width="900" height="633" loading="lazy"></div>
+        <div class="body">
+          <div class="tags"><span class="tag live">Out Now</span><span class="tag">Early Access</span><span class="tag">Beat EQ</span></div>
+          <h3>Melody Veil</h3>
+          <p>Makes Any Beat Easy To Rap On. Carves A Pocket In The Melody So Your Vocal Sits Right On Top.</p>
+          <div class="buy">
+            <div class="price">$20<span>one-time</span></div>
+            <a class="btn primary" data-product="melodyveil" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/947189ff-2014-47cb-982d-6ed6d8ea9ca1">Buy Melody Veil</a>
+          </div>
+          <p class="note">Early Access: Still Being Polished. Updates Land Free In The Hub.</p>
+        </div>
+      </article>
     </div>
   </div>
+</section>
 
-  <section id="plugin">
-    <div class="wrap">
-      <div class="split">
-        <div class="sr">
-          <div class="tagrow">
-            <span class="pill">VST3</span><span class="pill">CLAP</span><span class="pill">AU</span>
-            <span class="pill">30+ effects</span><span class="pill">Built-in synth</span>
-          </div>
-          <div class="head" style="margin-bottom:0">
-            <h2>Youkai808</h2>
-            <p>An experimental 808 destroyer. Start clean, then push it until it falls apart in exactly the way you want.</p>
-          </div>
-          <ul class="flist">
-            <li>808 distortion — bitcrush, saturation, fold and drive tuned for sub frequencies</li>
-            <li>Multiband distortion rack with pre/post filtering</li>
-            <li>Spectral Transform — FFT shift, warp, smear and metallic mangling</li>
-            <li>Reverb, delay and flanger built into the same chain</li>
-            <li>A built-in synth, so you can generate the 808, not just process it</li>
-          </ul>
-          <div class="price-inline">Unlock everything for <b>$30</b></div>
+<section id="soon" style="padding-top:24px">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">In The Lab</span>
+      <h2>More Plugins Are In The Works</h2>
+      <p>Youkai808 Is Just The Start — Way More Plugins Are Dropping Soon, And Every One Lands Right In Your Hub Automatically.</p>
+    </div>
+    <div class="grid soon">
+      <article class="card soon-card">
+        <div class="shot"><div class="ph"><svg viewBox="0 0 64 64" fill="none" stroke="#ff7aa8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="40" height="36" rx="5"/><path d="M46 26l12-7v26l-12-7"/><path d="M18 26l8 6-8 6z" fill="#ff7aa8"/></svg></div></div>
+        <div class="body"><div class="tags"><span class="tag">Program · Video</span></div><h3>AutoSnip</h3><p>Drop A Long Clip In, Get The Best Parts Out. Auto-Edits Your Snippets.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/bandotape.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Beat Master</span></div><h3>Plugg Bando Tape</h3><p>Throwback Lo-Fi Tape Master For Plugg Beats, With A Built-In Mix Coach.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/sukima.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Vocal Space</span></div><h3>Sukima</h3><p>Makes Room For Your Voice In The Beat And Keeps The Melody Clear.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/onimaster.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Mastering</span></div><h3>Oni Master</h3><p>One-Click Auto Master Built For Rap. Loud, Clean, Ready To Upload.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/kirinverb.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Reverb</span></div><h3>Kirin Verb</h3><p>Vocal Reverb That Stays Clean And Ducks Under Your Lead.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/kodamaadlib.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Adlibs</span></div><h3>Kodama Adlib</h3><p>Big, Spacey Adlibs In One Knob.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/mononokewash.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Melody FX</span></div><h3>Mononoke Wash</h3><p>Turns Any Melody Into A Dreamy Ambient Wash.</p></div>
+      </article>
+      <article class="card soon-card">
+        <div class="shot"><img src="img/p/tenguhats.webp" alt="" loading="lazy"></div>
+        <div class="body"><div class="tags"><span class="tag">Instrument</span></div><h3>Tengu Hats</h3><p>Hi-Hat Roll Machine With MIDI Out.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="hub">
+  <div class="wrap">
+    <div class="hub">
+      <div>
+        <span class="eyebrow">Free App</span>
+        <h2>Youkai Digital Hub</h2>
+        <p>One Free App That Installs, Updates And Unlocks Every Plugin. No Account Needed.</p>
+        <ol>
+          <li><b>Download The Hub</b> And Install It.</li>
+          <li><b>Buy A Plugin</b> Here Or Right Inside The App.</li>
+          <li><b>Paste Your Key</b> And Hit Install. Done.</li>
+        </ol>
+        <div class="cta">
+          <a class="btn primary" href="h/">Download The Hub — Free</a>
+          <small>Windows 10/11</small>
         </div>
-        <div class="media sr">
-          <img src="img/youkai808.png" alt="The Youkai808 plugin interface" width="1180" height="690" style="aspect-ratio:1180/690">
-        </div>
       </div>
+      <img src="img/hub-app.webp" alt="Youkai Digital Hub app screenshot" loading="lazy">
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="features" style="padding-top:0">
-    <div class="wrap">
-      <div class="head center sr">
-        <h2>Built to get weird</h2>
-        <p>Every module is made for one thing: a low end with character, not a preset.</p>
-      </div>
-      <div class="cards sr">
-        <div class="cell"><div class="ic">808</div><h3>Sub distortion</h3><p>From a touch of grit to a fully blown-out, buzzing sub that still hits in the club.</p></div>
-        <div class="cell"><div class="ic">FFT</div><h3>Spectral transform</h3><p>Shift, warp and smear the frequency content for textures nothing else makes.</p></div>
-        <div class="cell"><div class="ic">FX</div><h3>Full effects rack</h3><p>Reverb, delay, flanger and 30+ modules you stack and reorder freely.</p></div>
-        <div class="cell"><div class="ic">SYN</div><h3>Built-in synth</h3><p>Youkai808 Synth is included — write the bassline right inside the plugin.</p></div>
-        <div class="cell"><div class="ic">MB</div><h3>Multiband distortion</h3><p>Split the signal into bands and mangle each one — pre/post filtering keeps the low end controlled.</p></div>
-        <div class="cell"><div class="ic">∞</div><h3>Lifetime updates</h3><p>New effects and versions arrive through the Hub. Buy once, keep it forever.</p></div>
-      </div>
+<section id="beats" style="padding-top:24px">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Hear It</span>
+      <h2>Beats Made With Youkai808</h2>
+      <p>Real Tracks. Tap Play.</p>
     </div>
-  </section>
-
-  <section id="beats" style="padding-top:0">
-    <div class="wrap">
-      <div class="head center sr"><h2>Beats made with it</h2>
-        <p>Real tracks built with Youkai808. Tap play.</p></div>
-      <div class="beats sr">
-        <div class="beat" data-src="audio/skam.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Lil Skam Cypher</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
-        <div class="beat" data-src="audio/skam2.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Lil Skam Cypher II</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
-        <div class="beat" data-src="audio/water.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Watergoingnorth</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
-        <div class="beat" data-src="audio/f452.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">452hz</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
-        <div class="beat" data-src="audio/search.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">Search</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
-        <div class="beat" data-src="audio/chypher.mp3"><button class="play" aria-label="Play"></button><div class="meta"><div class="name">808 Cypher (158 BPM)</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
-      </div>
+    <div class="beats">
+      <div class="beat" data-src="audio/skam.mp3"><button class="play" aria-label="Play Lil Skam Cypher"></button><div class="meta"><div class="name">Lil Skam Cypher</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+      <div class="beat" data-src="audio/skam2.mp3"><button class="play" aria-label="Play Lil Skam Cypher II"></button><div class="meta"><div class="name">Lil Skam Cypher II</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+      <div class="beat" data-src="audio/water.mp3"><button class="play" aria-label="Play Watergoingnorth"></button><div class="meta"><div class="name">Watergoingnorth</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+      <div class="beat" data-src="audio/f452.mp3"><button class="play" aria-label="Play 452hz"></button><div class="meta"><div class="name">452hz</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+      <div class="beat" data-src="audio/search.mp3"><button class="play" aria-label="Play Search"></button><div class="meta"><div class="name">Search</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
+      <div class="beat" data-src="audio/chypher.mp3"><button class="play" aria-label="Play 808 Cypher"></button><div class="meta"><div class="name">808 Cypher (158 BPM)</div><div class="bar"><div class="fill"></div></div></div><div class="time">0:00</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="get">
-    <div class="wrap">
-      <div class="head center sr"><h2>Get Youkai808</h2>
-        <p>Two steps: download the <b>free</b> Hub, then unlock the plugin inside it. The Hub itself never costs anything.</p></div>
-      <div class="get-grid sr">
-
-        <div class="free-card">
-          <span class="tag-badge tag-free">FREE · THE APP</span>
-          <h3>Youkai Digital Hub</h3>
-          <p>The free app that installs, updates and unlocks every YoukaiDigital plugin. Start here — no account, no cost.</p>
-          <a class="btn btn-primary btn-lg" href="https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe">Download the Hub — free</a>
-          <p class="note">Windows · VST3, CLAP &amp; AU</p>
-        </div>
-
-        <div class="price-card" id="pricing">
-          <span class="tag-badge tag-paid">$30 · THE PLUGIN</span>
-          <div class="name" style="margin-top:14px">Youkai808 plugin</div>
-          <div class="amt"><sup>$</sup>30</div>
-          <div class="once">One-time · unlock inside the Hub</div>
-          <ul>
-            <li>Youkai808 plugin + built-in synth</li>
-            <li>VST3, CLAP and AU formats</li>
-            <li>One key works on up to 3 computers</li>
-            <li>Lifetime updates through the Hub</li>
-            <li>Free trial before you buy</li>
-          </ul>
-          <a class="btn btn-primary btn-lg" href="https://koumakandigital.lemonsqueezy.com/checkout/buy/85b12dba-821b-4a49-89db-665562103757" style="width:100%;justify-content:center;margin-bottom:12px">Buy Youkai808 — $30</a>
-          <div class="buyline">Or install the free Hub and unlock it inside the app — it activates automatically.</div>
-        </div>
-
-      </div>
+<section id="faq">
+  <div class="wrap">
+    <div class="head"><h2>Questions</h2></div>
+    <div class="faq">
+      <details><summary>Is It A Subscription?</summary><p>No. You Pay Once And Keep The Plugin Forever, Updates Included.</p></details>
+      <details><summary>How Do I Install After I Buy?</summary><p>Download The Free Hub, Paste The Key From Your Receipt Email, And Hit Install. The Hub Puts The Plugin Where Your DAW Can Find It.</p></details>
+      <details><summary>Can I Try Before I Buy?</summary><p>Yes. Every Plugin Has A Free Demo Mode In The Hub With A Couple Of Presets So You Can Test It In Your Own Tracks.</p></details>
+      <details><summary>How Many Computers Can I Use?</summary><p>One Key Works On Up To 3 Computers. You Can Move It Off An Old PC Inside The Hub.</p></details>
+      <details><summary>Does It Work On Mac?</summary><p>Windows Is Out Now. Mac Is On The Way And Will Show Up In The Hub When It's Ready.</p></details>
+      <details><summary>Which DAWs?</summary><p>Anything That Loads VST3, CLAP Or AU: FL Studio, Ableton, Reaper, Bitwig, Studio One And More.</p></details>
     </div>
-  </section>
-
-  <section id="roadmap" style="padding-top:0">
-    <div class="wrap">
-      <div class="head center sr"><h2>More Plugins Are In The Works</h2><p>Youkai808 Is Just The Start — Way More Plugins Are Dropping Soon, And Every One Lands Right In Your Hub Automatically.</p></div>
-      <div class="road sr">
-        <div class="r live"><div class="state">Available now</div><h3>Youkai808</h3><p>808 distortion, spectral mangling and a built-in synth.</p></div>
-        <div class="r"><div class="state">In the works</div><h3>More coming</h3><p>New instruments and effects, built in the same experimental spirit.</p></div>
-        <div class="r"><div class="state">In the works</div><h3>More coming</h3><p>Every release shows up in your Hub automatically.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" style="padding-top:0">
-    <div class="wrap" style="max-width:800px">
-      <div class="head center sr"><h2>Questions</h2></div>
-      <div class="sr">
-      <details open><summary>What do I actually get for $30?</summary><p>The full Youkai808 plugin with its built-in synth, in VST3, CLAP and AU formats, plus every future update. It's a one-time purchase, not a subscription.</p></details>
-      <details><summary>How do I install it?</summary><p>Download the free Youkai Digital Hub, open it, and install Youkai808 with one click. The Hub also keeps it updated and lets you switch versions.</p></details>
-      <details><summary>Can I try before I buy?</summary><p>Yes. The trial gives you a set of presets so you can run it in your own tracks first. When you're ready, you unlock the full plugin for $30 right in the Hub.</p></details>
-      <details><summary>What if I get a new computer?</summary><p>Your key works on up to 3 computers at once, and you can move a license off an old machine from inside the Hub. No need to ask for a new key.</p></details>
-      <details><summary>Which systems are supported?</summary><p>Windows is available now. A macOS build is on the way and will appear in the Hub when it's ready.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="final">
-    <div class="wrap sr">
-      <h2>Go <em>break</em> some sub-bass.</h2>
-      <p>Download the Hub, start the trial, and hear what Youkai808 does to your low end.</p>
-      <a class="btn btn-primary btn-lg" href="#get">Get Youkai808</a>
-    </div>
-  </section>
-
-</main>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    <div class="logo" style="font-size:16px">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#160e22"/><path d="M9 8l7 9 7-9M16 17v7" stroke="#ff2fa0" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Youkai<span style="color:var(--muted);font-weight:500">Digital</span>
-    </div>
-    <div>© 2026 YoukaiDigital. Proprietary — all rights reserved.</div>
-    <a href="https://github.com/RemiliaBandxz/youkai808-releases">Downloads on GitHub</a>
+    <a class="brand" href="#top"><img src="img/koumakan-logo.webp" alt="" width="30" height="30">Koumakan Digital</a>
+    <span>© 2026 Koumakan Digital. All Rights Reserved.</span>
+    <span class="legal"><a href="terms/">Terms</a> · <a href="privacy/">Privacy</a> · <a href="refunds/">Refunds</a></span>
   </div>
 </footer>
 
 <script>
-  // scroll-reveal; respects reduced-motion (CSS already shows .sr when reduced)
+  // beat players: one shared <audio>, only one plays at a time
   (function(){
-    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var els = [].slice.call(document.querySelectorAll('.sr'));
-    if (rm || !('IntersectionObserver' in window)) { els.forEach(function(e){e.classList.add('vis')}); return; }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('vis'); io.unobserve(en.target); } });
-    }, { threshold:.14 });
-    els.forEach(function(e){ io.observe(e); });
-  })();
-
-  // beat demo players — one <audio> shared, only one plays at a time
-  (function(){
-    var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-    var PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
-    function fmt(s){ s=Math.max(0,s|0); return (s/60|0)+':'+('0'+(s%60)).slice(-2); }
-    var rows = [].slice.call(document.querySelectorAll('.beat')), audio = new Audio(), cur = null;
-    rows.forEach(function(e){ e.querySelector('.play').innerHTML = PLAY; });
-    function stopUI(){ if(cur){ cur.classList.remove('playing'); cur.querySelector('.play').innerHTML = PLAY;
-      cur.querySelector('.fill').style.width='0'; cur.querySelector('.time').textContent='0:00'; } }
-    rows.forEach(function(row){
-      row.querySelector('.play').addEventListener('click', function(){
-        if(cur === row){ if(audio.paused){ audio.play(); } else { audio.pause(); } return; }
-        stopUI(); cur = row; audio.src = row.getAttribute('data-src'); audio.play();
+    var rows=[].slice.call(document.querySelectorAll('.beat')), audio=new Audio(), cur=null;
+    function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+    function stop(){ if(cur){cur.classList.remove('on');} }
+    rows.forEach(function(r){
+      r.querySelector('.play').addEventListener('click',function(){
+        if(cur===r && !audio.paused){audio.pause(); r.classList.remove('on'); return;}
+        if(cur!==r){stop(); cur=r; audio.src=r.dataset.src;}
+        audio.play(); r.classList.add('on');
+      });
+      r.querySelector('.bar').addEventListener('click',function(e){
+        if(cur!==r || !audio.duration) return;
+        var b=this.getBoundingClientRect(); audio.currentTime=(e.clientX-b.left)/b.width*audio.duration;
       });
     });
-    audio.addEventListener('play', function(){ if(cur){ cur.classList.add('playing'); cur.querySelector('.play').innerHTML = PAUSE; } });
-    audio.addEventListener('pause', function(){ if(cur){ cur.querySelector('.play').innerHTML = PLAY; } });
-    audio.addEventListener('timeupdate', function(){ if(!cur||!audio.duration) return;
-      cur.querySelector('.fill').style.width = (100*audio.currentTime/audio.duration)+'%';
-      cur.querySelector('.time').textContent = fmt(audio.currentTime); });
-    audio.addEventListener('ended', function(){ stopUI(); cur = null; });
+    audio.addEventListener('timeupdate',function(){
+      if(!cur) return;
+      cur.querySelector('.fill').style.width=(audio.duration?audio.currentTime/audio.duration*100:0)+'%';
+      cur.querySelector('.time').textContent=fmt(audio.currentTime);
+    });
+    audio.addEventListener('ended',stop);
+  })();
+</script>
+<script>
+  // Paddle checkout. Until token + price IDs are filled in, Buy buttons keep their Lemon Squeezy links.
+  // shortcut: LS links stay as the fallback until Paddle is verified live, then swap hrefs or delete them.
+  var PADDLE = {
+    // Live: fill in after Paddle approves the account. Until then real buyers keep the Lemon Squeezy links.
+    live:    { token: '', prices: { youkai808: '', melodyveil: '' } },
+    // Sandbox (test cards only). Active only when the URL has ?paddletest, so real buyers never hit it.
+    sandbox: { token: 'test_6e43ebd39b0169c666d7efde260',
+               prices: { youkai808: 'pri_01m82xta4pgfvfc27v7n5neg08', melodyveil: 'pri_01m82xv97bqjybf8gyg7b489cv' } }
+  };
+  (function(){
+    var test=/[?&]paddletest/.test(location.search), cfg=test?PADDLE.sandbox:PADDLE.live;
+    if(!cfg.token) return;
+    var s=document.createElement('script'); s.src='https://cdn.paddle.com/paddle/v2/paddle.js';
+    s.onload=function(){
+      if(test) Paddle.Environment.set('sandbox');
+      Paddle.Initialize({token:cfg.token});
+      document.querySelectorAll('[data-product]').forEach(function(a){
+        var price=cfg.prices[a.dataset.product]; if(!price) return;
+        a.addEventListener('click',function(e){ e.preventDefault(); Paddle.Checkout.open({items:[{priceId:price,quantity:1}]}); });
+      });
+    };
+    document.head.appendChild(s);
   })();
 </script>
 </body>
