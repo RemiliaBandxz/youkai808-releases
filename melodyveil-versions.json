@@ -1,9 +1,13 @@
 {
   "product": "Melody Veil",
   "publisher": "YoukaiDigital",
-  "latest": "2.4",
+  "latest": "2.5",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
+    {
+      "version": "2.5",
+      "windows": "releases/MelodyVeil-v2.5.0-Setup.exe"
+    },
     {
       "version": "2.4",
       "windows": "releases/MelodyVeil-v2.4.0-Setup.exe"
@@ -11,10 +15,6 @@
     {
       "version": "2.3",
       "windows": "releases/MelodyVeil-v2.3.0-Setup.exe"
-    },
-    {
-      "version": "2.2",
-      "windows": "releases/MelodyVeil-v2.2.0-Setup.exe"
     }
   ]
 }
