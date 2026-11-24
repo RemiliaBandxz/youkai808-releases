@@ -5,7 +5,8 @@
   var TURNSTILE_SITEKEY = '0x4AAAAAAGQJWtcHRR5B_Nx7'; // Cloudflare Turnstile site key (public). Empty = no bot check widget.
   var PRODUCTS = {
     youkai808:  { name: 'Youkai808',   img: '../img/p/youkai808.webp' },
-    melodyveil: { name: 'Melody Veil', img: '../img/p/melodyveil.webp' }
+    melodyveil: { name: 'Melody Veil', img: '../img/p/melodyveil.webp' },
+    all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' } // one code unlocks everything
   };
   var $ = function(id){ return document.getElementById(id); };
   var store = { get:function(){ try{return localStorage.getItem('kd_token')}catch(e){return null} },
@@ -124,13 +125,14 @@
         }
         c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
-      if (j.owner) Object.keys(PRODUCTS).forEach(function(k){ // owner owns everything: the Hub unlocks it all when she signs in there
-        if (seen[k]) return; var info = PRODUCTS[k];
+      var allCode = (j.purchases||[]).some(function(p){ return p.product==='all' && p.status==='active'; });
+      if (j.owner || allCode) Object.keys(PRODUCTS).forEach(function(k){ // owner / All Plugins code owns everything: the Hub unlocks it all when signed in
+        if (seen[k] || k==='all') return; var info = PRODUCTS[k];
         var c = document.createElement('div'); c.className='card own';
         var img = document.createElement('img'); img.src=info.img; img.alt=''; img.loading='lazy';
         var b = document.createElement('div'); b.className='body';
         var h = document.createElement('h3'); h.textContent = info.name;
-        var d = document.createElement('p'); d.textContent = 'Unlocked (Owner). Sign In To The Hub With This Account To Use It, No Key Needed.';
+        var d = document.createElement('p'); d.textContent = (j.owner ? 'Unlocked (Owner).' : 'Unlocked By Your All Plugins Code.') + ' Sign In To The Hub With This Account To Use It, No Key Needed.';
         b.appendChild(h); b.appendChild(d); c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
@@ -142,7 +144,7 @@
   }
 
   // ---- Owner panel (the server refuses all of this unless the account is the owner AND logged in with 2FA) ----
-  var PNAME = {youkai808:'Youkai808', melodyveil:'Melody Veil'};
+  var PNAME = {youkai808:'Youkai808', melodyveil:'Melody Veil', all:'All Plugins'};
   function ownerPanel(me){
     $('adm-2fa').hidden = me.mfa; $('adm-main').hidden = !me.mfa;
     if (!me.mfa) {

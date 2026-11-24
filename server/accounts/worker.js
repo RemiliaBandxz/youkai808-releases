@@ -7,8 +7,9 @@ const PRICES = { // Paddle price id -> product slug. Only the map matching PADDL
   sandbox: { pri_01m82xta4pgfvfc27v7n5neg08: 'youkai808', pri_01m82xv97bqjybf8gyg7b489cv: 'melodyveil' },
 };
 // Numeric ids the Hub matches in catalog.json store_product_ids (Y8Store.h reads meta.product_id).
-const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002 };
-const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil' };
+// all = one code that unlocks every plugin (website + Hub). The Hub treats 808000 as everything.
+const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002, all: 808000 };
+const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', all: 'All Plugins' };
 const ACTIVATION_LIMIT = 3, RESET_DAYS = 7;
 const SESSION_DAYS = 30, PBKDF2_ITERS = 100000, MAX_FAILS = 8, FAIL_WINDOW = 15 * 60;
 const enc = new TextEncoder();
