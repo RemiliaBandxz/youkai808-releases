@@ -124,6 +124,15 @@
         }
         c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
+      if (j.owner) Object.keys(PRODUCTS).forEach(function(k){ // owner owns everything: the Hub unlocks it all when she signs in there
+        if (seen[k]) return; var info = PRODUCTS[k];
+        var c = document.createElement('div'); c.className='card own';
+        var img = document.createElement('img'); img.src=info.img; img.alt=''; img.loading='lazy';
+        var b = document.createElement('div'); b.className='body';
+        var h = document.createElement('h3'); h.textContent = info.name;
+        var d = document.createElement('p'); d.textContent = 'Unlocked (Owner). Sign In To The Hub With This Account To Use It, No Key Needed.';
+        b.appendChild(h); b.appendChild(d); c.appendChild(img); c.appendChild(b); grid.appendChild(c);
+      });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
       $('hub-link').hidden = !hubCode; if (hubCode) $('hub-code').textContent = hubCode;
       $('admin').hidden = !j.owner;
