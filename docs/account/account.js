@@ -33,7 +33,7 @@
     bunshindouble: { name: "Bunshin Double", img: '../img/p/bunshindouble.webp', dl: 'releases/BunshinDouble-Setup.exe', beta: 1 },
     yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', dl: 'releases/YamabikoEcho-Setup.exe', beta: 1 },
     raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', dl: 'releases/RaijuClip-Setup.exe', beta: 1 },
-    autosnip: { name: "AutoSnip", img: '../img/koumakan-logo.webp' }, // installs from the Hub's APPS tab (installer is split into parts, no single download link)
+    autosnip: { name: "AutoSnip", img: '../img/p/autosnip.webp' }, // installs from the Hub's APPS tab (installer is split into parts, no single download link)
     all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' }, // one code unlocks everything
     beta:       { name: 'Beta Tester', img: '../img/koumakan-logo.webp' }
   };

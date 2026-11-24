@@ -118,6 +118,8 @@
   .tags{display:flex; gap:6px; flex-wrap:wrap}
   .tag{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border:1px solid var(--line2); color:var(--bone)}
   .tag.live{background:var(--blood); border-color:var(--blood); color:#fff}
+  .snips{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .snips video{width:100%;aspect-ratio:9/16;background:#000;border:1px solid var(--line2);display:block}
   .buy{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:auto; padding-top:14px; border-top:1px dashed var(--line2); flex-wrap:wrap}
   .price{font-family:var(--display); font-size:46px; line-height:1}
   .price span{font-family:var(--mono); font-size:11px; color:var(--muted); margin-left:6px; text-transform:uppercase; letter-spacing:.08em}
@@ -269,11 +271,11 @@
         </div>
       </article>
       <article class="card now-card" id="autosnip">
-        <span class="num">No.03</span><div class="shot"><div class="ph"><svg viewBox="0 0 64 64" fill="none" stroke="#ff7aa8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="40" height="36" rx="5"/><path d="M46 26l12-7v26l-12-7"/><path d="M18 26l8 6-8 6z" fill="#ff7aa8"/></svg></div></div>
+        <span class="num">No.03</span><div class="shot"><img src="img/p/autosnip.webp" alt="AutoSnip icon" width="512" height="512" loading="lazy" style="object-fit:contain"></div>
         <div class="body">
           <div class="tags"><span class="tag live">Out Now</span><span class="tag">Program · Video</span></div>
           <h3>AutoSnip</h3>
-          <p class="lede">Drop A Long Clip In, Get The Best Parts Out.</p><p>Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips. Standalone App For Windows.</p>
+          <p class="lede">Drop A Long Clip In, Get The Best Parts Out.</p><p>Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips. Standalone App For Windows.</p><div class="snips"><video controls playsinline preload="none" poster="vid/autosnip-song1.webp" src="vid/autosnip-song1.mp4" aria-label="AutoSnip preview 1"></video><video controls playsinline preload="none" poster="vid/autosnip-song2.webp" src="vid/autosnip-song2.mp4" aria-label="AutoSnip preview 2"></video></div><p class="note">Real Snippets Cut By AutoSnip.</p>
           <div class="buy">
             <div class="price">$20<span>one-time</span></div>
             <a class="btn primary" data-product="autosnip" href="mailto:koumakandigital@gmail.com?subject=Buy%20AutoSnip">Buy AutoSnip</a>
