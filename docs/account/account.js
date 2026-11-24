@@ -4,39 +4,41 @@
   var API = 'https://koumakan-accounts.sannyo-arena.workers.dev';
   var TURNSTILE_SITEKEY = '0x4AAAAAAGQJWtcHRR5B_Nx7'; // Cloudflare Turnstile site key (public). Empty = no bot check widget.
   var PRODUCTS = { // mirrors catalog.json; the owner and All Plugins codes unlock every one
-    youkai808: { name: "Youkai808", img: '../img/p/youkai808.webp' },
-    melodyveil: { name: "Melody Veil", img: '../img/p/melodyveil.webp' },
-    bandotape: { name: "Plugg Bando Tape", img: '../img/p/bandotape.webp' },
-    kirinverb: { name: "Kirin Verb", img: '../img/p/kirinverb.webp' },
-    kodamaadlib: { name: "Kodama Adlib", img: '../img/p/kodamaadlib.webp' },
-    mononokewash: { name: "Mononoke Ambient", img: '../img/p/mononokewash.webp' },
-    nuephase: { name: "Nue Chorus", img: '../img/p/nuephase.webp' },
-    nurikabe: { name: "Nurikabe Saturator", img: '../img/p/nurikabe.webp' },
-    onimaster: { name: "Oni Master", img: '../img/p/onimaster.webp' },
-    sukima: { name: "Sukima Vocal Pocket", img: '../img/p/sukima.webp' },
-    tanukijuice: { name: "MagikaMusic", img: '../img/p/tanukijuice.webp' },
-    tenguhats: { name: "Tengu Hats", img: '../img/p/tenguhats.webp' },
-    umibozuir: { name: "Umibozu Room Verb", img: '../img/p/umibozuir.webp' },
-    yureistop: { name: "Yurei Tapestop", img: '../img/p/yureistop.webp' },
-    satori: { name: "Satori Brain", img: '../img/p/satori.webp', beta: 1 },
-    koishi: { name: "Koishi Ears", img: '../img/p/koishi.webp', beta: 1 },
-    youkaivocal: { name: "Youkai Vocal Chain", img: '../img/p/youkaivocal.webp', beta: 1 },
-    youkaibeat: { name: "Youkai Beat Mix", img: '../img/p/youkaibeat.webp', beta: 1 },
-    youkaidetune: { name: "Youkai Retune", img: '../img/p/youkaidetune.webp', beta: 1 },
-    suzumesilk: { name: "Suzume Smoother", img: '../img/p/suzumesilk.webp', beta: 1 },
-    tsukumovibe: { name: "Tsukumo Vibrato", img: '../img/p/tsukumovibe.webp', beta: 1 },
-    hitodamagate: { name: "Hitodama Gate", img: '../img/p/hitodamagate.webp', beta: 1 },
-    ittancut: { name: "Ittan EQ", img: '../img/p/ittancut.webp', beta: 1 },
-    orochideess: { name: "Orochi De-Ess", img: '../img/p/orochideess.webp', beta: 1 },
-    jorogumocomp: { name: "Jorogumo Comp", img: '../img/p/jorogumocomp.webp', beta: 1 },
-    hotarushine: { name: "Hotaru Air", img: '../img/p/hotarushine.webp', beta: 1 },
-    bunshindouble: { name: "Bunshin Double", img: '../img/p/bunshindouble.webp', beta: 1 },
-    yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', beta: 1 },
-    raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', beta: 1 },
-    kitsunetune: { name: "Kitsune Tune", img: '../img/p/kitsunetune.webp', beta: 1 },
+    youkai808: { name: "Youkai808", img: '../img/p/youkai808.webp', dl: 'releases/Youkai808-v1.14-Setup.exe' },
+    melodyveil: { name: "Melody Veil", img: '../img/p/melodyveil.webp', dl: 'releases/MelodyVeil-v2.3.0-Setup.exe' },
+    bandotape: { name: "Plugg Bando Tape", img: '../img/p/bandotape.webp', dl: 'releases/PluggBandoTape-Setup.exe' },
+    kirinverb: { name: "Kirin Verb", img: '../img/p/kirinverb.webp', dl: 'releases/KirinVerb-Setup.exe' },
+    kodamaadlib: { name: "Kodama Adlib", img: '../img/p/kodamaadlib.webp', dl: 'releases/KodamaAdlib-Setup.exe' },
+    mononokewash: { name: "Mononoke Ambient", img: '../img/p/mononokewash.webp', dl: 'releases/MononokeWash-Setup.exe' },
+    nuephase: { name: "Nue Chorus", img: '../img/p/nuephase.webp', dl: 'releases/NuePhase-Setup.exe' },
+    nurikabe: { name: "Nurikabe Saturator", img: '../img/p/nurikabe.webp', dl: 'releases/Nurikabe-Setup.exe' },
+    onimaster: { name: "Oni Master", img: '../img/p/onimaster.webp', dl: 'releases/OniMaster-Setup.exe' },
+    sukima: { name: "Sukima Vocal Pocket", img: '../img/p/sukima.webp', dl: 'releases/Sukima-Setup.exe' },
+    tanukijuice: { name: "MagikaMusic", img: '../img/p/tanukijuice.webp', dl: 'releases/TanukiJuice-Setup.exe' },
+    tenguhats: { name: "Tengu Hats", img: '../img/p/tenguhats.webp', dl: 'releases/TenguHats-Setup.exe' },
+    umibozuir: { name: "Umibozu Room Verb", img: '../img/p/umibozuir.webp', dl: 'releases/UmibozuIR-Setup.exe' },
+    yureistop: { name: "Yurei Tapestop", img: '../img/p/yureistop.webp', dl: 'releases/YureiStop-Setup.exe' },
+    satori: { name: "Satori Brain", img: '../img/p/satori.webp', dl: 'releases/Satori-Setup.exe', beta: 1 },
+    koishi: { name: "Koishi Ears", img: '../img/p/koishi.webp', dl: 'releases/Koishi-Setup.exe', beta: 1 },
+    youkaivocal: { name: "Youkai Vocal Chain", img: '../img/p/youkaivocal.webp', dl: 'releases/YoukaiVocal-Setup.exe', beta: 1 },
+    youkaibeat: { name: "Youkai Beat Mix", img: '../img/p/youkaibeat.webp', dl: 'releases/YoukaiBeat-Setup.exe', beta: 1 },
+    youkaidetune: { name: "Youkai Retune", img: '../img/p/youkaidetune.webp', dl: 'releases/YoukaiDetune-Setup.exe', beta: 1 },
+    suzumesilk: { name: "Suzume Smoother", img: '../img/p/suzumesilk.webp', dl: 'releases/SuzumeSilk-Setup.exe', beta: 1 },
+    tsukumovibe: { name: "Tsukumo Vibrato", img: '../img/p/tsukumovibe.webp', dl: 'releases/TsukumoVibe-Setup.exe', beta: 1 },
+    hitodamagate: { name: "Hitodama Gate", img: '../img/p/hitodamagate.webp', dl: 'releases/HitodamaGate-Setup.exe', beta: 1 },
+    ittancut: { name: "Ittan EQ", img: '../img/p/ittancut.webp', dl: 'releases/IttanCut-Setup.exe', beta: 1 },
+    orochideess: { name: "Orochi De-Ess", img: '../img/p/orochideess.webp', dl: 'releases/OrochiDeEss-Setup.exe', beta: 1 },
+    jorogumocomp: { name: "Jorogumo Comp", img: '../img/p/jorogumocomp.webp', dl: 'releases/JorogumoComp-Setup.exe', beta: 1 },
+    hotarushine: { name: "Hotaru Air", img: '../img/p/hotarushine.webp', dl: 'releases/HotaruShine-Setup.exe', beta: 1 },
+    bunshindouble: { name: "Bunshin Double", img: '../img/p/bunshindouble.webp', dl: 'releases/BunshinDouble-Setup.exe', beta: 1 },
+    yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', dl: 'releases/YamabikoEcho-Setup.exe', beta: 1 },
+    raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', dl: 'releases/RaijuClip-Setup.exe', beta: 1 },
+    kitsunetune: { name: "Kitsune Tune", img: '../img/p/kitsunetune.webp', dl: 'releases/KitsuneTune-Setup.exe', beta: 1 },
     all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' }, // one code unlocks everything
     beta:       { name: 'Beta Tester', img: '../img/koumakan-logo.webp' }
   };
+  var DL = 'https://github.com/RemiliaBandxz/youkai808-releases/raw/main/';
+  function dlBtn(body, info){ if (!info.dl) return; var a=document.createElement('a'); a.className='btn primary sm'; a.href=DL+info.dl; a.textContent='Download'; a.style.marginTop='10px'; a.style.display='inline-block'; body.appendChild(a); }
   var $ = function(id){ return document.getElementById(id); };
   var store = { get:function(){ try{return localStorage.getItem('kd_token')}catch(e){return null} },
                 set:function(t){ try{ t?localStorage.setItem('kd_token',t):localStorage.removeItem('kd_token') }catch(e){} } };
@@ -131,6 +133,7 @@
         var h = document.createElement('h3'); h.textContent = info.name;
         var d = document.createElement('p'); d.textContent = 'Owned Since ' + new Date(p.created*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
         b.appendChild(h); b.appendChild(d);
+        if (p.status === 'active') dlBtn(b, info);
         if (p.status !== 'active') { var off=document.createElement('div'); off.className='off'; off.textContent='This Key Was Refunded Or Disabled.'; b.appendChild(off); }
         else {
           var k=document.createElement('div'); k.className='key';
@@ -161,8 +164,8 @@
         var img = document.createElement('img'); img.src=info.img; img.alt=''; img.loading='lazy';
         var b = document.createElement('div'); b.className='body';
         var h = document.createElement('h3'); h.textContent = info.name;
-        var d = document.createElement('p'); d.textContent = (j.owner ? 'Unlocked (Owner).' : 'Unlocked By Your All Plugins Code.') + ' Sign In To The Hub With This Account To Use It, No Key Needed.';
-        b.appendChild(h); b.appendChild(d); c.appendChild(img); c.appendChild(b); grid.appendChild(c);
+        var d = document.createElement('p'); d.textContent = (j.owner ? 'Unlocked (Owner).' : 'Unlocked By Your All Plugins Code.') + ' Download It Here, Or Sign In To The Hub With This Account.';
+        b.appendChild(h); b.appendChild(d); dlBtn(b, info); c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
       $('hub-link').hidden = !hubCode; if (hubCode) { $('hub-code').textContent = hubCode; $('b-hub').hidden=$('b-hub-no').hidden=false; say('m-hub',''); $('hub-link').scrollIntoView({block:'center'}); }
