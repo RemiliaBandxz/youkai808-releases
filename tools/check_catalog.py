@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# Release gate: every shop tile must have a real image, and WIP plugins must not expose an installer.
+# Release gate: every shop tile must have a real image, and WIP plugins must not expose an installer
+# (except beta:true WIPs, which the Hub only installs with a YBETA- beta key; Remilia OK'd this 2026-11-24).
 # Usage: python3 tools/check_catalog.py   (run from repo root before pushing a Hub/catalog change)
 import json, os, sys
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,7 +18,7 @@ for p in cat.get("products", []):
         if u and not u.startswith("http") and not os.path.isfile(os.path.join(root, u)):
             errs.append(f"{pid}: clip file missing: {u}")
     if p.get("wip"):
-        if "versions" in p:
+        if "versions" in p and not p.get("beta"):   # beta WIPs install only with a YBETA- key (Hub 1.26+)
             errs.append(f"{pid}: WIP plugin must not have a 'versions' field (not installable)")
         if p.get("buy_url") or p.get("price"):
             errs.append(f"{pid}: WIP plugin must not have a price/buy_url")
@@ -26,7 +27,7 @@ for p in cat.get("products", []):
         if vf and not vf.startswith("http") and not os.path.isfile(os.path.join(root, vf)):
             errs.append(f"{pid}: versions file missing: {vf}")
 # no WIP installer zips should be public
-wip_names = [p["name"].replace(" ", "") for p in cat.get("products", []) if p.get("wip")]
+wip_names = [p["name"].replace(" ", "") for p in cat.get("products", []) if p.get("wip") and not p.get("beta")]   # beta WIPs are key-gated in the Hub
 rel = os.path.join(root, "releases")
 if os.path.isdir(rel):
     for f in os.listdir(rel):
