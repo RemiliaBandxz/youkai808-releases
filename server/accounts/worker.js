@@ -158,7 +158,12 @@ async function currentUser(env, req) {
     .bind(await sha256(t), now()).first();
 }
 
-async function readBody(req) { try { return await req.json(); } catch { return {}; } }
+async function readBody(req) { // JSON from the website; form-encoded also accepted (native apps like the Hub)
+  try {
+    if ((req.headers.get('Content-Type') || '').includes('application/x-www-form-urlencoded')) return Object.fromEntries(new URLSearchParams(await req.text()));
+    return await req.json();
+  } catch { return {}; }
+}
 
 async function signup(env, h, req) {
   const b = await readBody(req), email = normEmail(b.email), pw = String(b.password || '');
