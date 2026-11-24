@@ -9,7 +9,7 @@ const PRICES = { // Paddle price id -> product slug. Only the map matching PADDL
 // Numeric ids the Hub matches in catalog.json store_product_ids (Y8Store.h reads meta.product_id).
 // all = one code that unlocks every plugin (website + Hub). The Hub treats 808000 as everything.
 const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002, all: 808000 };
-const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', all: 'All Plugins' };
+const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', all: 'All Plugins', beta: 'Beta Tester' };
 const ACTIVATION_LIMIT = 3, RESET_DAYS = 7;
 const SESSION_DAYS = 30, PBKDF2_ITERS = 100000, MAX_FAILS = 8, FAIL_WINDOW = 15 * 60;
 const enc = new TextEncoder();
@@ -444,11 +444,49 @@ async function adminSetStatus(env, h, req) {
 }
 
 // Buyer attaches an unclaimed code (made in the owner panel) to their account. Each code can be claimed once.
+// ---- Keygen codes (Y8ALL- homie, YBETA- beta) also redeem on the website: one code box everywhere. ----
+// Same check as the plugins / keygen.ps1: RSA public key (e=3), 7 chained SHA-256 blocks read little-endian.
+const Y8_N = BigInt('0x8014b08faf51d07e88168b92645658897cf37076e7ca6f9f0137cbdd4c9034549e3c0792c508bb1f5615dd90b5820748c8bffe695068052bee174c158f6ed409658b176f9af91e3709fa9497b28ec299c8dac6ad82919b97d8b3cae79afa80aa324f562aadc6c4120e560d630fcfc4ce3bee92792863c872ca99539d51fd0360d796e90d9cf3367ab0abc3f080c06707ad65ce5862437c0cf13998ad8af138443e79324e861571d0bcd0ffdb15549ca03516d25f379e6fddb3e58b1d3aaefdddf4c0e254a45e883c597d437754e4ec6fa7db15a84da8211775ac351233c3d1ed386ea5391caaf87e6216894e4eac642ae4d747e10dbdc692b924ebed537230bf');
+const Y8_KINDS = { 'Y8ALL-': { tag: 'Y8ALLv1', product: 'all', list: 'hub/codes.txt' }, 'YBETA-': { tag: 'YBETAv1', product: 'beta', list: 'hub/beta.txt' } };
+function modPow(b, e, m) { let r = 1n; b %= m; while (e > 0n) { if (e & 1n) r = r * b % m; b = b * b % m; e >>= 1n; } return r; }
+async function y8Hash(payload) {
+  const all = [];
+  for (let i = 0; i < 7; i++) all.push(...new Uint8Array(await crypto.subtle.digest('SHA-256', enc.encode(i + '#y808#' + payload))));
+  let v = 0n; for (let i = all.length - 1; i >= 0; i--) v = (v << 8n) | BigInt(all[i]); // little-endian (the extra 0 byte keeps it positive)
+  return v;
+}
+function y8Rsa(v) { let res = 0n; while (v > 0n) { res = res * Y8_N + modPow(v % Y8_N, 3n, Y8_N); v /= Y8_N; } return res; }
+async function y8Verify(code) { // -> {kind, id, anyPc} or null
+  const prefix = Object.keys(Y8_KINDS).find((p) => code.startsWith(p)); if (!prefix) return null;
+  const body = code.slice(prefix.length), dot = body.lastIndexOf('.'); if (dot < 1) return null;
+  let payload; try { payload = new TextDecoder().decode(Uint8Array.from(atob(body.slice(0, dot)), (c) => c.charCodeAt(0))); } catch { return null; }
+  let sig; try { sig = BigInt('0x' + body.slice(dot + 1)); } catch { return null; }
+  const f = payload.split('|'); if (f[0] !== Y8_KINDS[prefix].tag || y8Rsa(sig) !== await y8Hash(payload)) return null;
+  const id = ((f[1] || '').match(/#([A-Z0-9]{6})\s*$/) || [])[1];
+  return { kind: Y8_KINDS[prefix], id, anyPc: (f[3] || '').split(',').includes('*') };
+}
+async function y8Live(list, id) { // the keygen turns codes off by deleting their ID from these lists
+  const r = await fetch('https://raw.githubusercontent.com/RemiliaBandxz/youkai808-releases/main/' + list, { cf: { cacheTtl: 60 } });
+  return r.ok && (await r.text()).split(/\r?\n/).includes(id);
+}
+
 async function redeem(env, h, req) {
   const u = await currentUser(env, req);
   if (!u) return json(h, 401, { error: 'Not Logged In.' });
   if (await hit(env, 'rd:' + u.id, 10)) return json(h, 429, { error: TOO_MANY });
-  const key = String((await readBody(req)).code || '').trim().toUpperCase();
+  const raw = String((await readBody(req)).code || '').replace(/\s/g, '');
+  if (/^(Y8ALL|YBETA)-/i.test(raw)) {
+    const y = await y8Verify(raw.replace(/^[a-z0-9]+-/i, (m) => m.toUpperCase()));
+    if (!y || !y.id) return json(h, 400, { error: 'That Code Is Wrong.' });
+    if (!y.anyPc) return json(h, 400, { error: 'That Code Is Locked To One Computer. Paste It In The Hub On That Computer.' });
+    if (!await y8Live(y.kind.list, y.id)) return json(h, 400, { error: 'That Code Was Turned Off.' });
+    const txn = 'y8_' + y.id; // one account per code
+    await env.DB.prepare('INSERT OR IGNORE INTO purchases(txn_id,product,email,user_id,created,license_key) VALUES(?,?,?,?,?,?)')
+      .bind(txn, y.kind.product, u.email, u.id, now(), 'KD-' + (await sha256('y8|' + raw)).slice(0, 32).toUpperCase().match(/.{8}/g).join('-')).run();
+    const mine = await env.DB.prepare('SELECT user_id FROM purchases WHERE txn_id=?').bind(txn).first();
+    return mine && mine.user_id === u.id ? json(h, 200, { ok: true }) : json(h, 400, { error: 'That Code Is Already Used.' });
+  }
+  const key = raw.toUpperCase();
   const r = await env.DB.prepare("UPDATE purchases SET user_id=?, email=? WHERE license_key=? AND user_id IS NULL AND email='' AND status='active'")
     .bind(u.id, u.email, key).run();
   if (!r.meta.changes) return json(h, 400, { error: 'That Code Is Wrong Or Already Used.' });

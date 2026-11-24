@@ -34,7 +34,8 @@
     yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', beta: 1 },
     raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', beta: 1 },
     kitsunetune: { name: "Kitsune Tune", img: '../img/p/kitsunetune.webp', beta: 1 },
-    all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' } // one code unlocks everything
+    all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' }, // one code unlocks everything
+    beta:       { name: 'Beta Tester', img: '../img/koumakan-logo.webp' }
   };
   var $ = function(id){ return document.getElementById(id); };
   var store = { get:function(){ try{return localStorage.getItem('kd_token')}catch(e){return null} },
@@ -155,7 +156,7 @@
       });
       var allCode = (j.purchases||[]).some(function(p){ return p.product==='all' && p.status==='active'; });
       if (j.owner || allCode) Object.keys(PRODUCTS).forEach(function(k){ // owner / All Plugins code owns everything: the Hub unlocks it all when signed in
-        if (seen[k] || k==='all') return; var info = PRODUCTS[k];
+        if (seen[k] || k==='all' || k==='beta') return; var info = PRODUCTS[k];
         var c = document.createElement('div'); c.className='card own';
         var img = document.createElement('img'); img.src=info.img; img.alt=''; img.loading='lazy';
         var b = document.createElement('div'); b.className='body';
