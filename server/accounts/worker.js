@@ -161,10 +161,11 @@ async function currentUser(env, req) {
     .bind(await sha256(t), now()).first();
 }
 
-async function readBody(req) { // JSON from the website; form-encoded also accepted (native apps like the Hub)
+async function readBody(req) { // JSON or form-encoded, whatever the Content-Type says (JUCE apps label JSON bodies as form data)
   try {
-    if ((req.headers.get('Content-Type') || '').includes('application/x-www-form-urlencoded')) return Object.fromEntries(new URLSearchParams(await req.text()));
-    return await req.json();
+    const t = await req.text();
+    try { const j = JSON.parse(t); if (j && typeof j === 'object') return j; } catch {}
+    return Object.fromEntries(new URLSearchParams(t));
   } catch { return {}; }
 }
 
