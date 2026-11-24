@@ -1,0 +1,12 @@
+{
+  "product": "Jorogumo Comp",
+  "publisher": "YoukaiDigital",
+  "latest": "0.9.0",
+  "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
+  "versions": [
+    {
+      "version": "0.9.0",
+      "windows": "releases/JorogumoComp-Setup.exe"
+    }
+  ]
+}
