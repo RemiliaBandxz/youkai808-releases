@@ -29,6 +29,7 @@
     if (!window.turnstile) { setTimeout(tsRender, 300); return; }
     tsId = turnstile.render('#ts', { sitekey: TURNSTILE_SITEKEY, theme: 'dark' });
   }
+  var hm = location.hash.match(/hub=([A-Z0-9]{4}-[A-Z0-9]{4})/), hubCode = hm && hm[1];
   var lm = location.hash.match(/(reset|verify)=([0-9a-f]{64})/), linkKind = lm && lm[1], linkToken = lm && lm[2];
   var mode = 'login';
   function setMode(m){
@@ -123,6 +124,7 @@
         c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
+      $('hub-link').hidden = !hubCode; if (hubCode) $('hub-code').textContent = hubCode;
       $('admin').hidden = !j.owner;
       if (j.owner) ownerPanel(j);
       show('me');
@@ -188,6 +190,16 @@
   };
   $('f-find').onsubmit = function(e){ e.preventDefault(); adminList($('q').value.trim()); };
 
+  $('b-hub').onclick = function(){
+    var b=this; b.disabled=true;
+    call('/hub/approve',{user_code:hubCode}).then(function(j){
+      b.disabled=false;
+      if (j.ok){ hubCode=null; $('b-hub').hidden=$('b-hub-no').hidden=true; say('m-hub','Connected. Go Back To The Hub.', true); }
+      else say('m-hub', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('b-hub-no').onclick = function(){ hubCode=null; $('hub-link').hidden=true; };
+
   $('b-resend').onclick = function(){
     var b=this; b.disabled=true;
     call('/resend-verify',{}).then(function(j){ b.disabled=false; $('m-verify').textContent = j.ok ? 'Sent. Check Your Inbox (And Spam).' : (j.error || 'Something Went Wrong.'); });
@@ -196,6 +208,7 @@
   if (top !== self) { top.location = self.location; return; } // no clickjacking in iframes
   if (!API) { show('soon'); return; }
   tsRender();
+  if (hubCode) history.replaceState(null,'',location.pathname);
   if (linkToken) {
     history.replaceState(null,'',location.pathname); // keep the one-time token out of history
     if (linkKind==='verify') { $('reset-title').textContent='Confirm Your Email'; $('reset-sub').textContent='Set Your Password To Finish. This Logs Out Any Other Device On This Account.'; }

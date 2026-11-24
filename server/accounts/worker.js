@@ -447,9 +447,38 @@ async function redeem(env, h, req) {
   return json(h, 200, { ok: true });
 }
 
+// ---- Hub app login, device-code style: the Hub never sees a password, Turnstile or 2FA code. ----
+// 1) Hub POST /hub/start -> {device_code, user_code, verify_url}; opens verify_url in the browser.
+// 2) Buyer (logged in on the website) presses Connect -> POST /hub/approve {user_code}.
+// 3) Hub POST /hub/poll {device_code} every 5s -> 202 {pending} until approved, then {token}. Then GET /me with it.
+async function hubStart(env, h, req) {
+  if (await hit(env, 'hub:' + (req.headers.get('CF-Connecting-IP') || ''), 20)) return json(h, 429, { error: TOO_MANY });
+  const device = rand(), code = [...crypto.getRandomValues(new Uint8Array(8))].map((b) => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[b & 31]).join('');
+  const user_code = code.slice(0, 4) + '-' + code.slice(4);
+  await env.DB.prepare('INSERT INTO hub_links(device_hash,user_code,user_id,expires) VALUES(?,?,NULL,?)').bind(await sha256(device), user_code, now() + 600).run();
+  return json(h, 200, { device_code: device, user_code, verify_url: env.SITE_ORIGIN + '/account/#hub=' + user_code, interval: 5, expires_in: 600 });
+}
+async function hubApprove(env, h, req) {
+  const u = await currentUser(env, req);
+  if (!u) return json(h, 401, { error: 'Not Logged In.' });
+  const code = String((await readBody(req)).user_code || '').toUpperCase();
+  const r = await env.DB.prepare('UPDATE hub_links SET user_id=? WHERE user_code=? AND user_id IS NULL AND expires>?').bind(u.id, code, now()).run();
+  if (!r.meta.changes) return json(h, 400, { error: 'That Hub Code Expired. Hit Log In Again In The Hub.' });
+  return json(h, 200, { ok: true });
+}
+async function hubPoll(env, h, req) {
+  const hash = await sha256(String((await readBody(req)).device_code || ''));
+  const row = await env.DB.prepare('SELECT user_id, expires FROM hub_links WHERE device_hash=?').bind(hash).first();
+  if (!row || row.expires < now()) return json(h, 410, { error: 'Expired. Start Again.' });
+  if (!row.user_id) return json(h, 202, { pending: true });
+  await env.DB.prepare('DELETE FROM hub_links WHERE device_hash=?').bind(hash).run(); // one token per approval
+  return json(h, 200, { token: await newSession(env, row.user_id) });
+}
+
 const ROUTES = { '/signup': signup, '/login': login, '/logout': logout, '/me': me,
   '/password': changePassword, '/free-computers': freeComputers, '/forgot': forgot, '/reset': reset,
   '/verify': verify, '/resend-verify': resendVerify, '/redeem': redeem,
+  '/hub/start': hubStart, '/hub/approve': hubApprove, '/hub/poll': hubPoll,
   '/admin/2fa/start': admin2faStart, '/admin/2fa/confirm': admin2faConfirm, '/admin/list': adminList,
   '/admin/grant': adminGrant, '/admin/status': adminSetStatus };
 const GETS = new Set(['/me', '/admin/list']);
@@ -469,7 +498,7 @@ export default {
     try { return await fn(env, h, req); } catch (e) { console.error(e); return json(h, 500, { error: 'Something Broke On Our End. Try Again.' }); }
   },
   async scheduled(_, env) { // daily cleanup of expired rows
-    await env.DB.batch([...['sessions', 'tokens'].map((t) => env.DB.prepare(`DELETE FROM ${t} WHERE expires<?`).bind(now())),
+    await env.DB.batch([...['sessions', 'tokens', 'hub_links'].map((t) => env.DB.prepare(`DELETE FROM ${t} WHERE expires<?`).bind(now())),
       env.DB.prepare('DELETE FROM attempts WHERE window_start<?').bind(now() - FAIL_WINDOW)]);
   },
 };

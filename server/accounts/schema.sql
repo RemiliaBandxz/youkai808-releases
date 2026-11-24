@@ -52,6 +52,12 @@ CREATE TABLE IF NOT EXISTS admin_log (
   action TEXT NOT NULL,
   detail TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS hub_links (   -- "Log In With Browser" for the Hub app (device-code flow)
+  device_hash TEXT PRIMARY KEY,           -- sha256 of the secret the Hub polls with
+  user_code TEXT UNIQUE NOT NULL,         -- short code shown in the Hub + browser
+  user_id TEXT,                           -- set when the logged-in buyer approves on the website
+  expires INTEGER NOT NULL
+);
 -- Upgrading a database made before the owner login:
 -- ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'; ALTER TABLE users ADD COLUMN totp_secret TEXT;
 -- ALTER TABLE users ADD COLUMN totp_pending TEXT; ALTER TABLE users ADD COLUMN totp_last INTEGER NOT NULL DEFAULT 0;
