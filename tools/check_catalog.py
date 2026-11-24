@@ -34,6 +34,9 @@ if os.path.isdir(rel):
         for n in wip_names:
             if n.lower() in f.lower().replace(" ", ""):
                 errs.append(f"WIP installer still public: releases/{f}")
+import subprocess   # private plugins must never be public (tools/check_private.py)
+if subprocess.run([sys.executable, os.path.join(root, "tools", "check_private.py")]).returncode:
+    errs.append("private plugin leak (see above)")
 if errs:
     print("CATALOG CHECK FAILED:")
     for e in errs: print("  -", e)
