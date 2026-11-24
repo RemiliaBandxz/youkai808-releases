@@ -13,6 +13,13 @@ for p in cat.get("products", []):
         errs.append(f"{pid}: no 'image' field (tile would be blank)")
     elif not img.startswith("http") and not os.path.isfile(os.path.join(root, img)):
         errs.append(f"{pid}: image file missing: {img}")
+    elif not img.startswith("http"):   # a preview must show the plugin, not a bare background (youkaivocal.jpg was one, 2026-11-24)
+        try:
+            from PIL import Image, ImageStat
+            im = Image.open(os.path.join(root, img)).convert("L").resize((176, 110))
+            px = im.tobytes(); edges = sum(abs(a - b) > 40 for a, b in zip(px, px[1:]))
+            if edges < 400: errs.append(f"{pid}: preview {img} looks blank ({edges} edges): use a real UI screenshot (tools/update_hub_art.py)")
+        except ImportError: pass
     for c in p.get("clips", []):
         u = c.get("url", "")
         if u and not u.startswith("http") and not os.path.isfile(os.path.join(root, u)):
