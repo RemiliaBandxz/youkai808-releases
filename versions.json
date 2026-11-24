@@ -1,9 +1,14 @@
 {
   "product": "Youkai808",
   "publisher": "YoukaiDigital",
-  "latest": "1.9",
+  "latest": "1.10",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
+    {
+      "version": "1.10",
+      "windows": "releases/Youkai808-v1.10-Setup.exe",
+      "synth": true
+    },
     {
       "version": "1.9",
       "windows": "releases/Youkai808-v1.9-Installer.zip",
