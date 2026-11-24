@@ -3,6 +3,9 @@
 WIP or website) shows up anywhere in this public repo: catalog.json, hub.json, *-versions.json, releases/,
 hub-art/, hub-clips/, docs/ (the website), server/. Names are stored as hashes so this public file
 doesn't itself leak them. The plain list lives in Z:\\VSTDEV\\PRIVATE-PLUGINS.md.
+Exception (Remilia 2026-11-24): a catalog entry with "owner_only": true (Hub 1.44+ shows it only to the owner
+account + all-access codes) may name a private plugin, together with its own image, versions file and the
+installers that versions file lists. It must also be beta + wip with no price, and never appear in docs/ (website).
 Usage: python3 tools/check_private.py            # scan (CI runs this on every push/PR)
        python3 tools/check_private.py --hash "New Plugin Name"   # print hash lines to add below"""
 import hashlib, os, re, sys
@@ -24,16 +27,35 @@ PRIVATE = {  # hash -> plugin number in PRIVATE-PLUGINS.md (add with --hash; ski
 }
 BINARY = (".exe", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".mp3", ".ogg", ".wav", ".mp4", ".zip", ".dmg", ".pkg", ".woff", ".woff2", ".ttf")
 
+def owner_only(root):
+    """(catalog text without owner_only entries, allowed file paths, rule errors)"""
+    import json
+    cat = json.load(open(os.path.join(root, "catalog.json"), encoding="utf-8"))
+    allowed, errs, keep = set(), [], []
+    for e in cat.get("products", []):
+        if not e.get("owner_only"): keep.append(e); continue
+        if not (e.get("beta") and e.get("wip")) or e.get("price") or e.get("buy_url") or e.get("store_product_ids"):
+            errs.append(f"catalog.json: owner_only '{e.get('id')}' must be beta + wip with no price/buy_url/store ids")
+        for k in ("image", "versions"):
+            if e.get(k) and not e[k].startswith("http"): allowed.add(os.path.normpath(e[k]))
+        vf = os.path.join(root, e.get("versions", ""))
+        if os.path.isfile(vf):
+            for v in json.load(open(vf)).get("versions", []):
+                for k in ("windows", "mac"):
+                    if v.get(k) and not v[k].startswith("http"): allowed.add(os.path.normpath(v[k]))
+    cat["products"] = keep
+    return json.dumps(cat), allowed, errs
+
 def scan(root):
-    hits = []
+    cat_txt, allowed, hits = owner_only(root)
     for d, dirs, files in os.walk(root):
         dirs[:] = [x for x in dirs if x not in (".git", "node_modules")]
         for f in files:
             p = os.path.join(d, f); rel = os.path.relpath(p, root)
-            if rel == os.path.join("tools", "check_private.py"): continue
+            if rel == os.path.join("tools", "check_private.py") or rel in allowed: continue
             toks = tokens(rel)
             if not f.lower().endswith(BINARY) and os.path.getsize(p) < 5_000_000:
-                try: toks |= tokens(open(p, encoding="utf-8").read())
+                try: toks |= tokens(cat_txt if rel == "catalog.json" else open(p, encoding="utf-8").read())
                 except UnicodeDecodeError: pass
             for t in toks:
                 if h(t) in PRIVATE: hits.append(f"{rel}: private plugin #{PRIVATE[h(t)]} ('{t}')")
