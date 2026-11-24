@@ -1016,6 +1016,8 @@
       "wip": false,
       "image": "",
       "registry": "AutoSnip",
+      "uninstall_key": "{6B0E5C2A-7A43-4F3B-9C55-A0705E1F0001}_is1",
+      "silent_args": "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART",
       "versions": "autosnip-versions.json"
     }
   ]
