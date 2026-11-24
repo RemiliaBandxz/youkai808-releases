@@ -391,6 +391,23 @@
       "buy_url": "",
       "store_product_ids": [],
       "clips": []
+    },
+    {
+      "id": "youkaidetune",
+      "name": "Youkai Detune",
+      "registry": "Youkai Detune",
+      "includes": "VST3 \u00b7 Windows",
+      "tagline": "One Knob That Moves Your Beat To 452 Or 428.",
+      "about": "Free. One Knob That Moves Your Whole Beat To A = 452 Or A = 428 Without Changing The Tempo. 452 Sounds Brighter, 428 Sounds Darker And Heavier.",
+      "wip": true,
+      "beta": true,
+      "free": true,
+      "image": "hub-art/youkaidetune.png",
+      "versions": "youkaidetune-versions.json",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "clips": []
     }
   ],
   "programs": [
