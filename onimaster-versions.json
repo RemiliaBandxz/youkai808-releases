@@ -1,11 +1,11 @@
 {
   "product": "Oni Master",
   "publisher": "YoukaiDigital",
-  "latest": "1.0.1",
+  "latest": "1.0.2",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "windows": "releases/OniMaster-Setup.exe"
     }
   ]

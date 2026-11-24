@@ -1,11 +1,11 @@
 {
   "product": "Umibozu IR",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.3",
+  "latest": "0.9.4",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.3",
+      "version": "0.9.4",
       "windows": "releases/UmibozuIR-Setup.exe"
     }
   ]
