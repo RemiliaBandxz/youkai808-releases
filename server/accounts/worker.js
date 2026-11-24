@@ -502,14 +502,18 @@ async function hubStart(env, h, req) {
   if (await hit(env, 'hub:' + (req.headers.get('CF-Connecting-IP') || ''), 20)) return json(h, 429, { error: TOO_MANY });
   const device = rand(), code = [...crypto.getRandomValues(new Uint8Array(8))].map((b) => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[b & 31]).join('');
   const user_code = code.slice(0, 4) + '-' + code.slice(4);
-  await env.DB.prepare('INSERT INTO hub_links(device_hash,user_code,user_id,expires) VALUES(?,?,NULL,?)').bind(await sha256(device), user_code, now() + 600).run();
+  await env.DB.prepare('INSERT INTO hub_links(device_hash,user_code,user_id,expires,ip) VALUES(?,?,NULL,?,?)').bind(await sha256(device), user_code, now() + 600, req.headers.get('CF-Connecting-IP') || '').run();
   return json(h, 200, { device_code: device, user_code, verify_url: env.SITE_ORIGIN + '/account/#hub=' + user_code, interval: 5, expires_in: 600 });
 }
 async function hubApprove(env, h, req) {
   const u = await currentUser(env, req);
   if (!u) return json(h, 401, { error: 'Not Logged In.' });
-  const code = String((await readBody(req)).user_code || '').toUpperCase();
-  const r = await env.DB.prepare('UPDATE hub_links SET user_id=? WHERE user_code=? AND user_id IS NULL AND expires>?').bind(u.id, code, now()).run();
+  const b = await readBody(req), code = String(b.user_code || '').toUpperCase();
+  // auto = page opened by the Hub while already logged in: only allowed from the same network (IP) that started the sign-in,
+  // so a sign-in link someone else sends can't silently grab this account.
+  const ip = b.auto ? (req.headers.get('CF-Connecting-IP') || '-') : null;
+  const r = await env.DB.prepare('UPDATE hub_links SET user_id=? WHERE user_code=? AND user_id IS NULL AND expires>? AND (?4 IS NULL OR ip=?4)').bind(u.id, code, now(), ip).run();
+  if (!r.meta.changes && b.auto) return json(h, 400, { error: 'Press Connect Hub To Finish.' });
   if (!r.meta.changes) return json(h, 400, { error: 'That Hub Code Expired. Hit Log In Again In The Hub.' });
   return json(h, 200, { ok: true });
 }

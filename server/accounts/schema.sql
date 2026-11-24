@@ -56,10 +56,12 @@ CREATE TABLE IF NOT EXISTS hub_links (   -- "Log In With Browser" for the Hub ap
   device_hash TEXT PRIMARY KEY,           -- sha256 of the secret the Hub polls with
   user_code TEXT UNIQUE NOT NULL,         -- short code shown in the Hub + browser
   user_id TEXT,                           -- set when the logged-in buyer approves on the website
-  expires INTEGER NOT NULL
+  expires INTEGER NOT NULL,
+  ip TEXT NOT NULL DEFAULT ''             -- IP that started it; auto-connect only from the same IP
 );
 -- Upgrading a database made before the owner login:
 -- ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'; ALTER TABLE users ADD COLUMN totp_secret TEXT;
 -- ALTER TABLE users ADD COLUMN totp_pending TEXT; ALTER TABLE users ADD COLUMN totp_last INTEGER NOT NULL DEFAULT 0;
 -- ALTER TABLE sessions ADD COLUMN mfa INTEGER NOT NULL DEFAULT 0;
 -- Make the owner (after she signs up):  UPDATE users SET role='owner' WHERE email='<her login email>';
+-- 2026-11-24 upgrade: ALTER TABLE hub_links ADD COLUMN ip TEXT NOT NULL DEFAULT '';  (auto-connect only from the same IP that started the Hub sign-in)
