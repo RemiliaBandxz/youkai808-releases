@@ -5,12 +5,14 @@ compatibility_date = "2026-11-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "koumakan-accounts"
-database_id = "FILL_ME_AFTER_wrangler_d1_create"
+database_id = "de389d1c-e8cf-40db-a2a3-5810311da660"
 
 [vars]
 SITE_ORIGIN = "https://koumakandigital.xyz"
 PADDLE_ENV = "live"   # "sandbox" while testing
-# Secrets (set with `wrangler secret put NAME`, never commit them):
+# Secrets (set with `wrangler secret put NAME` or the dashboard, never commit them):
+#   PW_PEPPER              - REQUIRED, 64 random hex chars; never change it (old passwords stop working)
+#   TURNSTILE_SECRET       - bot check on signup/login/forgot
 #   PADDLE_WEBHOOK_SECRET  - from Paddle > Developer Tools > Notifications
 #   PADDLE_API_KEY         - optional; looks up buyer email for guest checkouts
 #   RESEND_API_KEY         - optional; enables "Forgot Password" emails

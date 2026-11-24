@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-f6SxnmPdyyfPsyVA4j2wkxwSQcMA2Zrk2/cWoszmts8=' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://koumakan-accounts.sannyo-arena.workers.dev; frame-src https://challenges.cloudflare.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
 <script>if(location.protocol==="http:"&&location.hostname!=="localhost")location.replace("https:"+location.href.slice(5))</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -60,6 +61,10 @@
   .use{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
   .use .link{margin:0;font-size:13px}
   .off{color:#ff8f8f;font-size:13px;margin-top:10px}
+  .ts{margin:0 0 12px;min-height:0}
+  .notice{margin-bottom:18px;padding:18px 20px}
+  .notice p{color:var(--muted);font-size:14px;margin:4px 0 0}
+  .notice .link{margin:10px 0 0}
   .empty{text-align:center;color:var(--muted)}
   .empty .btn{margin-top:16px}
   .steps{margin-top:28px}
@@ -100,7 +105,8 @@
         <label for="a-email">Email</label>
         <input id="a-email" type="email" autocomplete="email" required>
         <label for="a-pw">Password</label>
-        <input id="a-pw" type="password" autocomplete="current-password" minlength="8" required>
+        <input id="a-pw" type="password" autocomplete="current-password" minlength="10" required>
+        <div id="ts" class="ts"></div>
         <div class="msg" id="m-auth" role="alert"></div>
         <button class="btn primary" id="b-auth">Log In</button>
       </form>
@@ -111,11 +117,11 @@
 
   <section id="v-reset" class="auth" hidden>
     <div class="card">
-      <h1>New Password</h1>
-      <p class="sub">Pick A New Password For Your Account.</p>
+      <h1 id="reset-title">New Password</h1>
+      <p class="sub" id="reset-sub">Pick A New Password For Your Account.</p>
       <form id="f-reset" novalidate>
         <label for="r-pw">New Password</label>
-        <input id="r-pw" type="password" autocomplete="new-password" minlength="8" required>
+        <input id="r-pw" type="password" autocomplete="new-password" minlength="10" required>
         <div class="msg" id="m-reset" role="alert"></div>
         <button class="btn primary">Save Password</button>
       </form>
@@ -126,6 +132,12 @@
     <div class="top">
       <div><h1>My Plugins</h1><div class="who" id="who"></div></div>
       <button type="button" class="btn ghost sm" id="b-logout">Log Out</button>
+    </div>
+    <div class="card notice" id="unverified" hidden>
+      <strong>Confirm Your Email</strong>
+      <p>Plugins Bought Without Logging In Show Up Here Once You Confirm Your Email. Check Your Inbox For The Link.</p>
+      <button type="button" class="link" id="b-resend">Send The Link Again</button>
+      <div class="msg ok" id="m-verify"></div>
     </div>
     <div class="grid" id="owned"></div>
     <div class="card empty" id="none" hidden>
@@ -148,7 +160,7 @@
         <label for="p-cur">Current Password</label>
         <input id="p-cur" type="password" autocomplete="current-password" required>
         <label for="p-new">New Password</label>
-        <input id="p-new" type="password" autocomplete="new-password" minlength="8" required>
+        <input id="p-new" type="password" autocomplete="new-password" minlength="10" required>
         <div class="msg" id="m-pw" role="alert"></div>
         <button class="btn primary">Save New Password</button>
       </form>
@@ -156,127 +168,7 @@
   </section>
 </main>
 
-<script>
-(function(){
-  // Account server URL. Empty = accounts not deployed yet (page shows "Almost Here").
-  var API = '';
-  var PRODUCTS = {
-    youkai808:  { name: 'Youkai808',   img: '../img/p/youkai808.webp' },
-    melodyveil: { name: 'Melody Veil', img: '../img/p/melodyveil.webp' }
-  };
-  var $ = function(id){ return document.getElementById(id); };
-  var store = { get:function(){ try{return localStorage.getItem('kd_token')}catch(e){return null} },
-                set:function(t){ try{ t?localStorage.setItem('kd_token',t):localStorage.removeItem('kd_token') }catch(e){} } };
-  function show(v){ ['soon','auth','reset','me'].forEach(function(k){ $('v-'+k).hidden = k!==v; }); }
-  function call(path, body){
-    var t = store.get(), h = {'Content-Type':'application/json'};
-    if (t) h.Authorization = 'Bearer ' + t;
-    return fetch(API + path, body ? {method:'POST', headers:h, body:JSON.stringify(body)} : {headers:h})
-      .then(function(r){ return r.json().catch(function(){return {}}).then(function(j){ j._status=r.status; return j; }); })
-      .catch(function(){ return {_status:0, error:"Can't Reach The Server. Check Your Connection."}; });
-  }
-  function busy(form, on){ var b=form.querySelector('.btn'); b.disabled=on; }
-  function say(id, text, ok){ $(id).textContent = text||''; $(id).className = 'msg' + (ok?' ok':''); }
-
-  var mode = 'login';
-  function setMode(m){
-    mode = m;
-    $('t-login').className = m==='login'?'on':''; $('t-signup').className = m==='signup'?'on':'';
-    $('t-login').setAttribute('aria-selected', m==='login'); $('t-signup').setAttribute('aria-selected', m==='signup');
-    $('auth-title').textContent = m==='login' ? 'Welcome Back' : 'Make Your Account';
-    $('b-auth').textContent = m==='login' ? 'Log In' : 'Create Account';
-    $('a-pw').autocomplete = m==='login' ? 'current-password' : 'new-password';
-    $('signup-note').hidden = m!=='signup';
-    say('m-auth','');
-  }
-  $('t-login').onclick = function(){ setMode('login'); };
-  $('t-signup').onclick = function(){ setMode('signup'); };
-
-  $('f-auth').onsubmit = function(e){
-    e.preventDefault();
-    var email = $('a-email').value.trim(), pw = $('a-pw').value;
-    if (!email || !pw) return say('m-auth','Fill In Both Boxes.');
-    if (mode==='signup' && pw.length < 8) return say('m-auth','Password Needs At Least 8 Characters.');
-    busy(this,true); var f=this;
-    call('/'+mode, {email:email, password:pw}).then(function(j){
-      busy(f,false);
-      if (j.token){ store.set(j.token); $('a-pw').value=''; loadMe(); } else say('m-auth', j.error || 'Something Went Wrong.');
-    });
-  };
-  $('b-forgot').onclick = function(){
-    var email = $('a-email').value.trim();
-    if (!email) { $('a-email').focus(); return say('m-auth','Type Your Email Above First, Then Hit Forgot.'); }
-    call('/forgot', {email:email}).then(function(j){
-      if (j._status===200) say('m-auth','If That Email Has An Account, A Reset Link Is On The Way.', true);
-      else say('m-auth', j.error || 'Something Went Wrong.');
-    });
-  };
-  $('f-reset').onsubmit = function(e){
-    e.preventDefault();
-    var token = (location.hash.match(/reset=([0-9a-f]{64})/)||[])[1], f=this;
-    busy(f,true);
-    call('/reset', {token:token, password:$('r-pw').value}).then(function(j){
-      busy(f,false);
-      if (j.token){ store.set(j.token); history.replaceState(null,'',location.pathname); loadMe(); } else say('m-reset', j.error || 'Something Went Wrong.');
-    });
-  };
-  $('f-pw').onsubmit = function(e){
-    e.preventDefault(); var f=this; busy(f,true);
-    call('/password', {current:$('p-cur').value, password:$('p-new').value}).then(function(j){
-      busy(f,false);
-      if (j.token){ store.set(j.token); f.reset(); say('m-pw','Password Updated.', true); } else say('m-pw', j.error || 'Something Went Wrong.');
-    });
-  };
-  $('b-logout').onclick = function(){ call('/logout',{}).then(function(){ store.set(null); try{localStorage.removeItem('kd_uid');localStorage.removeItem('kd_email');}catch(e){} setMode('login'); show('auth'); }); };
-
-  function loadMe(){
-    if (!store.get()) { show('auth'); return; }
-    call('/me').then(function(j){
-      if (j._status===401) { store.set(null); show('auth'); return; }
-      if (!j.email) { show('auth'); say('m-auth', j.error || 'Something Went Wrong.'); return; }
-      $('who').textContent = 'Logged In As ' + j.email;
-      try { localStorage.setItem('kd_uid', j.id); localStorage.setItem('kd_email', j.email); } catch(e){}
-      var seen = {}, grid = $('owned'); grid.textContent = '';
-      (j.purchases||[]).forEach(function(p){
-        var info = PRODUCTS[p.product]; if (!info || seen[p.product]) return; seen[p.product]=1;
-        var c = document.createElement('div'); c.className='card own';
-        var img = document.createElement('img'); img.src=info.img; img.alt=''; img.loading='lazy';
-        var b = document.createElement('div'); b.className='body';
-        var h = document.createElement('h3'); h.textContent = info.name;
-        var d = document.createElement('p'); d.textContent = 'Owned Since ' + new Date(p.created*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
-        b.appendChild(h); b.appendChild(d);
-        if (p.status !== 'active') { var off=document.createElement('div'); off.className='off'; off.textContent='This Key Was Refunded Or Disabled.'; b.appendChild(off); }
-        else {
-          var k=document.createElement('div'); k.className='key';
-          var code=document.createElement('code'); code.textContent=p.license_key;
-          var cp=document.createElement('button'); cp.type='button'; cp.className='btn ghost'; cp.textContent='Copy';
-          cp.onclick=function(){ (navigator.clipboard?navigator.clipboard.writeText(p.license_key):Promise.reject()).then(function(){cp.textContent='Copied';},function(){
-            var r=document.createRange(); r.selectNodeContents(code); var sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); cp.textContent='Ctrl+C';}); };
-          k.appendChild(code); k.appendChild(cp); b.appendChild(k);
-          var use=document.createElement('div'); use.className='use';
-          var n=document.createElement('span'); n.textContent='Used On '+p.used+' Of '+p.limit+' Computers';
-          use.appendChild(n);
-          if (p.used > 0) {
-            var fr=document.createElement('button'); fr.type='button'; fr.className='link'; fr.textContent='Free Up Computers';
-            fr.onclick=function(){
-              if (!confirm('Sign This Key Out Of Every Computer? You Can Activate It Again On The Ones You Use.')) return;
-              call('/free-computers',{license_key:p.license_key}).then(function(r){ if (r.ok) loadMe(); else n.textContent = r.error || 'Something Went Wrong.'; });
-            };
-            use.appendChild(fr);
-          }
-          b.appendChild(use);
-        }
-        c.appendChild(img); c.appendChild(b); grid.appendChild(c);
-      });
-      grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
-      show('me');
-    });
-  }
-
-  if (!API) { show('soon'); return; }
-  if (/reset=[0-9a-f]{64}/.test(location.hash)) { show('reset'); return; }
-  loadMe();
-})();
-</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<script src="account.js"></script>
 </body>
 </html>

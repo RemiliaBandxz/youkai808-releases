@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS users (
   email TEXT UNIQUE NOT NULL,
   pw_hash TEXT NOT NULL,
   salt TEXT NOT NULL,
-  created INTEGER NOT NULL
+  created INTEGER NOT NULL,
+  verified INTEGER NOT NULL DEFAULT 0     -- email confirmed; only then do guest purchases under that email show up
 );
 CREATE TABLE IF NOT EXISTS sessions (
   token_hash TEXT PRIMARY KEY,
@@ -34,8 +35,9 @@ CREATE TABLE IF NOT EXISTS attempts (
   count INTEGER NOT NULL,
   window_start INTEGER NOT NULL
 );
-CREATE TABLE IF NOT EXISTS resets (
+CREATE TABLE IF NOT EXISTS tokens (       -- one-time email links
   token_hash TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
+  kind TEXT NOT NULL,                       -- reset | verify
   expires INTEGER NOT NULL
 );
