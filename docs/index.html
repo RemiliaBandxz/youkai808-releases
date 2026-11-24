@@ -35,7 +35,7 @@
   body::after{content:""; position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.07; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   a{color:inherit; text-decoration:none}
-  img{max-width:100%; display:block}
+  img{max-width:100%; height:auto; display:block}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
   h1,h2,h3{font-family:var(--display); font-weight:400; line-height:1.02; margin:0; letter-spacing:.01em}
   p{margin:0}
@@ -86,7 +86,7 @@
   .moon::before{content:""; position:absolute; inset:4%; border-radius:50%; border:1px solid var(--line2);
     background:radial-gradient(circle at 38% 34%,rgba(255,143,171,.22),rgba(200,16,46,.10) 45%,transparent 70%)}
   .moon::after{content:""; position:absolute; inset:0; border-radius:50%; border:1px dashed rgba(255,45,85,.28); animation:spin 90s linear infinite}
-  .moon img{position:relative; width:84%; margin:8%; filter:drop-shadow(0 18px 30px rgba(0,0,0,.7))}
+  .moon img{position:relative; display:block; width:84%; height:auto; aspect-ratio:1; object-fit:contain; margin:8%; filter:drop-shadow(0 18px 30px rgba(0,0,0,.7))}
   .vert{position:absolute; right:-6px; top:6%; writing-mode:vertical-rl; font-family:"Noto Serif JP",serif; font-weight:900; font-size:22px; letter-spacing:.4em; color:var(--blood2); opacity:.85}
   @keyframes spin{to{transform:rotate(360deg)}}
 

@@ -158,6 +158,12 @@
       <button type="button" class="link" id="b-resend">Send The Link Again</button>
       <div class="msg ok" id="m-verify"></div>
     </div>
+    <div class="card notice" id="hub-link" hidden>
+      <strong>Connect The Youkai Digital Hub?</strong>
+      <p>Your Hub Is Asking To Log In As You. Only Connect If The Code In The Hub Says <b id="hub-code"></b>.</p>
+      <div class="row" style="margin-top:12px"><button type="button" class="btn primary sm" id="b-hub">Connect Hub</button><button type="button" class="btn ghost sm" id="b-hub-no">Not Me</button></div>
+      <div class="msg" id="m-hub" role="alert"></div>
+    </div>
     <section class="card adm" id="admin" hidden>
       <h2>Owner Panel</h2>
       <div id="adm-2fa" hidden>
