@@ -29,6 +29,7 @@
     if (!window.turnstile) { setTimeout(tsRender, 300); return; }
     tsId = turnstile.render('#ts', { sitekey: TURNSTILE_SITEKEY, theme: 'dark' });
   }
+  var lm = location.hash.match(/(reset|verify)=([0-9a-f]{64})/), linkKind = lm && lm[1], linkToken = lm && lm[2];
   var mode = 'login';
   function setMode(m){
     mode = m;
@@ -64,10 +65,8 @@
   };
   $('f-reset').onsubmit = function(e){
     e.preventDefault();
-    var token = (location.hash.match(/reset=([0-9a-f]{64})/)||[])[1], f=this;
-    history.replaceState(null,'',location.pathname); // keep the one-time token out of history/screenshots
-    busy(f,true);
-    call('/reset', {token:token, password:$('r-pw').value}).then(function(j){
+    var f=this; busy(f,true);
+    call('/'+linkKind, {token:linkToken, password:$('r-pw').value}).then(function(j){
       busy(f,false);
       if (j.token){ store.set(j.token); loadMe(); } else say('m-reset', j.error || 'Something Went Wrong.');
     });
@@ -84,7 +83,7 @@
   function loadMe(){
     if (!store.get()) { show('auth'); return; }
     call('/me').then(function(j){
-      if (j._status===401) { store.set(null); show('auth'); return; }
+      if (j._status===401) { store.set(null); try{localStorage.removeItem('kd_uid');localStorage.removeItem('kd_email');}catch(e){} show('auth'); return; }
       if (!j.email) { show('auth'); say('m-auth', j.error || 'Something Went Wrong.'); return; }
       $('who').textContent = 'Logged In As ' + j.email;
       $('unverified').hidden = j.verified;
@@ -135,12 +134,10 @@
   if (top !== self) { top.location = self.location; return; } // no clickjacking in iframes
   if (!API) { show('soon'); return; }
   tsRender();
-  var vm = location.hash.match(/verify=([0-9a-f]{64})/);
-  if (vm) {
-    history.replaceState(null,'',location.pathname);
-    call('/verify',{token:vm[1]}).then(function(j){ if (!j.ok) alert(j.error || 'That Link Expired.'); loadMe(); });
-    return;
+  if (linkToken) {
+    history.replaceState(null,'',location.pathname); // keep the one-time token out of history
+    if (linkKind==='verify') { $('reset-title').textContent='Confirm Your Email'; $('reset-sub').textContent='Set Your Password To Finish. This Logs Out Any Other Device On This Account.'; }
+    show('reset'); return;
   }
-  if (/reset=[0-9a-f]{64}/.test(location.hash)) { show('reset'); return; }
   loadMe();
 })();
