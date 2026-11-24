@@ -3,13 +3,13 @@
 // so it works cross-site from GitHub Pages without third-party-cookie problems).
 
 const PRICES = { // Paddle price id -> product slug. Only the map matching PADDLE_ENV counts, so test-card buys can't mint live keys.
-  live:    { pri_01m8302mqfw0qcw3vemcqbftax: 'youkai808', pri_01m8304kea64hve92h7v29e5f7: 'melodyveil' },
+  live:    { pri_01m8302mqfw0qcw3vemcqbftax: 'youkai808', pri_01m8304kea64hve92h7v29e5f7: 'melodyveil', pri_01m87y5nt3rs2kk76gp1qd6mgk: 'autosnip' },
   sandbox: { pri_01m82xta4pgfvfc27v7n5neg08: 'youkai808', pri_01m82xv97bqjybf8gyg7b489cv: 'melodyveil' },
 };
 // Numeric ids the Hub matches in catalog.json store_product_ids (Y8Store.h reads meta.product_id).
 // all = one code that unlocks every plugin (website + Hub). The Hub treats 808000 as everything.
-const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002, all: 808000 };
-const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', all: 'All Plugins', beta: 'Beta Tester' };
+const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002, autosnip: 808003, all: 808000 };
+const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', autosnip: 'AutoSnip', all: 'All Plugins', beta: 'Beta Tester' };
 const ACTIVATION_LIMIT = 3, RESET_DAYS = 7;
 const SESSION_DAYS = 30, PBKDF2_ITERS = 100000, MAX_FAILS = 8, FAIL_WINDOW = 15 * 60;
 const enc = new TextEncoder();
