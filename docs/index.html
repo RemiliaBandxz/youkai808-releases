@@ -188,6 +188,7 @@
     .head{grid-template-columns:1fr}
     .head > :not(.idx){grid-column:auto}
   }
+  @media (pointer:coarse){ .btn.sm{min-height:44px; padding:10px 14px} .play{width:44px; height:44px} .play::before{left:17px; top:14px} .beat.on .play::before{left:15px; top:15px} }
   @media (max-width:420px){
     .brand span{display:none}
     .card h3{font-size:32px}
