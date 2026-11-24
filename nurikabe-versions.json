@@ -1,11 +1,11 @@
 {
   "product": "Nurikabe Saturator",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.6",
+  "latest": "0.9.7",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.6",
+      "version": "0.9.7",
       "windows": "releases/Nurikabe-Setup.exe"
     }
   ]
