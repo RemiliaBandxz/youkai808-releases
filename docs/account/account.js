@@ -168,7 +168,7 @@
         b.appendChild(h); b.appendChild(d); dlBtn(b, info); c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
-      $('hub-link').hidden = !hubCode; if (hubCode) { $('hub-code').textContent = hubCode; $('b-hub').hidden=$('b-hub-no').hidden=true; say('m-hub','Connecting…', true);
+      $('hub-link').hidden = false; $('hub-ask').hidden = $('b-hub-no').hidden = !hubCode; $('hub-manual').hidden = $('hub-in').hidden = !!hubCode; $('b-hub').hidden = false; say('m-hub',''); if (hubCode) { $('hub-code').textContent = hubCode; $('b-hub').hidden=$('b-hub-no').hidden=true; say('m-hub','Connecting…', true);
         call('/hub/approve',{user_code:hubCode, auto:true}).then(function(r){ // same network as the Hub: connect with no click
           if (r.ok){ hubCode=null; say('m-hub','Hub Connected. Go Back To The Hub.', true); }
           else { $('b-hub').hidden=$('b-hub-no').hidden=false; say('m-hub',''); }
@@ -244,13 +244,14 @@
 
   $('b-hub').onclick = function(){
     var b=this; b.disabled=true;
-    call('/hub/approve',{user_code:hubCode}).then(function(j){
+    var code = hubCode || $('hub-in').value.trim().toUpperCase(); if (!code){ b.disabled=false; say('m-hub','Type The Code From Your Hub First.'); return; }
+    call('/hub/approve',{user_code:code}).then(function(j){
       b.disabled=false;
-      if (j.ok){ hubCode=null; $('b-hub').hidden=$('b-hub-no').hidden=true; say('m-hub','Connected. Go Back To The Hub.', true); }
+      if (j.ok){ hubCode=null; $('hub-in').value=''; $('b-hub-no').hidden=true; say('m-hub','Connected. Go Back To The Hub.', true); }
       else say('m-hub', j.error || 'Something Went Wrong.');
     });
   };
-  $('b-hub-no').onclick = function(){ hubCode=null; $('hub-link').hidden=true; };
+  $('b-hub-no').onclick = function(){ hubCode=null; loadMe(); };
 
   $('b-resend').onclick = function(){
     var b=this; b.disabled=true;
