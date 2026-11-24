@@ -19,8 +19,8 @@
       "name": "Youkai808",
       "registry": "Youkai808",
       "includes": "VST3 · CLAP · AU · includes synth",
-      "tagline": "Experimental 808 destroyer: light bitcrush to blown-out, whining, comedic subs.",
-      "about": "An experimental 808 destroyer and synth in one plugin. Start from a clean sub and drag it anywhere - a touch of grit, whining overtones, folding, full comedic blowout - then shape it with a stackable effects rack and generate the bassline right inside the plugin.",
+      "tagline": "The 808 Destroyer: Clean Sub To Blown-Out Jugg Madness In One Plugin.",
+      "about": "Your 808 Sounds Like Everyone Else's? Youkai808 Is An 808 Synth And A 10-Slot Destruction Rack In One. Start From A Clean Sub And Drag It Anywhere: A Touch Of Grit, Whining Overtones, Folded Perc40 Jugg Distortion Or A Full Comedic Blowout, While BASS GUARD Keeps The Low End Knocking So It Still Hits On Phone Speakers. Hit RANDOMIZE For A Brand New Chain, LOCK What Slaps And Keep Rolling. Goes On Your 808 Track, Or Play The 808 Right Inside It With The Built-In Synth.",
       "features": [
         "DRIVE - push the 808 harder into the whole chain",
         "CHAOS - drives every effect further + sets how wild RANDOMIZE gets",
@@ -54,7 +54,8 @@
         "Osc shaping: POSITION, GLIDE, PUNCH, ATTACK, DECAY, RELEASE, TENSION, TUNE",
         "ADVANCED tab: Tone, Input, Bass Guard freq, Mono Sub, Width, L/R Spread, Ceiling, Soft Attack, Limiter, Soft Clip, HQ 2x oversampling",
         "Hover anything in the plugin for a plain-English explanation",
-        "VST3, CLAP & AU"
+        "VST3, CLAP & AU",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing"
       ],
       "tips": [
         "Want insanely crazy 808s? Stack 3-4 distortion slots in a row and crank DRIVE - each one eats the last lol",
@@ -97,7 +98,8 @@
           "label": "808 Cypher (158 BPM)",
           "url": "hub-clips/demo_chypher.ogg"
         }
-      ]
+      ],
+      "category": "808 FX + Synth"
     },
     {
       "id": "melodyveil",
@@ -105,8 +107,8 @@
       "name": "Melody Veil",
       "registry": "Melody Veil",
       "includes": "VST3 · Windows",
-      "tagline": "Makes any beat easy to rap on: carves a pocket so your vocal sits on top.",
-      "about": "Super Early Development: Melody Veil Is Brand New And Will Probably Go Through A Million Updates. You Get Every One Free. Drop it on your beat and leave the fader up. RAP-READY (the default) pulls only your vocal's range down to where it sits in beats that are easy to rap on, so the 808, kick and hats stay loud and you don't have to turn the whole beat down. On a melody bus it carves gently and never warbles. Tuned on Remilia's own beats.",
+      "tagline": "Makes Any Beat Easy To Rap On Without Turning It Down.",
+      "about": "Early Access: Brand New And Updating Fast, And You Get Every Update Free. Turning The Beat Down So You Can Hear Yourself Kills The 808 And The Drums. Melody Veil Fixes It The Other Way: RAP-READY Pulls Down Only Your Vocal's Range In The Melody, So The Beat Stays At Full Volume And Your Voice Sits Right On Top. Hit LEARN, Play The Beat For 5 Seconds And It Sets Itself, And The ROOM FOR YOU Meter Shows How Much Space Is Open. Goes Last On The Beat Or Melody Bus. Tuned On Remilia's Own Beats.",
       "features": [
         "RAP-READY - keep the beat at full volume and still rap on it: only your vocal range comes down (up to 10 dB), 808 + drums stay",
         "VEIL - one knob for how much room to carve",
@@ -142,15 +144,16 @@
       "wip": false,
       "image": "hub-art/melodyveil.png",
       "clips": [],
-      "versions": "melodyveil-versions.json"
+      "versions": "melodyveil-versions.json",
+      "category": "Beat EQ"
     },
     {
       "id": "bandotape",
       "name": "Plugg Bando Tape",
       "registry": "Plugg Bando Tape",
       "includes": "VST3 · Windows",
-      "tagline": "2018 Plugg Tape Sound For Your Beat, With A Vocal Pocket.",
-      "about": "A 2018 Plugg Beat Master. It Gives Your Beat That Throwback SoundCloud Tape Sound: KAYY Dark And Muffled, XANGANG Loud And Crispy, Or RAW Dense And Slammed, With A Vocal Pocket So You Sit On Top.",
+      "tagline": "That 2018 SoundCloud Plugg Tape Sound On Any Beat, With Room Left For Your Voice.",
+      "about": "Clean Modern Beats Don't Sound Like The Plugg Tapes You Grew Up On. Plugg Bando Tape Is A Beat Master That Puts The Throwback Tape On It: KAYY Dark And Muffled, XANGANG Loud And Crispy, Or RAW Dense And Slammed, With A Vocal Pocket Carved In The Middle So You Sit On Top. Got A Beat You Love? LEARN REF Listens To It And MATCH Pulls Your Beat Toward That Tone. Goes Last On The Beat Track Or Beat Bus, Never On Vocals.",
       "wip": true,
       "beta": false,
       "image": "hub-art/bandotape.png",
@@ -158,15 +161,36 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Beat Master",
+      "features": [
+        "MODE - KAYY (Dark + Muffled), XANGANG (Loud + Crispy) Or RAW (Dense + Slammed)",
+        "DIRT - Tape Grit And Saturation",
+        "808 - More Or Less Low End Weight",
+        "PUMP - Adds A Breathing Bounce To The Beat",
+        "VOCAL POCKET - Carves The Middle So Your Voice Sits On Top",
+        "LOWPASS + RESONANCE - The Dark, Muffled Kayy Top End",
+        "Advanced: 808 Attack, 808 Sustain, Saturation, Exciter, Mud, Lo-Fi, Hiss, Wobble, Width, Highpass",
+        "LEARN REF + MATCH - Copy The Tone Of A Reference Beat",
+        "Mix Coach + EQ PRESETS - Saves FL Studio EQ Settings That Match What It Heard",
+        "Presets Like KAYY | Warped Cassette, KAYY | YouTube Rip, RAW | Soup, XANGANG | December Bounce, XANGANG | Ready To Rap",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "KAYY Sounds Best With LOWPASS Around 4 To 8 kHz.",
+        "Keep PUMP Low If Your 808 Already Moves A Lot.",
+        "Load UTIL | Phone Speaker Check To Hear How The Beat Holds Up On A Phone.",
+        "EQ PRESETS Saves FL Studio EQ Settings That Match What The Mix Coach Heard."
+      ]
     },
     {
       "id": "kirinverb",
       "name": "Kirin Verb",
       "registry": "Kirin Verb",
       "includes": "VST3 · Windows",
-      "tagline": "A Reverb That Listens And Fixes Mud, Smear And Ringing Tails.",
-      "about": "A Reverb That Listens To Your Vocal And Tells You What To Fix, Like Mud, Smeared Words Or Tails That Ring Past The Bar. FIX IT Makes The Moves For You.",
+      "tagline": "A Vocal Reverb That Hears Mud And Smeared Words, Then Fixes Them For You.",
+      "about": "Most Reverbs Make Rap Vocals Muddy And Smear The Words. Kirin Verb Listens While You Play: The Mix Coach Shows MUD And SMEAR And Warns When The Tail Rings Past The Bar, And FIX IT Sets The Low Cut, Ducking, Pre-Delay, Decay And De-Ess For You. DUCK Keeps The Space Out Of The Way While You Rap And Lets It Bloom In The Gaps. Goes Last On The Vocal Or Adlib Track, Or On A Send With MIX At 100%.",
       "wip": true,
       "beta": false,
       "image": "hub-art/kirinverb.png",
@@ -174,15 +198,33 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Vocal Reverb",
+      "features": [
+        "Mix Coach + FIX IT - Shows Mud, Smear And Ringing Tails, Then Fixes Them",
+        "DECAY - How Long It Rings (SYNC Locks It To Your Tempo)",
+        "PRE-DELAY - Keeps The Words Clear Before The Space Starts",
+        "LOW CUT - The Number One Mud Fix",
+        "DUCK - Quiet While You Rap, Blooms In The Gaps",
+        "MUD - 0 Stays Clean; Turn It Up On Purpose For A Murky, Dark Adlib",
+        "LINK - Copies On Your Lead And Adlibs Work Together: Adlibs Duck Under The Lead And Stagger Their Pre-Delay",
+        "Advanced: Tone, Size, Diffusion, Motion, Width (Your Vocal Stays Centred), High Cut, De-Ess, Early, Duck Back, Tail Gate",
+        "26 Presets: Vocal, Adlib And Melody, Plus A High Voice Bank (Plugg Float, Dark Plugg Haze, Rage Room, RVC Smooth Tail)",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "DUCK Keeps The Reverb Out Of The Way While You Rap And Lets It Bloom In The Gaps.",
+        "Rap Verses Usually Sit Around 10% To 20% MIX.",
+        "LINK AUTO Figures Out The Lead And Adlib Roles By Itself."
+      ]
     },
     {
       "id": "kodamaadlib",
       "name": "Kodama Adlib",
       "registry": "Kodama Adlib",
       "includes": "VST3 · Windows",
-      "tagline": "The Whole Adlib Chain In One Box: Thin, Style, Pan, Throw, Duck.",
-      "about": "The Whole Adlib Chain In One Box. It Thins, Styles, Pans, Throws Echoes Into The Gaps And Ducks Your Adlibs Under The Main Vocal.",
+      "tagline": "Your Whole Adlib Chain In One Box: Phone, Radio, Megaphone, Throws And Ducking.",
+      "about": "A Real Adlib Chain Takes Five Plugins, And The Adlibs Still Pile Up On Your Main Vocal. Kodama Does It In One: It Thins The Adlibs, Gives Them A STYLE (CLEAN, PHONE, RADIO, MEGA Or WALKIE), Pans Them Around, Throws Echoes Only Into The Gaps And Ducks Them Under Your Lead. Goes Last On The Adlib Track, After Your Normal Vocal Chain.",
       "wip": true,
       "beta": false,
       "image": "hub-art/kodamaadlib.png",
@@ -190,15 +232,34 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Adlibs",
+      "features": [
+        "STYLE - CLEAN, PHONE, RADIO, MEGA Or WALKIE",
+        "THIN - Sits The Adlibs Behind Your Lead",
+        "PAN MOVE - Adlibs That Move Around The Stereo Field",
+        "THROWS - Echoes That Only Land In The Gaps, So They Never Pile Up On Your Words",
+        "OCTAVE - A Low Or High Copy For That Ghostly Adlib Layer",
+        "REVERB + MIX",
+        "DUCK - Route Your Main Vocal In And The Adlibs Duck Under It",
+        "Advanced: Width, Pan Mode, Sweep Rate, Throw Time, Repeats, Tone, Drive, Low Cut, High Cut",
+        "17 Presets Like Phone Call, Radio Ghost, Megaphone Hype, Demon Under, Chipmunk Up, Throw Every Line, Ducked Under Lead",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "In FL Studio: Select The Main Vocal Mixer Track, Right-Click The Arrow At The Bottom Of The Kodama Track And Choose Sidechain To This Track.",
+        "THROWS Only Echo Into The Gaps, So They Never Pile Up On Your Words.",
+        "OCTAVE Adds A Low Or High Copy For That Ghostly Adlib Layer."
+      ]
     },
     {
       "id": "mononokewash",
       "name": "Mononoke Ambient",
       "registry": "Mononoke Wash",
       "includes": "VST3 · Windows",
-      "tagline": "Melts Any Melody Into A Dreamy Floating Bed.",
-      "about": "An Ambient Melody Plugin. It Melts A Loop, Pad, Guitar Or Bell Melody Into A Dreamy Floating Bed.",
+      "tagline": "Melts Any Melody Into A Dreamy Ambient Rap Bed That Never Muddies The 808.",
+      "about": "Want That Floating Ambient Rap Sound, But Reverb Alone Just Makes The Loop Washy And Muddy? Mononoke Melts A Loop, Pad, Guitar Or Bell Melody Into A Dreamy Bed: WASH For The Space, MELT For The Swirl, DRIFT For Slow Movement And WOBBLE For A Warped Tape Feel. The Low End Is Cut Inside The Wash, So Your 808 Stays Clean. Goes Last On The Melody Or Loop Track, Not On The 808 Or The Vocal.",
       "wip": true,
       "beta": false,
       "image": "hub-art/mononokewash.png",
@@ -206,15 +267,34 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Ambient Melody FX",
+      "features": [
+        "WASH - The Dreamy Space",
+        "MELT - The Swirl",
+        "SIZE + DARK - Shape The Bed",
+        "DRIFT - Slow, Floating Movement",
+        "DUCK - Keeps Busy Bells And Keys Clear",
+        "ORDER - FLNG>WASH, WASH>FLNG Or PARALLEL",
+        "WOBBLE - Warped Tape Feel",
+        "Advanced: Swell, Pre-Delay, Low Cut, High Cut, Width, Shimmer, Voices, Dry",
+        "40+ Presets For Melody, Bells, Pads, Keys, Guitar And Vocal Chops, Like Melody | Glaze, Bells | Plugg Haze, Melody | Warped Cassette, Pad | Endless Cloud",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "The Low End Is Cut Inside The Wash, So It Never Muddies Your 808.",
+        "Keep DUCK Low For Pads And Raise It For Plucks.",
+        "Leave Room For Your Vocal: If The Beat Gets Crowded, Bring WASH Down."
+      ]
     },
     {
       "id": "nuephase",
       "name": "Nue Chorus",
       "registry": "Nue Phase",
       "includes": "VST3 · Windows",
-      "tagline": "Thick Chorus And Flanger That Never Thins Your Sound Out.",
-      "about": "A Thick Chorus And Flanger That Never Thins Your Sound Out. The Bass Stays Solid And The Dry Signal Stays Whole, With The Effect Added On Top.",
+      "tagline": "Thick Chorus And Flanger That Moves Your Sound Without Thinning It Out.",
+      "about": "Normal Chorus And Flangers Hollow Out Your Vocal And Wobble The Bass. Nue Keeps The Dry Signal Whole And The Bass Solid And Adds The Movement On Top, So Hooks, Doubles, Pads And Adlibs Get Wide And Alive Without Vanishing On A Phone Speaker. Four Modes, From A Subtle Double To The Classic Jet-Plane Sweep. Goes Last On The Track You Want To Move.",
       "wip": true,
       "beta": false,
       "image": "hub-art/nuephase.png",
@@ -222,15 +302,34 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Chorus / Flanger",
+      "features": [
+        "MODE - CHORUS, FLANGE, THICK Or JET",
+        "DEPTH + RATE - How Much And How Fast It Moves",
+        "FEEDBACK - Push It Into The Jet Sweep",
+        "THICK - Fuller Body",
+        "BASS KEEP - Keeps The Low End From Wobbling",
+        "AIR - Sparkle On The Moving Part Only",
+        "Mono Safe, So It Won't Vanish On A Phone",
+        "Advanced: Mix, Delay Time, Spread, Wet Cut, Sync, Drive, Duck, Shape",
+        "13 Presets Like Vocal | Thick Hook, Vocal | Jet Flange, Vocal | Underwater Adlib, Melody | Seasick Lo-Fi, 808 | Wide Top, Guitar | Dream Chorus",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "JET With High FEEDBACK Makes The Classic Jet-Plane Sweep For Intros And Drops.",
+        "On Vocals, Raise DUCK On The Advanced Page So The Words Stay Clear.",
+        "AIR Adds Sparkle To The Moving Part Only."
+      ]
     },
     {
       "id": "nurikabe",
       "name": "Nurikabe Saturator",
       "registry": "Nurikabe",
       "includes": "VST3 · Windows",
-      "tagline": "Saturation That Turns A Thin Vocal Into A Wall Of Body.",
-      "about": "Saturation For Thin Rap Vocals. It Turns A Thin, Cheap-Mic Vocal Into A Solid Wall Of Body And Warmth Without Making It Harsh.",
+      "tagline": "Turns A Thin, Cheap-Mic Vocal Into A Wall Of Body And Warmth.",
+      "about": "Recording On A Cheap Mic Or A Laptop And Your Vocal Sounds Thin And Small Next To The Beat? Nurikabe Saturates It Into A Solid Wall Of Body And Warmth Without Making It Harsh. Pick TUBE, TAPE Or CRUNCH, Turn Up BODY And HEAT, And SMOOTH Keeps The S's And The Harsh 3 kHz Bite In Check. Or Press FIX IT And The Mix Coach Sets It From Your Voice. Goes Last On Your Lead Or Double Vocal.",
       "wip": true,
       "beta": false,
       "image": "hub-art/nurikabe.png",
@@ -238,15 +337,34 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Vocal Saturator",
+      "features": [
+        "FLAVOR - TUBE (Warm), TAPE (Smooth) Or CRUNCH (Gritty)",
+        "BODY - Weight",
+        "HEAT - Drive",
+        "THICK - A Tiny Double For Width Without A Second Take",
+        "SMOOTH - Tames The S's And The Harsh 3 kHz Bite",
+        "FIX IT - The Mix Coach Sets BODY, HEAT And SMOOTH From Your Vocal",
+        "Auto Gain, So Louder Never Fools You",
+        "Advanced: Body Hz, Harsh Hz, Density, S-Guard, Low Cut, Air, Width",
+        "15 Presets Like Phone Mic | Fill It In, Whisper Rap | Body Up, After RVC | Body Back, Crunch | Rage Grit, Doubles | Thick Stack",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "Auto Gain Keeps The Volume The Same, So Louder Never Fools You.",
+        "THICK Adds A Tiny Double For Width Without A Second Take.",
+        "Use MIX To Blend It In If You Want It Subtle."
+      ]
     },
     {
       "id": "onimaster",
       "name": "Youkai Mastering Suite",
       "registry": "Oni Master",
       "includes": "VST3 · Windows",
-      "tagline": "A Subtle Auto Master That Makes The Vocal Loud And Clear.",
-      "about": "A Subtle Auto Master For Full Rap Songs. It Listens, Then Makes The Vocal Loud And Clear On Top Of The Beat Without Crushing The Song.",
+      "tagline": "A Subtle Auto Master That Makes Your Vocal Loud And Clear, Ready To Upload.",
+      "about": "Bounced Songs That Sound Quiet Next To Everything On SoundCloud, Or Loud With The Vocal Buried? The Mastering Suite Listens To Your Full Song, Then Brings It Up To A Loudness Target While Keeping The Vocal Loud And Clear On Top Of The Beat, Without Crushing It. Pick A TARGET, Leave AUTO LEVEL On And You're Done. Goes Last On The Master, After The Mix Assistant If You Use It.",
       "wip": true,
       "beta": false,
       "image": "hub-art/onimaster.png",
@@ -254,15 +372,31 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Mastering",
+      "features": [
+        "TARGET - LOUD VOCALS, CRISPY Or PRESENT",
+        "AUTO LEVEL - Brings The Song To The Loudness Target (Off = The Limiter Only Catches Peaks)",
+        "Learns The Song From A Few Seconds Of The Hook, RELEARN When You Change The Mix",
+        "Tone: Low End, Mud, Vocal, Air, De-Harsh",
+        "Punch + Loudness: Glue, 808 Clip, 808 Split, Saturation, Ceiling, Width",
+        "A/B At The Same Loudness Before You Bounce",
+        "Presets Like UTIL | Streaming Safe -14, UTIL | SoundCloud Loud, LOUD VOCALS | Soft Rapper, PRESENT | Dark Beat Lift, CRISPY | Phone Speaker Ready",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "It's Built To Stay Subtle. Want It Louder? Raise The Output A Little At A Time.",
+        "PRESENT Is The Fix When Your Vocal Gets Lost Inside The Beat.",
+        "Use A/B To Compare At The Same Loudness Before You Bounce."
+      ]
     },
     {
       "id": "sukima",
       "name": "Sukima Vocal Pocket",
       "registry": "Sukima",
       "includes": "VST3 · Windows",
-      "tagline": "Opens A Pocket In Your Beat So Your Vocal Sits In Front.",
-      "about": "Opens A Gap In Your Beat For The Vocal And Makes The Melody Clearer, So Your Voice Sits In Front Without Turning The Beat Down.",
+      "tagline": "Opens A Pocket In The Beat So Your Voice Sits In Front, Without Turning The Beat Down.",
+      "about": "When The Melody Fights Your Vocal You Either Turn The Beat Down And Lose The Energy, Or You Get Buried. Sukima Opens A Gap In The Beat Right Where Your Voice Lives, Then CLARITY And SHINE Bring The Melody's Detail Back So It Still Sounds Expensive. Turn On MOVE With Your Vocal On The Sidechain And The Gap Only Opens While You Rap. Goes Last On The Beat Or Melody Track.",
       "wip": true,
       "beta": false,
       "image": "hub-art/sukima.png",
@@ -270,15 +404,33 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Vocal Pocket",
+      "features": [
+        "VOICE - DEEP VOICE, RAP Or HIGH VOICE, So The Gap Lands Where You Sit",
+        "SPLIT - How Far The Pocket Opens",
+        "DEPTH - How Deep The Pocket Goes",
+        "CLARITY + SHINE - Bring The Melody's Detail And Sparkle Back",
+        "MOVE (Vocal Key) - Sidechain Your Vocal And The Gap Follows Your Words",
+        "MONO CHECK - Hear It Like A Phone Or Club Speaker",
+        "Advanced: Focus Shift, Pocket Depth, Split Low, Split High, Room Size, Distance, Attack, Un-Wash, Shine Freq, Width, Move Release",
+        "Presets For Rap, Melodic, Plugg, Rage, Trap, Adlibs, High Voice And Vocal Key",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "In FL Studio: Select Your Vocal Mixer Track, Right-Click The Arrow At The Bottom Of The Beat Track And Choose Sidechain To This Track.",
+        "Small Moves Go A Long Way. Most Beats Only Need SPLIT Around 30% To 50%.",
+        "MONO Lets You Hear It Like A Phone Or Club Speaker. The Beat Should Still Feel Full."
+      ]
     },
     {
       "id": "tanukijuice",
       "name": "MagikaMusic",
       "registry": "MagikaMusic",
       "includes": "VST3 · Windows",
-      "tagline": "Crank One Knob And It Just Sounds Good. Like Magic.",
-      "about": "One Big JUICE Knob That Makes A Sound Better, Not Just Louder. It Squeezes, Warms And Adds Air, Then Turns Itself Back Down So You Hear The Difference Honestly.",
+      "tagline": "Crank One Knob And It Just Sounds Better. Like Magic.",
+      "about": "Sometimes A Track Just Needs To Sound Finished And You Don't Want To Build A Chain. MagikaMusic Is One Big JUICE Knob: A 3-Band Squeeze, Warmth, Air, Punch And Width, With A Clipper And Limiter So It Never Goes Over. Five Styles From MAGIC To Honest CLEAN, And Auto Volume, So A/B Tells You It's Really Better And Not Just Louder. Works On Vocals, Adlibs, Beats, 808S, Samples Or A Whole Bus. Goes Last On The Track.",
       "wip": true,
       "beta": false,
       "image": "hub-art/tanukijuice.png",
@@ -286,15 +438,35 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "One-Knob Enhancer",
+      "features": [
+        "JUICE - The One Big Knob",
+        "FOCUS - VOCAL, BEAT, 808, AIR Or ALL",
+        "STYLE - MAGIC, GLOSS, PUNCH, LOUD Or CLEAN",
+        "TONE - Darker Or Brighter",
+        "PUNCH + WIDTH",
+        "Clipper + Limiter, So It Never Goes Over",
+        "A/B At The Same Volume",
+        "Advanced: Mix, Warmth, Air, De-Harsh, Speed, Groove, Deep, Mono Bass, Clip, Ceiling, Auto Vol, Track Is",
+        "16 Presets Like Vocal | Glossy Lead, Vocal | After RVC Fix, Beat | Goodizer Loud, 808 | Phone Growl, Sample | Dusty Glue, MAX JUICE",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "Most Tracks Land Between 40% And 75% JUICE.",
+        "On A Beat, Set GROOVE To 1/8 So The Squeeze Breathes With The Tempo.",
+        "On Adlibs, Set TRACK IS To ADLIB So They Duck Under Your Lead By Themselves.",
+        "If It Starts Sounding Harsh, Back Off JUICE Before You Touch TONE."
+      ]
     },
     {
       "id": "tenguhats",
       "name": "Tengu Hats",
       "registry": "Tengu Hats",
       "includes": "VST3 · Windows",
-      "tagline": "A Hi-Hat Pattern Machine: Rolls, Triplets, Reverses And Swing.",
-      "about": "A Hi-Hat Pattern Machine With Rolls, Triplets, Reversed Hits, Stutters And Swing. It Plays Its Own Hat And Sends The Same Pattern Out As MIDI.",
+      "tagline": "A Hi-Hat Pattern Machine: Plugg Bounce, Rolls, Triplets And Reverses On Tap.",
+      "about": "Programming Hat Rolls By Hand Eats The Session You Should Be Spending On The Mic. Tengu Hats Plays Its Own Hi-Hat Pattern Locked To Your Song: Bounce, Rolls, Triplets, Reversed Hits, Stutters And Swing, And REROLL Gives You A New Roll With The Same Feel. It Also Sends The Pattern Out As MIDI, So It Can Drive Your Own Sampler. Goes On Its Own Instrument Channel (A Generator In FL Studio), Mixed With Your Drums.",
       "wip": true,
       "beta": false,
       "image": "hub-art/tenguhats.png",
@@ -302,15 +474,34 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Hi-Hat Instrument",
+      "features": [
+        "STYLE - BOUNCE, ROLLS, REVERSE Or CHAOS",
+        "DENSITY, ROLLS, REVERSE, SWING - Dial In The Bounce",
+        "PITCH - Move The Whole Hat Up Or Down",
+        "REROLL - A New Roll With The Same Settings",
+        "LOAD HAT - Use Your Own Hi-Hat Sample (WAV, AIFF, FLAC)",
+        "MIDI Out - Drive Your Own Sampler With The Same Pattern",
+        "A/B - Plain 8Th Notes At The Same Level, So You Hear What The Pattern Adds",
+        "Advanced: Volume, Decay, Tone, Humanize, Pan Move, Stutter, Grid, Roll Type, Bars, Pattern #, MIDI Note, Sound",
+        "11 Presets Like Plugg | Slow Bounce, Hook | Roll City, Triplet Flow, Rage | Chaos, Under Vocal | Bounce, MIDI Only | Your Sampler",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "Keep SWING Light (10% To 25%) For Plugg Bounce.",
+        "PITCH A Little Lower Sounds Darker.",
+        "Press REROLL Until A Roll Hits, Then Leave It."
+      ]
     },
     {
       "id": "umibozuir",
       "name": "Umibozu Room Verb",
       "registry": "Umibozu IR",
       "includes": "VST3 · Windows",
-      "tagline": "Convolution Reverb With 20 Spaces, Booth To Cave, Plus Ambience That Turns Any Sound Into A Dreamy Bed.",
-      "about": "A Convolution Reverb With 20 Spaces Built In, From A Vocal Booth To A Cave. The Ambience Side (Blur, White, Endless, Grain, Infinite, Shimmer, Tail Pitch, Lo-Fi, Sweep, Pump) Turns Any Sound Into Ambience.",
+      "tagline": "20 Real Spaces From Booth To Cave, Plus An Ambience Side For Dreamy Ambient Rap Beds.",
+      "about": "Want Your Vocal To Sound Like It Was Recorded Somewhere Real, Or A Loop To Dissolve Into Ambient Rap Haze? Umibozu Is A Convolution Reverb With 20 Built-In Spaces, From A Tight Booth And Bedroom To Club, Hall, Car, Bathroom, Cave And Cathedral. Flip To The Ambience Side For WASH, BLUR, WHITE, ENDLESS, GRAIN And DREAM, Then Add INFINITE, SHIMMER, TAIL PITCH, WOBBLE, LO-FI, SWEEP Or PUMP. Goes Last On The Vocal, Adlib Or Melody Track, Or On A Send With MIX At 100%.",
       "wip": true,
       "beta": false,
       "image": "hub-art/umibozuir.png",
@@ -318,15 +509,36 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Room Reverb + Ambience",
+      "features": [
+        "SPACE - 20 Rooms: BOOTH, BEDROOM, CLUB, HALL, CAR, BATHROOM, CAVE, CATHEDRAL And More",
+        "SIZE + DARK - Reshape The Room",
+        "PRE-DELAY - Keeps Words Crisp In Big Spaces",
+        "DUCK - The Space Opens Up Between Your Words",
+        "Ambience: WASH, BLUR, WHITE, ENDLESS, SMEAR, GRAIN, DREAM",
+        "INFINITE - Hold The Room As An Endless Pad",
+        "SHIMMER, TAIL PITCH, WOBBLE, LO-FI, SWEEP, PUMP",
+        "REVERSE - Flips The Space Into A Swell Before A Drop",
+        "Advanced: Low Cut, High Cut, Width, Early, De-Ess, Mono Low, Duck Back",
+        "48 Presets: Vocal, Adlib, Melody, High Voice And A Full Ambience Bank (Glaze Wash, Heaven Shimmer, Octave Down Abyss, Tape Wash)",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "BOOTH And BEDROOM For Tight Rap, CLUB Or HALL For Hooks, CAVE Or CATHEDRAL For Big Effects.",
+        "CAR And BATHROOM Are Great For Skits And Intros.",
+        "INFINITE Holds The Room As An Endless Pad: Flip It On Right At The End Of A Note.",
+        "Put It On A Send With MIX At 100% To Turn A Whole Loop Into Ambience."
+      ]
     },
     {
       "id": "yureistop",
       "name": "Yurei Tapestop",
       "registry": "Yurei Stop",
       "includes": "VST3 · Windows",
-      "tagline": "Tempo-Synced Tapestops, Spinbacks, Scratches And Stutter Rolls.",
-      "about": "Tempo-Synced Tapestops, Spinbacks, Scratches, Tape Starts And Stutter Rolls, Locked To Your Song Tempo.",
+      "tagline": "Free. Tapestops, Spinbacks, Scratches And Stutter Rolls Locked To Your Tempo.",
+      "about": "Free. Drawing A Tapestop With Pitch Automation Every Time Is A Pain, And It Never Lands Quite Right. Yurei Does It Locked To Your Song Tempo: STOP, SPIN, SCRATCH, Tape START Or STUTTER, Fired With The TRIGGER Button, A MIDI Key, Automation, Or AUTO Every 2, 4 Or 8 Bars Right Before The Downbeat. Goes Last On The Beat, The Beat Bus Or Any Track You Want To Stop Or Spin.",
       "wip": false,
       "beta": false,
       "free": true,
@@ -335,15 +547,33 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Free · Tapestop FX",
+      "features": [
+        "EFFECT - STOP, SPIN, SCRATCH, START Or STUTTER",
+        "LENGTH - Locked To Your Song Tempo",
+        "CURVE - How Fast The Tape Slows Down",
+        "TONE + MIX",
+        "TRIGGER - Fire It Now, Or With MIDI Keys C D E F G, Or Automation",
+        "AUTO - Hits Every 2, 4 Or 8 Bars Right Before The Downbeat",
+        "Advanced: Return, Scratch, Fade, MIDI Keys, Output",
+        "11 Presets Like Beat | Drop Before Hook, Beat | Power Down 2 Bars, Beat | Tape Start Intro, Vocal | Adlib Rewind, Vocal | Scratch Tag, Vocal | Transformer",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "A STOP Right Before The Hook Drops Hits Hard.",
+        "CURVE Changes How Fast The Tape Slows Down.",
+        "Automate The TRIGGER Parameter In Your DAW So It Lands In The Exact Same Spot Every Time."
+      ]
     },
     {
       "id": "satori",
       "name": "Youkai Mix Assistant",
       "registry": "Satori",
       "includes": "VST3 · Windows",
-      "tagline": "The Mix Brain: Sets Every Track's Volume So Vocals Sit Over The Beat.",
-      "about": "The Mix Brain. It Listens To Every Linked Youkai Plugin In Your Song And Sets Each Track's Volume For You, So Vocals Sit Right Over The Beat.",
+      "tagline": "Free. The Mix Brain: Sets Every Track's Level So Your Vocal Sits Right Over The Beat.",
+      "about": "Free. Leveling A Mix Is Where Most Sessions Die. Put The Mix Assistant On Your Master, Put A Youkai Plugin Last On Each Track, Play The Loudest Part For About 20 Seconds And Press LEVEL IT. It Sets Every Linked Track's Volume For The VIBE You Pick, Sends The Song Key To Every Linked Plugin, And Lets Linked Plugins Hear Each Other For Sidechain Ducking With No Routing. Don't Like It? Press UNDO. Goes On The Master, Before The Mastering Suite.",
       "wip": false,
       "beta": false,
       "free": true,
@@ -352,7 +582,26 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Free · Mix Brain",
+      "features": [
+        "LEVEL IT - Sets Every Linked Track's Volume In One Press",
+        "UNDO - Puts Every Fader Back",
+        "VIBE - Rage, Melodic, Dark, Hyper, Wavy, Rushhy, Plugg, Vocal Up Or Levels Only, Measured From 100+ Real Songs",
+        "VOCAL, ADLIBS + MIX LEVEL - Nudge Where The Vocals Sit",
+        "SET UP = ALL - Also Sets Every Youkai Vocal Plugin For Its Role And Your Vibe",
+        "SONG KEY + SCALE - Sent To Every Linked Plugin",
+        "LATENCY - Asks Every Linked Plugin For Zero Latency While You Record",
+        "FL MIXER - With The Youkai Brain Script, Moves Only The Volume Faders Of Tracks With No Youkai Plugin",
+        "CLONE - Copies A Reverb, Delay, Compressor, EQ Or Soundgoodizer From Your FL Mixer Or An Ableton Preset Onto The Matching Youkai Plugin (It Only Reads Them)",
+        "A Living Eye: Sleepy When It's Silent, Angry When The Mix Is Off, Calm When It's Good",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "Play The Song Again For Half A Minute After You Re-Record Or Swap The Beat: It Forgets Old Takes By Itself.",
+        "SET UP = ALL Also Sets Every Youkai Vocal Plugin For Its Role And Your Vibe.",
+        "Using The Mastering Suite? Mix Assistant First On The Master, Mastering Suite After It."
+      ]
     },
     {
       "id": "koishi",
@@ -407,8 +656,8 @@
       "name": "Youkai Retune",
       "registry": "Youkai Detune",
       "includes": "VST3 · Windows",
-      "tagline": "One Knob That Moves Your Beat To 452 Or 428.",
-      "about": "Free. One Knob That Moves Your Whole Beat To A = 452 Or A = 428 Without Changing The Tempo. 452 Sounds Brighter, 428 Sounds Darker And Heavier.",
+      "tagline": "Free. One Knob Moves Your Whole Beat To 452 Or 428 Without Touching The Tempo.",
+      "about": "Free. Want That Bright 452 Sound Or A Darker, Heavier 428 Without Re-Exporting The Beat? One Knob Retunes Everything Going Through It From A = 440 To 452 Or 428, And The Tempo Stays Put. Got A Beat That's Already At 452? Set BEAT IS AT And Pull It Back To 440. Goes On The Beat's Mixer Track, Or On The Master When You Bounce A Beat.",
       "wip": false,
       "beta": false,
       "free": true,
@@ -417,7 +666,22 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Free · Retune",
+      "features": [
+        "A4 HZ - The One Knob: 452, 428 Or Anywhere Between (Double-Click Jumps Back To 452)",
+        "BEAT IS AT - Tell It Where The Beat Already Sits",
+        "QUALITY - Cleaner Or Lighter On Your CPU",
+        "BYPASS - Hear The Beat Untouched, Same Timing",
+        "Record Mode Preset - Less Delay While You Track Through It",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "Double-Click The Knob To Jump Back To 452.",
+        "Got A Beat That's Already At 452? Use 452 Beat Back To 440.",
+        "Recording Through It? Use The Record Mode Preset For Less Delay."
+      ]
     },
     {
       "id": "suzumesilk",
@@ -456,8 +720,8 @@
       "name": "Hitodama Gate",
       "registry": "Hitodama Gate",
       "includes": "VST3 · Windows",
-      "tagline": "Cleans Up The Silence And Noise Between Words.",
-      "about": "A Vocal Gate That Mutes The Dead Air And Noise Between Words, So Only The Vocal Comes Through Clean.",
+      "tagline": "Free. Kills The Room Noise And Rumble Between Your Words.",
+      "about": "Free. Fan Hum, Room Noise And Mic Rumble In The Gaps Get Turned Up By Every Compressor After Them. Hitodama Cuts The Low Rumble And Turns The Noise Down Between Your Words, And It Follows Your Loudest Words, So It Works The Same On Loud And Quiet Takes. Goes First On Your Vocal, Before EQ And Compression.",
       "wip": false,
       "beta": false,
       "free": true,
@@ -466,7 +730,23 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": []
+      "clips": [],
+      "category": "Free · Vocal Cleanup",
+      "features": [
+        "GATE - Raise It Until The Gaps Go Quiet",
+        "RANGE - How Far The Noise Gets Turned Down",
+        "LOW CUT - Removes Rumble",
+        "CLOSE - Keeps Word Endings From Getting Cut",
+        "A/B To Compare",
+        "Presets: Clean | Bedroom Mic, Clean | Dead Silent, Clean | Keep Breaths, Adlib | Tight, Rumble Only",
+        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
+        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+      ],
+      "tips": [
+        "Bedroom With A Fan? Start From The Bedroom Mic Preset.",
+        "Want Breaths To Stay? Use The Keep Breaths Preset.",
+        "If Word Endings Get Cut, Lower GATE Or Raise CLOSE."
+      ]
     },
     {
       "id": "ittancut",
