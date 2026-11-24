@@ -169,9 +169,10 @@
       <div class="msg ok" id="m-verify"></div>
     </div>
     <div class="card notice" id="hub-link" hidden>
-      <strong>Connect The Youkai Digital Hub?</strong>
-      <p>Your Hub Is Asking To Log In As You. Only Connect If The Code In The Hub Says <b id="hub-code"></b>.</p>
-      <div class="row" style="margin-top:12px"><button type="button" class="btn" id="b-hub">Connect</button><button type="button" class="btn ghost sm" id="b-hub-no">Not Me</button></div>
+      <strong>Connect The Youkai Digital Hub</strong>
+      <p id="hub-ask">Your Hub Is Asking To Log In As You. Only Connect If The Code In The Hub Says <b id="hub-code"></b>.</p>
+      <p id="hub-manual">Press Sign In On The Hub, Type The Code It Shows Here, Then Press Connect.</p>
+      <div class="row" style="margin-top:12px"><input id="hub-in" placeholder="ABCD-1234" maxlength="9" autocomplete="off" style="max-width:160px;margin-right:10px;text-transform:uppercase" aria-label="Hub Code"><button type="button" class="btn" id="b-hub">Connect</button><button type="button" class="btn ghost sm" id="b-hub-no">Not Me</button></div>
       <div class="msg" id="m-hub" role="alert"></div>
     </div>
     <section class="card adm" id="admin" hidden>
@@ -240,6 +241,6 @@
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script src="qrcode.js?v=27"></script>
-<script src="account.js?v=35"></script>
+<script src="account.js?v=36"></script>
 </body>
 </html>
