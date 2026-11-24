@@ -1,11 +1,11 @@
 {
   "product": "Umibozu Room Verb",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.9",
+  "latest": "0.9.10",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.9",
+      "version": "0.9.10",
       "windows": "releases/UmibozuIR-Setup.exe"
     }
   ]
