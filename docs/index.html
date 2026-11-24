@@ -268,6 +268,18 @@
           <p class="note">Early Access: Still Being Polished. Updates Land Free In The Hub.</p>
         </div>
       </article>
+      <article class="card now-card" id="autosnip">
+        <span class="num">No.03</span><div class="shot"><div class="ph"><svg viewBox="0 0 64 64" fill="none" stroke="#ff7aa8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="40" height="36" rx="5"/><path d="M46 26l12-7v26l-12-7"/><path d="M18 26l8 6-8 6z" fill="#ff7aa8"/></svg></div></div>
+        <div class="body">
+          <div class="tags"><span class="tag live">Out Now</span><span class="tag">Program · Video</span></div>
+          <h3>AutoSnip</h3>
+          <p class="lede">Drop A Long Clip In, Get The Best Parts Out.</p><p>Finds The Smooth, Standout Moments In Your Footage And Cuts Them Into Clean, Ready-To-Post Snippets, Trimming The Awkward Bits And Bad Takes. Works On Any Clips. Standalone App For Windows.</p>
+          <div class="buy">
+            <div class="price">$20<span>one-time</span></div>
+            <a class="btn primary" data-product="autosnip" href="#">Buy AutoSnip</a>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -310,10 +322,6 @@
       <p>Youkai808 Is Just The Start — Way More Plugins Are Dropping Soon, And Every One Lands Right In Your Hub Automatically.</p>
     </div>
     <div class="grid soon">
-      <article class="card soon-card">
-        <div class="shot"><div class="ph"><svg viewBox="0 0 64 64" fill="none" stroke="#ff7aa8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="40" height="36" rx="5"/><path d="M46 26l12-7v26l-12-7"/><path d="M18 26l8 6-8 6z" fill="#ff7aa8"/></svg></div></div>
-        <div class="body"><div class="tags"><span class="tag">Program · Video</span></div><h3>AutoSnip</h3><p>Drop A Long Clip In, Get The Best Parts Out. Auto-Edits Your Snippets.</p></div>
-      </article>
       <!--soon:start-->
       <article class="card soon-card">
         <div class="shot"><img src="img/p/bandotape.webp" alt="Plugg Bando Tape plugin screenshot" loading="lazy"></div>
@@ -459,20 +467,21 @@
     // Live: fill in after Paddle approves the account. Until then real buyers keep the Lemon Squeezy links.
     // on: flip to true once Paddle approves the account + domain (live checkout errors before that).
     live:    { on: false, token: 'live_53c0502c4b436dc1b9d35a43f34',
-               prices: { youkai808: 'pri_01m8302mqfw0qcw3vemcqbftax', melodyveil: 'pri_01m8304kea64hve92h7v29e5f7' } },
+               prices: { youkai808: 'pri_01m8302mqfw0qcw3vemcqbftax', melodyveil: 'pri_01m8304kea64hve92h7v29e5f7', autosnip: 'pri_01m87y5nt3rs2kk76gp1qd6mgk' } },
     // Sandbox (test cards only). Active only when the URL has ?paddletest, so real buyers never hit it.
     sandbox: { token: 'test_6e43ebd39b0169c666d7efde260',
                prices: { youkai808: 'pri_01m82xta4pgfvfc27v7n5neg08', melodyveil: 'pri_01m82xv97bqjybf8gyg7b489cv' } }
   };
   (function(){
     var test=/[?&]paddletest/.test(location.search), cfg=test?PADDLE.sandbox:PADDLE.live;
-    if(!cfg.token || cfg.on===false) return;
+    var all=cfg.on!==false; // when off, Paddle still sells products that have no Lemon Squeezy link (href="#")
+    if(!cfg.token || (!all && !document.querySelector('[data-product][href="#"]'))) return;
     var s=document.createElement('script'); s.src='https://cdn.paddle.com/paddle/v2/paddle.js';
     s.onload=function(){
       if(test) Paddle.Environment.set('sandbox');
       Paddle.Initialize({token:cfg.token});
       document.querySelectorAll('[data-product]').forEach(function(a){
-        var price=cfg.prices[a.dataset.product]; if(!price) return;
+        var price=cfg.prices[a.dataset.product]; if(!price || (!all && a.getAttribute('href')!=='#')) return;
         a.addEventListener('click',function(e){ e.preventDefault(); var o={items:[{priceId:price,quantity:1}]}, uid, em;
           try{ uid=localStorage.getItem('kd_uid'); em=localStorage.getItem('kd_email'); }catch(x){}
           if(uid){ o.customData={uid:uid}; if(em) o.customer={email:em}; } // links the purchase + key to their account

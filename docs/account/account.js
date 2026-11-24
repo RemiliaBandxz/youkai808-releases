@@ -33,11 +33,12 @@
     bunshindouble: { name: "Bunshin Double", img: '../img/p/bunshindouble.webp', dl: 'releases/BunshinDouble-Setup.exe', beta: 1 },
     yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', dl: 'releases/YamabikoEcho-Setup.exe', beta: 1 },
     raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', dl: 'releases/RaijuClip-Setup.exe', beta: 1 },
+    autosnip: { name: "AutoSnip", img: '../img/koumakan-logo.webp', dl: 'https://github.com/RemiliaBandxz/youkai808-source/releases/download/autosnip-v0.2.4/AutoSnip-v0.2.4-Setup.exe' }, // shortcut: pinned version, bump when AutoSnip ships
     all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' }, // one code unlocks everything
     beta:       { name: 'Beta Tester', img: '../img/koumakan-logo.webp' }
   };
   var DL = 'https://github.com/RemiliaBandxz/youkai808-releases/raw/main/';
-  function dlBtn(body, info){ if (!info.dl) return; var a=document.createElement('a'); a.className='btn primary sm'; a.href=DL+info.dl; a.textContent='Download'; a.style.marginTop='10px'; a.style.display='inline-block'; body.appendChild(a); }
+  function dlBtn(body, info){ if (!info.dl) return; var a=document.createElement('a'); a.className='btn primary sm'; a.href=/^https:/.test(info.dl)?info.dl:DL+info.dl; a.textContent='Download'; a.style.marginTop='10px'; a.style.display='inline-block'; body.appendChild(a); }
   var $ = function(id){ return document.getElementById(id); };
   var store = { get:function(){ try{return localStorage.getItem('kd_token')}catch(e){return null} },
                 set:function(t){ try{ t?localStorage.setItem('kd_token',t):localStorage.removeItem('kd_token') }catch(e){} } };
