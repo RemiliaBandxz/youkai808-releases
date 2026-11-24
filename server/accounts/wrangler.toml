@@ -1,0 +1,19 @@
+name = "koumakan-accounts"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "koumakan-accounts"
+database_id = "FILL_ME_AFTER_wrangler_d1_create"
+
+[vars]
+SITE_ORIGIN = "https://koumakandigital.xyz"
+PADDLE_ENV = "live"   # "sandbox" while testing
+# Secrets (set with `wrangler secret put NAME`, never commit them):
+#   PADDLE_WEBHOOK_SECRET  - from Paddle > Developer Tools > Notifications
+#   PADDLE_API_KEY         - optional; looks up buyer email for guest checkouts
+#   RESEND_API_KEY         - optional; enables "Forgot Password" emails
+
+[triggers]
+crons = ["0 9 * * *"]

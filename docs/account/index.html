@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script>if(location.protocol==="http:"&&location.hostname!=="localhost")location.replace("https:"+location.href.slice(5))</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Your Account — Koumakan Digital</title>
+<link rel="icon" href="../img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#07030a;--surface:#130810;--surface2:#1c0b17;--line:#3a1427;--text:#fbeef4;--muted:#c09aae;--crimson:#d3123f;--pink:#ff7aa8;
+    --sans:"Inter",system-ui,sans-serif;--display:"Cinzel",Georgia,serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(211,18,63,.35),transparent 70%)}
+  a{color:inherit;text-decoration:none}
+  .nav{border-bottom:1px solid var(--line);background:rgba(7,3,10,.78)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:18px;white-space:nowrap}
+  .brand img{width:40px;height:40px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px var(--sans);padding:12px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;color:var(--text);white-space:nowrap}
+  .btn.primary{background:linear-gradient(180deg,#e8204f,#b30d34);color:#fff;box-shadow:0 6px 24px rgba(211,18,63,.4)}
+  .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03)}
+  .btn.ghost:hover{border-color:var(--pink)}
+  .btn.sm{padding:9px 16px;font-size:14px}
+  .btn[disabled]{opacity:.6;cursor:wait}
+  main.wrap{padding-top:48px;padding-bottom:80px}
+  h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.15;margin:0}
+  .card{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:18px;padding:28px}
+  .auth{max-width:420px;margin:0 auto}
+  .auth h1{font-size:28px;text-align:center;margin-bottom:6px}
+  .sub{color:var(--muted);text-align:center;margin:0 0 22px;font-size:15px}
+  .tabs{display:flex;gap:6px;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:20px}
+  .tabs button{flex:1;border:0;background:none;color:var(--muted);font:700 14px var(--sans);padding:9px;border-radius:999px;cursor:pointer}
+  .tabs button.on{background:var(--crimson);color:#fff}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px}
+  input{width:100%;font:16px var(--sans);color:var(--text);background:#0c0509;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:16px}
+  input:focus{outline:2px solid var(--pink);outline-offset:1px;border-color:transparent}
+  form .btn{width:100%}
+  .msg{min-height:22px;font-size:14px;margin:-4px 0 12px;color:#ff8f8f}
+  .msg.ok{color:#8fe3b0}
+  .link{background:none;border:0;color:var(--pink);font:600 14px var(--sans);cursor:pointer;padding:0;display:block;margin:14px auto 0}
+  .top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .top h1{font-size:clamp(26px,4vw,34px)}
+  .who{color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .own{display:flex;flex-direction:column;overflow:hidden;padding:0}
+  .own img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#000}
+  .own .body{padding:16px 18px 18px}
+  .own h3{font-size:19px}
+  .own p{color:var(--muted);font-size:13px;margin:4px 0 0}
+  .key{display:flex;gap:8px;margin-top:12px}
+  .key code{flex:1;min-width:0;font:600 12px ui-monospace,Consolas,monospace;background:#0c0509;border:1px solid var(--line);border-radius:8px;padding:8px 10px;overflow-wrap:anywhere;color:var(--text)}
+  .key .btn{padding:6px 12px;font-size:13px}
+  .use{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
+  .use .link{margin:0;font-size:13px}
+  .off{color:#ff8f8f;font-size:13px;margin-top:10px}
+  .empty{text-align:center;color:var(--muted)}
+  .empty .btn{margin-top:16px}
+  .steps{margin-top:28px}
+  .steps ol{margin:10px 0 0;padding-left:20px;color:var(--muted)}
+  .steps li{margin:4px 0}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  details{margin-top:18px}
+  summary{cursor:pointer;color:var(--pink);font-weight:600;font-size:14px}
+  details form{max-width:420px;margin-top:14px}
+  .soon{max-width:520px;margin:0 auto;text-align:center}
+  .soon p{color:var(--muted);margin-top:10px}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="../"><img src="../img/koumakan-logo.webp" alt="" width="40" height="40"><span>Koumakan Digital</span></a>
+  <a class="btn ghost sm" href="../#plugins">Back To Store</a>
+</div></nav>
+
+<main class="wrap">
+  <!-- Shown until the account server is deployed (API empty) -->
+  <section id="v-soon" class="card soon" hidden>
+    <h1>Accounts Are Almost Here</h1>
+    <p>Logins Are Getting Set Up Right Now. Already Bought A Plugin? You're Good, Just Activate It In The Hub.</p>
+    <a class="btn primary" style="margin-top:18px" href="../h/">Get The Hub</a>
+  </section>
+
+  <section id="v-auth" class="auth" hidden>
+    <div class="card">
+      <h1 id="auth-title">Welcome Back</h1>
+      <p class="sub">Log In To See Every Plugin You Own.</p>
+      <div class="tabs" role="tablist">
+        <button type="button" id="t-login" class="on" role="tab" aria-selected="true">Log In</button>
+        <button type="button" id="t-signup" role="tab" aria-selected="false">Sign Up</button>
+      </div>
+      <form id="f-auth" novalidate>
+        <label for="a-email">Email</label>
+        <input id="a-email" type="email" autocomplete="email" required>
+        <label for="a-pw">Password</label>
+        <input id="a-pw" type="password" autocomplete="current-password" minlength="8" required>
+        <div class="msg" id="m-auth" role="alert"></div>
+        <button class="btn primary" id="b-auth">Log In</button>
+      </form>
+      <button type="button" class="link" id="b-forgot">Forgot Your Password?</button>
+      <p class="sub" id="signup-note" style="margin:16px 0 0;font-size:13px" hidden>Use The Same Email You Buy With, So Your Plugins Show Up Here Automatically.</p>
+    </div>
+  </section>
+
+  <section id="v-reset" class="auth" hidden>
+    <div class="card">
+      <h1>New Password</h1>
+      <p class="sub">Pick A New Password For Your Account.</p>
+      <form id="f-reset" novalidate>
+        <label for="r-pw">New Password</label>
+        <input id="r-pw" type="password" autocomplete="new-password" minlength="8" required>
+        <div class="msg" id="m-reset" role="alert"></div>
+        <button class="btn primary">Save Password</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="v-me" hidden>
+    <div class="top">
+      <div><h1>My Plugins</h1><div class="who" id="who"></div></div>
+      <button type="button" class="btn ghost sm" id="b-logout">Log Out</button>
+    </div>
+    <div class="grid" id="owned"></div>
+    <div class="card empty" id="none" hidden>
+      <h3>No Plugins Yet</h3>
+      <p style="margin-top:6px">Anything You Buy With This Email Shows Up Here.</p>
+      <a class="btn primary" href="../#plugins">Shop Plugins</a>
+    </div>
+    <div class="card steps">
+      <h3>How To Install</h3>
+      <ol>
+        <li>Download The Free Youkai Digital Hub.</li>
+        <li>Open It And Hit Install On Your Plugin.</li>
+        <li>Copy Your License Key From Above And Paste It Into Activate.</li>
+      </ol>
+      <div class="row"><a class="btn primary sm" href="../h/">Get The Hub</a></div>
+    </div>
+    <details>
+      <summary>Change Password</summary>
+      <form id="f-pw" novalidate>
+        <label for="p-cur">Current Password</label>
+        <input id="p-cur" type="password" autocomplete="current-password" required>
+        <label for="p-new">New Password</label>
+        <input id="p-new" type="password" autocomplete="new-password" minlength="8" required>
+        <div class="msg" id="m-pw" role="alert"></div>
+        <button class="btn primary">Save New Password</button>
+      </form>
+    </details>
+  </section>
+</main>
+
+<script>
+(function(){
+  // Account server URL. Empty = accounts not deployed yet (page shows "Almost Here").
+  var API = '';
+  var PRODUCTS = {
+    youkai808:  { name: 'Youkai808',   img: '../img/p/youkai808.webp' },
+    melodyveil: { name: 'Melody Veil', img: '../img/p/melodyveil.webp' }
+  };
+  var $ = function(id){ return document.getElementById(id); };
+  var store = { get:function(){ try{return localStorage.getItem('kd_token')}catch(e){return null} },
+                set:function(t){ try{ t?localStorage.setItem('kd_token',t):localStorage.removeItem('kd_token') }catch(e){} } };
+  function show(v){ ['soon','auth','reset','me'].forEach(function(k){ $('v-'+k).hidden = k!==v; }); }
+  function call(path, body){
+    var t = store.get(), h = {'Content-Type':'application/json'};
+    if (t) h.Authorization = 'Bearer ' + t;
+    return fetch(API + path, body ? {method:'POST', headers:h, body:JSON.stringify(body)} : {headers:h})
+      .then(function(r){ return r.json().catch(function(){return {}}).then(function(j){ j._status=r.status; return j; }); })
+      .catch(function(){ return {_status:0, error:"Can't Reach The Server. Check Your Connection."}; });
+  }
+  function busy(form, on){ var b=form.querySelector('.btn'); b.disabled=on; }
+  function say(id, text, ok){ $(id).textContent = text||''; $(id).className = 'msg' + (ok?' ok':''); }
+
+  var mode = 'login';
+  function setMode(m){
+    mode = m;
+    $('t-login').className = m==='login'?'on':''; $('t-signup').className = m==='signup'?'on':'';
+    $('t-login').setAttribute('aria-selected', m==='login'); $('t-signup').setAttribute('aria-selected', m==='signup');
+    $('auth-title').textContent = m==='login' ? 'Welcome Back' : 'Make Your Account';
+    $('b-auth').textContent = m==='login' ? 'Log In' : 'Create Account';
+    $('a-pw').autocomplete = m==='login' ? 'current-password' : 'new-password';
+    $('signup-note').hidden = m!=='signup';
+    say('m-auth','');
+  }
+  $('t-login').onclick = function(){ setMode('login'); };
+  $('t-signup').onclick = function(){ setMode('signup'); };
+
+  $('f-auth').onsubmit = function(e){
+    e.preventDefault();
+    var email = $('a-email').value.trim(), pw = $('a-pw').value;
+    if (!email || !pw) return say('m-auth','Fill In Both Boxes.');
+    if (mode==='signup' && pw.length < 8) return say('m-auth','Password Needs At Least 8 Characters.');
+    busy(this,true); var f=this;
+    call('/'+mode, {email:email, password:pw}).then(function(j){
+      busy(f,false);
+      if (j.token){ store.set(j.token); $('a-pw').value=''; loadMe(); } else say('m-auth', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('b-forgot').onclick = function(){
+    var email = $('a-email').value.trim();
+    if (!email) { $('a-email').focus(); return say('m-auth','Type Your Email Above First, Then Hit Forgot.'); }
+    call('/forgot', {email:email}).then(function(j){
+      if (j._status===200) say('m-auth','If That Email Has An Account, A Reset Link Is On The Way.', true);
+      else say('m-auth', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('f-reset').onsubmit = function(e){
+    e.preventDefault();
+    var token = (location.hash.match(/reset=([0-9a-f]{64})/)||[])[1], f=this;
+    busy(f,true);
+    call('/reset', {token:token, password:$('r-pw').value}).then(function(j){
+      busy(f,false);
+      if (j.token){ store.set(j.token); history.replaceState(null,'',location.pathname); loadMe(); } else say('m-reset', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('f-pw').onsubmit = function(e){
+    e.preventDefault(); var f=this; busy(f,true);
+    call('/password', {current:$('p-cur').value, password:$('p-new').value}).then(function(j){
+      busy(f,false);
+      if (j.token){ store.set(j.token); f.reset(); say('m-pw','Password Updated.', true); } else say('m-pw', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('b-logout').onclick = function(){ call('/logout',{}).then(function(){ store.set(null); try{localStorage.removeItem('kd_uid');localStorage.removeItem('kd_email');}catch(e){} setMode('login'); show('auth'); }); };
+
+  function loadMe(){
+    if (!store.get()) { show('auth'); return; }
+    call('/me').then(function(j){
+      if (j._status===401) { store.set(null); show('auth'); return; }
+      if (!j.email) { show('auth'); say('m-auth', j.error || 'Something Went Wrong.'); return; }
+      $('who').textContent = 'Logged In As ' + j.email;
+      try { localStorage.setItem('kd_uid', j.id); localStorage.setItem('kd_email', j.email); } catch(e){}
+      var seen = {}, grid = $('owned'); grid.textContent = '';
+      (j.purchases||[]).forEach(function(p){
+        var info = PRODUCTS[p.product]; if (!info || seen[p.product]) return; seen[p.product]=1;
+        var c = document.createElement('div'); c.className='card own';
+        var img = document.createElement('img'); img.src=info.img; img.alt=''; img.loading='lazy';
+        var b = document.createElement('div'); b.className='body';
+        var h = document.createElement('h3'); h.textContent = info.name;
+        var d = document.createElement('p'); d.textContent = 'Owned Since ' + new Date(p.created*1000).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+        b.appendChild(h); b.appendChild(d);
+        if (p.status !== 'active') { var off=document.createElement('div'); off.className='off'; off.textContent='This Key Was Refunded Or Disabled.'; b.appendChild(off); }
+        else {
+          var k=document.createElement('div'); k.className='key';
+          var code=document.createElement('code'); code.textContent=p.license_key;
+          var cp=document.createElement('button'); cp.type='button'; cp.className='btn ghost'; cp.textContent='Copy';
+          cp.onclick=function(){ (navigator.clipboard?navigator.clipboard.writeText(p.license_key):Promise.reject()).then(function(){cp.textContent='Copied';},function(){
+            var r=document.createRange(); r.selectNodeContents(code); var sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); cp.textContent='Ctrl+C';}); };
+          k.appendChild(code); k.appendChild(cp); b.appendChild(k);
+          var use=document.createElement('div'); use.className='use';
+          var n=document.createElement('span'); n.textContent='Used On '+p.used+' Of '+p.limit+' Computers';
+          use.appendChild(n);
+          if (p.used > 0) {
+            var fr=document.createElement('button'); fr.type='button'; fr.className='link'; fr.textContent='Free Up Computers';
+            fr.onclick=function(){
+              if (!confirm('Sign This Key Out Of Every Computer? You Can Activate It Again On The Ones You Use.')) return;
+              call('/free-computers',{license_key:p.license_key}).then(function(r){ if (r.ok) loadMe(); else n.textContent = r.error || 'Something Went Wrong.'; });
+            };
+            use.appendChild(fr);
+          }
+          b.appendChild(use);
+        }
+        c.appendChild(img); c.appendChild(b); grid.appendChild(c);
+      });
+      grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
+      show('me');
+    });
+  }
+
+  if (!API) { show('soon'); return; }
+  if (/reset=[0-9a-f]{64}/.test(location.hash)) { show('reset'); return; }
+  loadMe();
+})();
+</script>
+</body>
+</html>
