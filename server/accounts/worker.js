@@ -475,13 +475,85 @@ async function hubPoll(env, h, req) {
   return json(h, 200, { token: await newSession(env, row.user_id) });
 }
 
+// ---- Sign in with GitHub / Google / Discord / Microsoft (OAuth). A provider is on once its <NAME>_ID and
+// <NAME>_SECRET are set on the Worker. Accounts link by VERIFIED email only. ----
+const OAUTH = {
+  github: { auth: 'https://github.com/login/oauth/authorize', token: 'https://github.com/login/oauth/access_token', scope: 'read:user user:email',
+    async email(at) {
+      const r = await fetch('https://api.github.com/user/emails', { headers: { Authorization: 'Bearer ' + at, 'User-Agent': 'koumakan-accounts', Accept: 'application/vnd.github+json' } });
+      const e = (await r.json()).find?.((x) => x.primary && x.verified);
+      return e && e.email;
+    } },
+  google: { auth: 'https://accounts.google.com/o/oauth2/v2/auth', token: 'https://oauth2.googleapis.com/token', scope: 'openid email',
+    async email(at) {
+      const u = await (await fetch('https://openidconnect.googleapis.com/v1/userinfo', { headers: { Authorization: 'Bearer ' + at } })).json();
+      return u.email_verified === true && u.email;
+    } },
+  discord: { auth: 'https://discord.com/oauth2/authorize', token: 'https://discord.com/api/oauth2/token', scope: 'identify email',
+    async email(at) {
+      const u = await (await fetch('https://discord.com/api/users/@me', { headers: { Authorization: 'Bearer ' + at } })).json();
+      return u.verified === true && u.email;
+    } },
+  // 'consumers' = personal Microsoft accounts only: their email is the sign-in address, so it's verified. Work/school accounts aren't.
+  microsoft: { auth: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize', token: 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token', scope: 'openid email',
+    async email(at) {
+      const u = await (await fetch('https://graph.microsoft.com/oidc/userinfo', { headers: { Authorization: 'Bearer ' + at } })).json();
+      return u.email;
+    } },
+};
+const oauthOn = (env, p) => OAUTH[p] && env[p.toUpperCase() + '_ID'] && env[p.toUpperCase() + '_SECRET'];
+const oauthProviders = (env, h) => json(h, 200, { providers: Object.keys(OAUTH).filter((p) => oauthOn(env, p)) });
+const back = (env, frag, cookie) => new Response(null, { status: 302, headers: { ...SECURE, Location: env.SITE_ORIGIN + '/account/#' + frag,
+  'Set-Cookie': cookie || 'kd_oauth=; Path=/oauth; HttpOnly; Secure; SameSite=Lax; Max-Age=0' } });
+async function oauth(env, req, p, step) {
+  const url = new URL(req.url), redirect = url.origin + '/oauth/' + p + '/callback', P = p.toUpperCase();
+  if (step === 'start') {
+    const state = rand(16);
+    const q = new URLSearchParams({ client_id: env[P + '_ID'], redirect_uri: redirect, response_type: 'code', scope: OAUTH[p].scope, state });
+    if (p === 'google') q.set('prompt', 'select_account');
+    // state lives in an HttpOnly cookie on this Worker, so a callback started in someone else's browser is refused (login CSRF)
+    return new Response(null, { status: 302, headers: { ...SECURE, Location: OAUTH[p].auth + '?' + q,
+      'Set-Cookie': `kd_oauth=${p}.${state}; Path=/oauth; HttpOnly; Secure; SameSite=Lax; Max-Age=600` } });
+  }
+  const fail = (msg) => back(env, 'oautherr=' + encodeURIComponent(msg));
+  const cookie = ((req.headers.get('Cookie') || '').match(/(?:^|;\s*)kd_oauth=([^;]+)/) || [])[1] || '';
+  if (!url.searchParams.get('code') || !safeEq(cookie, p + '.' + (url.searchParams.get('state') || ''))) return fail('Sign-In Expired. Try Again.');
+  if (await hit(env, 'oa:' + (req.headers.get('CF-Connecting-IP') || ''), 20)) return fail(TOO_MANY);
+  const tr = await fetch(OAUTH[p].token, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ client_id: env[P + '_ID'], client_secret: env[P + '_SECRET'], code: url.searchParams.get('code'), redirect_uri: redirect, grant_type: 'authorization_code' }) });
+  const at = tr.ok && (await tr.json()).access_token;
+  const email = normEmail(at && (await OAUTH[p].email(at)));
+  if (!validEmail(email)) return fail('That Account Has No Verified Email. Use Email Sign-Up Instead.');
+  let u = await env.DB.prepare('SELECT id, verified, totp_secret FROM users WHERE email=?').bind(email).first();
+  if (u && u.totp_secret) return fail('This Account Uses 2FA. Log In With Email, Password And Your Code.');
+  if (!u) {
+    u = { id: crypto.randomUUID() };
+    await env.DB.prepare("INSERT INTO users(id,email,pw_hash,salt,created,verified) VALUES(?,?,'!',?,?,1)").bind(u.id, email, rand(16), now()).run();
+  } else if (!u.verified) {
+    // Someone may have signed up with this email without owning it: the provider proves ownership, so wipe their password + sessions.
+    await env.DB.batch([
+      env.DB.prepare("UPDATE users SET verified=1, pw_hash='!', salt=? WHERE id=?").bind(rand(16), u.id),
+      env.DB.prepare('DELETE FROM sessions WHERE user_id=?').bind(u.id),
+    ]);
+  }
+  const t = rand(); // one-time handoff code (2 min) instead of putting a session token in the URL
+  await env.DB.prepare("INSERT INTO tokens(token_hash,user_id,kind,expires) VALUES(?,?,'oauth',?)").bind(await sha256(t), u.id, now() + 120).run();
+  return back(env, 'oauth=' + t);
+}
+async function oauthFinish(env, h, req) {
+  const id = await useToken(env, (await readBody(req)).token, 'oauth');
+  if (!id) return json(h, 400, { error: 'Sign-In Expired. Try Again.' });
+  return json(h, 200, { token: await newSession(env, id) });
+}
+
 const ROUTES = { '/signup': signup, '/login': login, '/logout': logout, '/me': me,
   '/password': changePassword, '/free-computers': freeComputers, '/forgot': forgot, '/reset': reset,
   '/verify': verify, '/resend-verify': resendVerify, '/redeem': redeem,
+  '/oauth/providers': oauthProviders, '/oauth/finish': oauthFinish,
   '/hub/start': hubStart, '/hub/approve': hubApprove, '/hub/poll': hubPoll,
   '/admin/2fa/start': admin2faStart, '/admin/2fa/confirm': admin2faConfirm, '/admin/list': adminList,
   '/admin/grant': adminGrant, '/admin/status': adminSetStatus };
-const GETS = new Set(['/me', '/admin/list']);
+const GETS = new Set(['/me', '/admin/list', '/oauth/providers']);
 
 export default {
   async fetch(req, env) {
@@ -490,6 +562,8 @@ export default {
       if (path === '/paddle-webhook' && req.method === 'POST') return await paddleWebhook(env, req);
       const lic = path.match(/^\/v1\/licenses\/(activate|validate|deactivate)$/);
       if (lic && req.method === 'POST') return await licenseApi(env, req, lic[1]);
+      const oa = path.match(/^\/oauth\/(\w+)\/(start|callback)$/);
+      if (oa && req.method === 'GET') return oauthOn(env, oa[1]) ? await oauth(env, req, oa[1], oa[2]) : back(env, 'oautherr=' + encodeURIComponent('That Sign-In Is Not Set Up Yet.'));
     } catch (e) { console.error(e); return new Response('error', { status: 500, headers: SECURE }); }
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const fn = ROUTES[path];
