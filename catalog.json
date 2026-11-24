@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.40",
+    "version": "1.41",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": ""
   },
@@ -15,6 +15,7 @@
   "products": [
     {
       "id": "youkai808",
+      "for": ["bass"],
       "demo": false,
       "name": "Youkai808",
       "registry": "Youkai808",
@@ -103,6 +104,7 @@
     },
     {
       "id": "melodyveil",
+      "for": ["melody", "beat"],
       "demo": false,
       "name": "Melody Veil",
       "registry": "Melody Veil",
@@ -149,6 +151,7 @@
     },
     {
       "id": "bandotape",
+      "for": ["beat", "fx"],
       "name": "Plugg Bando Tape",
       "registry": "Plugg Bando Tape",
       "includes": "VST3 · Windows",
@@ -186,6 +189,7 @@
     },
     {
       "id": "kirinverb",
+      "for": ["vocals", "melody", "fx"],
       "name": "Kirin Verb",
       "registry": "Kirin Verb",
       "includes": "VST3 · Windows",
@@ -220,6 +224,7 @@
     },
     {
       "id": "kodamaadlib",
+      "for": ["vocals"],
       "name": "Kodama Adlib",
       "registry": "Kodama Adlib",
       "includes": "VST3 · Windows",
@@ -255,6 +260,7 @@
     },
     {
       "id": "mononokewash",
+      "for": ["melody", "fx"],
       "name": "Mononoke Ambient",
       "registry": "Mononoke Wash",
       "includes": "VST3 · Windows",
@@ -290,6 +296,7 @@
     },
     {
       "id": "nuephase",
+      "for": ["vocals", "melody", "fx"],
       "name": "Nue Chorus",
       "registry": "Nue Phase",
       "includes": "VST3 · Windows",
@@ -325,6 +332,7 @@
     },
     {
       "id": "nurikabe",
+      "for": ["vocals", "fx"],
       "name": "Nurikabe Saturator",
       "registry": "Nurikabe",
       "includes": "VST3 · Windows",
@@ -360,6 +368,7 @@
     },
     {
       "id": "onimaster",
+      "for": ["master"],
       "name": "Youkai Mastering Suite",
       "registry": "Oni Master",
       "includes": "VST3 · Windows",
@@ -392,6 +401,7 @@
     },
     {
       "id": "sukima",
+      "for": ["beat"],
       "name": "Sukima Vocal Pocket",
       "registry": "Sukima",
       "includes": "VST3 · Windows",
@@ -426,6 +436,7 @@
     },
     {
       "id": "tanukijuice",
+      "for": ["vocals", "beat", "melody"],
       "name": "MagikaMusic",
       "registry": "MagikaMusic",
       "includes": "VST3 · Windows",
@@ -462,6 +473,7 @@
     },
     {
       "id": "tenguhats",
+      "for": ["drums"],
       "name": "Tengu Hats",
       "registry": "Tengu Hats",
       "includes": "VST3 · Windows",
@@ -497,6 +509,7 @@
     },
     {
       "id": "umibozuir",
+      "for": ["vocals", "melody", "drums", "fx"],
       "name": "Umibozu Room Verb",
       "registry": "Umibozu IR",
       "includes": "VST3 · Windows",
@@ -534,6 +547,7 @@
     },
     {
       "id": "yureistop",
+      "for": ["beat", "melody", "fx"],
       "name": "Yurei Tapestop",
       "registry": "Yurei Stop",
       "includes": "VST3 · Windows",
@@ -569,6 +583,7 @@
     },
     {
       "id": "satori",
+      "for": ["beat"],
       "name": "Youkai Mix Assistant",
       "registry": "Satori",
       "includes": "VST3 · Windows",
@@ -605,6 +620,7 @@
     },
     {
       "id": "koishi",
+      "for": ["beat"],
       "name": "Koishi Link",
       "registry": "Koishi",
       "includes": "VST3 · Windows",
@@ -621,6 +637,7 @@
     },
     {
       "id": "youkaivocal",
+      "for": ["vocals"],
       "name": "Youkai Vocal Chain",
       "registry": "Youkai Vocal",
       "includes": "VST3 · Windows",
@@ -637,6 +654,7 @@
     },
     {
       "id": "youkaibeat",
+      "for": ["beat", "master"],
       "name": "Youkai Beat Mix",
       "registry": "Youkai Beat",
       "includes": "VST3 · Windows",
@@ -653,6 +671,7 @@
     },
     {
       "id": "youkaidetune",
+      "for": ["beat", "melody"],
       "name": "Youkai Retune",
       "registry": "Youkai Detune",
       "includes": "VST3 · Windows",
@@ -685,6 +704,7 @@
     },
     {
       "id": "suzumesilk",
+      "for": ["vocals", "melody"],
       "name": "Suzume Resonance Tamer",
       "registry": "Suzume Silk",
       "includes": "VST3 · Windows",
@@ -701,6 +721,7 @@
     },
     {
       "id": "tsukumovibe",
+      "for": ["vocals"],
       "name": "Tsukumo Vibrato",
       "registry": "Tsukumo Vibe",
       "includes": "VST3 · Windows",
@@ -717,6 +738,7 @@
     },
     {
       "id": "hitodamagate",
+      "for": ["vocals"],
       "name": "Hitodama Gate",
       "registry": "Hitodama Gate",
       "includes": "VST3 · Windows",
@@ -750,6 +772,7 @@
     },
     {
       "id": "ittancut",
+      "for": ["vocals"],
       "name": "Ittan EQ",
       "registry": "Ittan Cut",
       "includes": "VST3 · Windows",
@@ -766,6 +789,7 @@
     },
     {
       "id": "orochideess",
+      "for": ["vocals"],
       "name": "Orochi De-Ess",
       "registry": "Orochi De-Ess",
       "includes": "VST3 · Windows",
@@ -782,6 +806,7 @@
     },
     {
       "id": "jorogumocomp",
+      "for": ["vocals"],
       "name": "Jorogumo VC-1 Comp",
       "registry": "Jorogumo Comp",
       "includes": "VST3 · Windows",
@@ -798,6 +823,7 @@
     },
     {
       "id": "hotarushine",
+      "for": ["vocals"],
       "name": "Hotaru Air",
       "registry": "Hotaru Shine",
       "includes": "VST3 · Windows",
@@ -814,6 +840,7 @@
     },
     {
       "id": "bunshindouble",
+      "for": ["vocals"],
       "name": "Bunshin Double",
       "registry": "Bunshin Double",
       "includes": "VST3 · Windows",
@@ -830,6 +857,7 @@
     },
     {
       "id": "yamabikoecho",
+      "for": ["vocals", "fx"],
       "name": "Yamabiko Echo",
       "registry": "Yamabiko Echo",
       "includes": "VST3 · Windows",
@@ -846,6 +874,7 @@
     },
     {
       "id": "raijuclip",
+      "for": ["vocals", "drums", "bass", "master"],
       "name": "Youkai Soft Clipper SC-1",
       "registry": "Raiju Clip",
       "includes": "VST3 · Windows",
@@ -862,6 +891,7 @@
     },
     {
       "id": "kitsunetune",
+      "for": ["vocals"],
       "name": "Kitsune Tune",
       "registry": "Kitsune Tune",
       "includes": "VST3 · Windows",
