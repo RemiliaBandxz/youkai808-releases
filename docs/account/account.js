@@ -30,6 +30,7 @@
     tsId = turnstile.render('#ts', { sitekey: TURNSTILE_SITEKEY, theme: 'dark' });
   }
   var hm = location.hash.match(/hub=([A-Z0-9]{4}-[A-Z0-9]{4})/), hubCode = hm && hm[1];
+  var om = location.hash.match(/oauth=([0-9a-f]{64})|oautherr=([^&]*)/), oauthTok = om && om[1], oauthErr = om && om[2] && decodeURIComponent(om[2]);
   var lm = location.hash.match(/(reset|verify)=([0-9a-f]{64})/), linkKind = lm && lm[1], linkToken = lm && lm[2];
   var mode = 'login';
   function setMode(m){
@@ -208,7 +209,15 @@
   if (top !== self) { top.location = self.location; return; } // no clickjacking in iframes
   if (!API) { show('soon'); return; }
   tsRender();
-  if (hubCode) history.replaceState(null,'',location.pathname);
+  if (hubCode || om) history.replaceState(null,'',location.pathname);
+  var PROV = {google:'Google', github:'GitHub', discord:'Discord', microsoft:'Microsoft'};
+  call('/oauth/providers').then(function(j){
+    var box=$('social-btns'); (j.providers||[]).forEach(function(p){
+      var a=document.createElement('a'); a.className='btn ghost'; a.href=API+'/oauth/'+p+'/start'; a.textContent='Continue With '+(PROV[p]||p); box.appendChild(a); });
+    $('social').hidden = !box.children.length;
+  });
+  if (oauthErr) { show('auth'); say('m-auth', oauthErr); return; }
+  if (oauthTok) { call('/oauth/finish',{token:oauthTok}).then(function(j){ if (j.token){ store.set(j.token); loadMe(); } else { show('auth'); say('m-auth', j.error||'Something Went Wrong.'); } }); return; }
   if (linkToken) {
     history.replaceState(null,'',location.pathname); // keep the one-time token out of history
     if (linkKind==='verify') { $('reset-title').textContent='Confirm Your Email'; $('reset-sub').textContent='Set Your Password To Finish. This Logs Out Any Other Device On This Account.'; }

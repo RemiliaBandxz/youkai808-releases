@@ -91,6 +91,10 @@
   th{font:700 11px "Space Mono",monospace;text-transform:uppercase;color:var(--muted)}
   td code{font:600 11px ui-monospace,Consolas,monospace}
   tr.dis td{opacity:.5}
+  .or{display:flex;align-items:center;gap:10px;margin:18px 0 12px;color:var(--muted);font:700 11px "Space Mono",monospace;text-transform:uppercase}
+  .or::before,.or::after{content:"";flex:1;border-top:1px solid var(--line)}
+  .social{display:grid;gap:8px}
+  .social .btn{width:100%}
   [hidden]{display:none!important}
 </style>
 </head>
@@ -130,6 +134,7 @@
         <button class="btn primary" id="b-auth">Log In</button>
       </form>
       <button type="button" class="link" id="b-forgot">Forgot Your Password?</button>
+      <div id="social" hidden><div class="or"><span>Or</span></div><div class="social" id="social-btns"></div></div>
       <p class="sub" id="signup-note" style="margin:16px 0 0;font-size:13px" hidden>Use The Same Email You Buy With, So Your Plugins Show Up Here Automatically.</p>
     </div>
   </section>
