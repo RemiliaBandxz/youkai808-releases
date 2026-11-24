@@ -50,9 +50,10 @@
     if (!email || !pw) return say('m-auth','Fill In Both Boxes.');
     if (mode==='signup' && pw.length < 10) return say('m-auth','Password Needs At Least 10 Characters.');
     busy(this,true); var f=this;
-    call('/'+mode, {email:email, password:pw, turnstile:tsToken()}).then(function(j){
+    call('/'+mode, {email:email, password:pw, code:$('a-code').value.trim(), turnstile:tsToken()}).then(function(j){
       busy(f,false); tsReset();
-      if (j.token){ store.set(j.token); $('a-pw').value=''; loadMe(); } else say('m-auth', j.error || 'Something Went Wrong.');
+      if (j.mfa) { $('code-box').hidden = false; $('a-code').value=''; $('a-code').focus(); }
+      if (j.token){ store.set(j.token); $('a-pw').value=''; $('a-code').value=''; $('code-box').hidden=true; loadMe(); } else say('m-auth', j.error || 'Something Went Wrong.');
     });
   };
   $('b-forgot').onclick = function(){
@@ -122,9 +123,70 @@
         c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
+      $('admin').hidden = !j.owner;
+      if (j.owner) ownerPanel(j);
       show('me');
     });
   }
+
+  // ---- Owner panel (the server refuses all of this unless the account is the owner AND logged in with 2FA) ----
+  var PNAME = {youkai808:'Youkai808', melodyveil:'Melody Veil'};
+  function ownerPanel(me){
+    $('adm-2fa').hidden = me.mfa; $('adm-main').hidden = !me.mfa;
+    if (!me.mfa) {
+      if (me.has2fa) { $('adm-2fa').hidden = true; $('adm-main').hidden = false; $('adm-stats').textContent = 'Log Out And Back In With Your 2FA Code To Use This.'; return; }
+      call('/admin/2fa/start',{}).then(function(j){ $('adm-secret').textContent = j.secret || j.error || 'Something Went Wrong.'; });
+      return;
+    }
+    adminList('');
+  }
+  function td(tr, text){ var c=document.createElement('td'); c.textContent=text; tr.appendChild(c); return c; }
+  function adminList(q){
+    call('/admin/list?q=' + encodeURIComponent(q)).then(function(j){
+      if (!j.purchases) { $('adm-stats').textContent = j.error || 'Something Went Wrong.'; return; }
+      var s=j.stats, st=$('adm-stats'); st.textContent='';
+      [['Accounts',s.users],['Sales',s.sales],['Free Keys',s.comps],['Turned Off',s.disabled]].forEach(function(x){
+        var d=document.createElement('span'), b=document.createElement('b'); b.textContent=x[1]; d.appendChild(b); d.appendChild(document.createTextNode(' '+x[0])); st.appendChild(d); });
+      var body=$('adm-rows'); body.textContent='';
+      j.purchases.forEach(function(p){
+        var tr=document.createElement('tr'); if (p.status!=='active') tr.className='dis';
+        td(tr,p.email); td(tr,(PNAME[p.product]||p.product)+(p.txn_id.indexOf('comp_')===0?' (Free)':''));
+        var kc=td(tr,''), code=document.createElement('code'); code.textContent=p.license_key; kc.appendChild(code);
+        td(tr,p.used+'/3'); td(tr,new Date(p.created*1000).toLocaleDateString());
+        var bt=document.createElement('button'); bt.type='button'; bt.className='link'; bt.style.margin='0';
+        bt.textContent = p.status==='active' ? 'Turn Off' : 'Turn On';
+        bt.onclick=function(){
+          var on = p.status!=='active';
+          if (!on && !confirm('Turn Off ' + p.license_key + '? It Stops Working On Every Computer.')) return;
+          call('/admin/status',{license_key:p.license_key, active:on}).then(function(r){ if (r.ok) adminList($('q').value.trim()); else alert(r.error||'Something Went Wrong.'); });
+        };
+        td(tr,'').appendChild(bt); body.appendChild(tr);
+      });
+    });
+  }
+  $('f-2fa').onsubmit = function(e){
+    e.preventDefault(); var f=this; busy(f,true);
+    call('/admin/2fa/confirm',{code:$('adm-code').value.trim()}).then(function(j){
+      busy(f,false);
+      if (j.token){ store.set(j.token); loadMe(); } else say('m-2fa', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('f-grant').onsubmit = function(e){
+    e.preventDefault(); var f=this; busy(f,true);
+    call('/admin/grant',{email:$('g-email').value.trim(), product:$('g-prod').value}).then(function(j){
+      busy(f,false);
+      if (j.license_key){ say('m-grant','Key Made: ' + j.license_key + ($('g-email').value.trim() ? ' (Shows Up In Their Account Once They Confirm Their Email)' : ' (Send It To Them. Works In The Hub Or Redeem On Here)'), true); $('g-email').value=''; adminList(''); }
+      else say('m-grant', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('f-redeem').onsubmit = function(e){
+    e.preventDefault(); var f=this; busy(f,true);
+    call('/redeem',{code:$('rd-code').value}).then(function(j){
+      busy(f,false);
+      if (j.ok){ $('rd-code').value=''; loadMe(); say('m-redeem','Added To Your Account.', true); } else say('m-redeem', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('f-find').onsubmit = function(e){ e.preventDefault(); adminList($('q').value.trim()); };
 
   $('b-resend').onclick = function(){
     var b=this; b.disabled=true;

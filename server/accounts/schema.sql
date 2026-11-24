@@ -4,12 +4,17 @@ CREATE TABLE IF NOT EXISTS users (
   pw_hash TEXT NOT NULL,
   salt TEXT NOT NULL,
   created INTEGER NOT NULL,
-  verified INTEGER NOT NULL DEFAULT 0     -- email confirmed; only then do guest purchases under that email show up
+  verified INTEGER NOT NULL DEFAULT 0,    -- email confirmed; only then do guest purchases under that email show up
+  role TEXT NOT NULL DEFAULT 'user',      -- 'owner' = admin panel. Only settable in the D1 console, never via the API.
+  totp_secret TEXT,                       -- AES-GCM encrypted base32 secret (2FA), NULL = not set up
+  totp_pending TEXT,                      -- encrypted secret during setup, before the first code confirms it
+  totp_last INTEGER NOT NULL DEFAULT 0    -- last accepted 30s step, so a code can't be replayed
 );
 CREATE TABLE IF NOT EXISTS sessions (
   token_hash TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
-  expires INTEGER NOT NULL
+  expires INTEGER NOT NULL,
+  mfa INTEGER NOT NULL DEFAULT 0          -- 1 = this login passed 2FA
 );
 CREATE TABLE IF NOT EXISTS purchases (
   txn_id TEXT NOT NULL,
@@ -41,3 +46,14 @@ CREATE TABLE IF NOT EXISTS tokens (       -- one-time email links
   kind TEXT NOT NULL,                       -- reset | verify
   expires INTEGER NOT NULL
 );
+CREATE TABLE IF NOT EXISTS admin_log (
+  at INTEGER NOT NULL,
+  user_id TEXT NOT NULL,
+  action TEXT NOT NULL,
+  detail TEXT NOT NULL
+);
+-- Upgrading a database made before the owner login:
+-- ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'; ALTER TABLE users ADD COLUMN totp_secret TEXT;
+-- ALTER TABLE users ADD COLUMN totp_pending TEXT; ALTER TABLE users ADD COLUMN totp_last INTEGER NOT NULL DEFAULT 0;
+-- ALTER TABLE sessions ADD COLUMN mfa INTEGER NOT NULL DEFAULT 0;
+-- Make the owner (after she signs up):  UPDATE users SET role='owner' WHERE email='<her login email>';

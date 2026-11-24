@@ -107,16 +107,54 @@ async function hit(env, key, max = MAX_FAILS) {
 const clearHits = (env, key) => env.DB.prepare('DELETE FROM attempts WHERE key=?').bind(key).run();
 const TOO_MANY = 'Too Many Tries. Wait 15 Minutes.';
 
-async function newSession(env, userId) {
+async function newSession(env, userId, mfa = 0) {
   const token = rand();
-  await env.DB.prepare('INSERT INTO sessions(token_hash,user_id,expires) VALUES(?,?,?)')
-    .bind(await sha256(token), userId, now() + SESSION_DAYS * 86400).run();
+  const days = mfa ? 1 : SESSION_DAYS; // owner sessions that passed 2FA expire after a day
+  await env.DB.prepare('INSERT INTO sessions(token_hash,user_id,expires,mfa) VALUES(?,?,?,?)')
+    .bind(await sha256(token), userId, now() + days * 86400, mfa).run();
   return token;
+}
+
+// ---- 2FA (TOTP, RFC 6238: 6 digits, 30s, SHA-1, works with any authenticator app) ----
+const B32 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+function b32decode(str) {
+  let bits = '', out = [];
+  for (const c of str.replace(/=+$/, '')) bits += B32.indexOf(c).toString(2).padStart(5, '0');
+  for (let i = 0; i + 8 <= bits.length; i += 8) out.push(parseInt(bits.slice(i, i + 8), 2));
+  return new Uint8Array(out);
+}
+const newTotpSecret = () => [...crypto.getRandomValues(new Uint8Array(32))].map((b) => B32[b & 31]).join('');
+async function totpAt(secret, step) {
+  const key = await crypto.subtle.importKey('raw', b32decode(secret), { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+  const msg = new Uint8Array(8); new DataView(msg.buffer).setUint32(4, step);
+  const hm = new Uint8Array(await crypto.subtle.sign('HMAC', key, msg)), o = hm[19] & 15;
+  return String((((hm[o] & 127) << 24) | (hm[o + 1] << 16) | (hm[o + 2] << 8) | hm[o + 3]) % 1e6).padStart(6, '0');
+}
+// Returns the matching step (±1 step for clock drift) or 0. Steps <= last are refused, so a code works once.
+async function checkTotp(secret, code, last) {
+  if (!/^\d{6}$/.test(String(code || ''))) return 0;
+  const cur = Math.floor(Date.now() / 30000);
+  for (const s of [cur - 1, cur, cur + 1]) if (s > last && safeEq(await totpAt(secret, s), String(code))) return s;
+  return 0;
+}
+// 2FA secrets are encrypted at rest with a key derived from PW_PEPPER, so a database dump alone can't mint codes.
+async function sealKey(env) {
+  const raw = await crypto.subtle.digest('SHA-256', enc.encode('totp|' + env.PW_PEPPER));
+  return crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['encrypt', 'decrypt']);
+}
+async function seal(env, text) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await sealKey(env), enc.encode(text));
+  return hex(iv) + ':' + hex(ct);
+}
+async function unseal(env, blob) {
+  const [iv, ct] = blob.split(':').map((x) => new Uint8Array(x.match(/../g).map((b) => parseInt(b, 16))));
+  return new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, await sealKey(env), ct));
 }
 async function currentUser(env, req) {
   const t = (req.headers.get('Authorization') || '').replace(/^Bearer /, '');
   if (!/^[0-9a-f]{64}$/.test(t)) return null;
-  return env.DB.prepare('SELECT u.id, u.email, u.created, u.verified FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?')
+  return env.DB.prepare('SELECT u.id, u.email, u.created, u.verified, u.role, (u.totp_secret IS NOT NULL) AS has2fa, s.mfa FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?')
     .bind(await sha256(t), now()).first();
 }
 
@@ -144,11 +182,19 @@ async function login(env, h, req) {
   if (!(await human(env, req, b))) return json(h, 403, { error: BOT }); // before counting, so bots can't lock real users out
   const ip = 'ip:' + (req.headers.get('CF-Connecting-IP') || '');
   if ((await hit(env, 'em:' + email)) | (await hit(env, ip, 30))) return json(h, 429, { error: TOO_MANY });
-  const u = await env.DB.prepare('SELECT id, pw_hash, salt FROM users WHERE email=?').bind(email).first();
+  const u = await env.DB.prepare('SELECT id, pw_hash, salt, totp_secret, totp_last FROM users WHERE email=?').bind(email).first();
   const hash = await hashPw(env, pw, u ? u.salt : 'no-user-' + email); // same work either way, no user enumeration by timing
   if (!u || !safeEq(hash, u.pw_hash)) return json(h, 401, { error: 'Wrong Email Or Password.' });
+  let mfa = 0;
+  if (u.totp_secret) { // 2FA on: the password alone never gets a session. Code guesses share the 8-per-15-min email limit.
+    if (!b.code) return json(h, 401, { mfa: true, error: 'Enter The 6-Digit Code From Your Authenticator App.' });
+    const step = await checkTotp(await unseal(env, u.totp_secret), b.code, u.totp_last);
+    if (!step) return json(h, 401, { mfa: true, error: 'Wrong Or Expired Code.' });
+    await env.DB.prepare('UPDATE users SET totp_last=? WHERE id=?').bind(step, u.id).run();
+    mfa = 1;
+  }
   await clearHits(env, 'em:' + email);
-  return json(h, 200, { token: await newSession(env, u.id) });
+  return json(h, 200, { token: await newSession(env, u.id, mfa) });
 }
 
 async function me(env, h, req) {
@@ -158,7 +204,8 @@ async function me(env, h, req) {
       (SELECT COUNT(*) FROM instances i WHERE i.license_key=p.license_key) AS used
     FROM purchases p WHERE ${OWNS} ORDER BY p.created DESC`).bind(u.id, u.email).all();
   results.forEach((r) => { r.limit = ACTIVATION_LIMIT; });
-  return json(h, 200, { id: u.id, email: u.email, created: u.created, verified: !!u.verified, mail: !!env.RESEND_API_KEY, purchases: results });
+  return json(h, 200, { id: u.id, email: u.email, created: u.created, verified: !!u.verified, mail: !!env.RESEND_API_KEY,
+    owner: u.role === 'owner', has2fa: !!u.has2fa, mfa: !!u.mfa, purchases: results });
 }
 
 async function logout(env, h, req) {
@@ -173,9 +220,9 @@ async function changePassword(env, h, req) {
   const b = await readBody(req), row = await env.DB.prepare('SELECT pw_hash, salt FROM users WHERE id=?').bind(u.id).first();
   if (await hit(env, 'pw:' + u.id)) return json(h, 429, { error: TOO_MANY });
   if (!safeEq(await hashPw(env, String(b.current || ''), row.salt), row.pw_hash)) return json(h, 401, { error: 'Current Password Is Wrong.' });
-  return setPassword(env, h, u.id, String(b.password || ''));
+  return setPassword(env, h, u.id, String(b.password || ''), u.mfa);
 }
-async function setPassword(env, h, userId, pw) {
+async function setPassword(env, h, userId, pw, mfa = 0) {
   const weak = await weakPassword(pw);
   if (weak) return json(h, 400, { error: weak });
   const salt = rand(16);
@@ -183,7 +230,7 @@ async function setPassword(env, h, userId, pw) {
     env.DB.prepare('UPDATE users SET pw_hash=?, salt=? WHERE id=?').bind(await hashPw(env, pw, salt), salt, userId),
     env.DB.prepare('DELETE FROM sessions WHERE user_id=?').bind(userId), // log out everywhere
   ]);
-  return json(h, 200, { token: await newSession(env, userId) });
+  return json(h, 200, { token: await newSession(env, userId, mfa) });
 }
 
 // Buyer frees every computer on one of their keys (lost / reset PC). Once per RESET_DAYS so a shared key can't rotate freely.
@@ -311,9 +358,101 @@ async function paddleWebhook(env, req) {
   return new Response('ok');
 }
 
+// ---- Owner panel. Every route checks role='owner' in the DB AND a session that passed 2FA. ----
+async function owner(env, req, needMfa = true) {
+  const u = await currentUser(env, req);
+  if (!u || u.role !== 'owner') return null; // normal users get a plain 404, the panel doesn't exist for them
+  if (needMfa && !u.mfa) return 'mfa';
+  return u;
+}
+const notFound = (h) => json(h, 404, { error: 'Not Found' });
+const logAdmin = (env, u, action, detail) =>
+  env.DB.prepare('INSERT INTO admin_log(at,user_id,action,detail) VALUES(?,?,?,?)').bind(now(), u.id, action, JSON.stringify(detail)).run();
+
+async function admin2faStart(env, h, req) {
+  const u = await owner(env, req, false);
+  if (!u) return notFound(h);
+  if (u.has2fa) return json(h, 409, { error: '2FA Is Already On.' });
+  const secret = newTotpSecret();
+  await env.DB.prepare('UPDATE users SET totp_pending=? WHERE id=?').bind(await seal(env, secret), u.id).run();
+  const uri = `otpauth://totp/Koumakan%20Digital:Owner?secret=${secret}&issuer=Koumakan%20Digital&digits=6&period=30`;
+  return json(h, 200, { secret, uri });
+}
+async function admin2faConfirm(env, h, req) {
+  const u = await owner(env, req, false);
+  if (!u) return notFound(h);
+  if (await hit(env, 'mfa:' + u.id, 5)) return json(h, 429, { error: TOO_MANY });
+  const row = await env.DB.prepare('SELECT totp_pending FROM users WHERE id=?').bind(u.id).first();
+  if (!row.totp_pending) return json(h, 400, { error: 'Start 2FA Setup First.' });
+  const step = await checkTotp(await unseal(env, row.totp_pending), (await readBody(req)).code, 0);
+  if (!step) return json(h, 400, { error: 'Wrong Code. Check Your Phone Clock And Try Again.' });
+  await env.DB.batch([
+    env.DB.prepare('UPDATE users SET totp_secret=totp_pending, totp_pending=NULL, totp_last=? WHERE id=?').bind(step, u.id),
+    env.DB.prepare('DELETE FROM sessions WHERE user_id=?').bind(u.id), // every old password-only login dies
+  ]);
+  await logAdmin(env, u, '2fa_on', {});
+  return json(h, 200, { token: await newSession(env, u.id, 1) });
+}
+async function adminList(env, h, req) {
+  const u = await owner(env, req);
+  if (u === 'mfa') return json(h, 403, { error: 'Turn On 2FA To Use The Owner Panel.' });
+  if (!u) return notFound(h);
+  const q = normEmail(new URL(req.url).searchParams.get('q')).slice(0, 200);
+  const { results } = await env.DB.prepare(`SELECT p.email, p.product, p.txn_id, p.license_key, p.status, p.created,
+      (SELECT COUNT(*) FROM instances i WHERE i.license_key=p.license_key) AS used
+    FROM purchases p WHERE ?1='' OR p.email LIKE '%'||?1||'%' OR p.license_key=UPPER(?1) ORDER BY p.created DESC LIMIT 200`).bind(q).all();
+  const stats = await env.DB.prepare(`SELECT (SELECT COUNT(*) FROM users) AS users,
+      (SELECT COUNT(*) FROM purchases WHERE txn_id NOT LIKE 'comp_%') AS sales,
+      (SELECT COUNT(*) FROM purchases WHERE txn_id LIKE 'comp_%') AS comps,
+      (SELECT COUNT(*) FROM purchases WHERE status!='active') AS disabled`).first();
+  return json(h, 200, { purchases: results, stats });
+}
+// Free key ("comp"). With an email it shows up in that person's account; blank email = an unclaimed code
+// she hands out (Cash App sales) that works in the Hub right away or gets attached to an account via /redeem.
+// Free key ("comp") for any email; shows up in that person's account once their email is verified.
+async function adminGrant(env, h, req) {
+  const u = await owner(env, req);
+  if (u === 'mfa') return json(h, 403, { error: 'Turn On 2FA To Use The Owner Panel.' });
+  if (!u) return notFound(h);
+  const b = await readBody(req), email = normEmail(b.email), product = String(b.product || '');
+  if (email && !validEmail(email)) return json(h, 400, { error: 'Enter A Real Email Address, Or Leave It Blank For A Code.' });
+  if (!PRODUCT_IDS[product]) return json(h, 400, { error: 'Pick A Plugin.' });
+  const key = newKey(), txn = 'comp_' + rand(8);
+  await env.DB.prepare('INSERT INTO purchases(txn_id,product,email,user_id,created,license_key) VALUES(?,?,?,NULL,?,?)')
+    .bind(txn, product, email, now(), key).run();
+  await logAdmin(env, u, 'grant', { email, product, txn });
+  return json(h, 200, { license_key: key });
+}
+async function adminSetStatus(env, h, req) {
+  const u = await owner(env, req);
+  if (u === 'mfa') return json(h, 403, { error: 'Turn On 2FA To Use The Owner Panel.' });
+  if (!u) return notFound(h);
+  const b = await readBody(req), key = String(b.license_key || '').toUpperCase(), status = b.active ? 'active' : 'disabled';
+  const r = await env.DB.prepare('UPDATE purchases SET status=? WHERE license_key=?').bind(status, key).run();
+  if (!r.meta.changes) return json(h, 404, { error: 'No Such Key.' });
+  if (status === 'disabled') await env.DB.prepare('DELETE FROM instances WHERE license_key=?').bind(key).run();
+  await logAdmin(env, u, status === 'active' ? 'restore' : 'revoke', { key });
+  return json(h, 200, { ok: true });
+}
+
+// Buyer attaches an unclaimed code (made in the owner panel) to their account. Each code can be claimed once.
+async function redeem(env, h, req) {
+  const u = await currentUser(env, req);
+  if (!u) return json(h, 401, { error: 'Not Logged In.' });
+  if (await hit(env, 'rd:' + u.id, 10)) return json(h, 429, { error: TOO_MANY });
+  const key = String((await readBody(req)).code || '').trim().toUpperCase();
+  const r = await env.DB.prepare("UPDATE purchases SET user_id=?, email=? WHERE license_key=? AND user_id IS NULL AND email='' AND status='active'")
+    .bind(u.id, u.email, key).run();
+  if (!r.meta.changes) return json(h, 400, { error: 'That Code Is Wrong Or Already Used.' });
+  return json(h, 200, { ok: true });
+}
+
 const ROUTES = { '/signup': signup, '/login': login, '/logout': logout, '/me': me,
   '/password': changePassword, '/free-computers': freeComputers, '/forgot': forgot, '/reset': reset,
-  '/verify': verify, '/resend-verify': resendVerify };
+  '/verify': verify, '/resend-verify': resendVerify, '/redeem': redeem,
+  '/admin/2fa/start': admin2faStart, '/admin/2fa/confirm': admin2faConfirm, '/admin/list': adminList,
+  '/admin/grant': adminGrant, '/admin/status': adminSetStatus };
+const GETS = new Set(['/me', '/admin/list']);
 
 export default {
   async fetch(req, env) {
@@ -326,7 +465,7 @@ export default {
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const fn = ROUTES[path];
     if (!fn) return json(h, 404, { error: 'Not Found' });
-    if ((path === '/me') !== (req.method === 'GET')) return json(h, 405, { error: 'Wrong Method' });
+    if (GETS.has(path) !== (req.method === 'GET')) return json(h, 405, { error: 'Wrong Method' });
     try { return await fn(env, h, req); } catch (e) { console.error(e); return json(h, 500, { error: 'Something Broke On Our End. Try Again.' }); }
   },
   async scheduled(_, env) { // daily cleanup of expired rows
