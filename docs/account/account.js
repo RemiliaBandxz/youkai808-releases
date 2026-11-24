@@ -165,7 +165,7 @@
         b.appendChild(h); b.appendChild(d); c.appendChild(img); c.appendChild(b); grid.appendChild(c);
       });
       grid.hidden = !grid.children.length; $('none').hidden = !!grid.children.length;
-      $('hub-link').hidden = !hubCode; if (hubCode) $('hub-code').textContent = hubCode;
+      $('hub-link').hidden = !hubCode; if (hubCode) { $('hub-code').textContent = hubCode; $('b-hub').hidden=$('b-hub-no').hidden=false; say('m-hub',''); $('hub-link').scrollIntoView({block:'center'}); }
       $('admin').hidden = !j.owner;
       if (j.owner) ownerPanel(j);
       show('me');
@@ -253,6 +253,10 @@
   if (!API) { show('soon'); return; }
   tsRender();
   if (hubCode || om) history.replaceState(null,'',location.pathname);
+  addEventListener('hashchange', function(){ // Hub opened this already-open, already-signed-in tab with a new code
+    var m = location.hash.match(/hub=([A-Z0-9]{4}-[A-Z0-9]{4})/); if (!m) return;
+    hubCode = m[1]; history.replaceState(null,'',location.pathname); loadMe();
+  });
   var PROV = {google:'Google', github:'GitHub', discord:'Discord', microsoft:'Microsoft'};
   call('/oauth/providers').then(function(j){
     var box=$('social-btns'); (j.providers||[]).forEach(function(p){
