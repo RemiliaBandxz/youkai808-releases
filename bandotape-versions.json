@@ -1,0 +1,12 @@
+{
+  "product": "Plugg Bando Tape",
+  "publisher": "YoukaiDigital",
+  "latest": "1.3.9",
+  "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
+  "versions": [
+    {
+      "version": "1.3.9",
+      "windows": "releases/PluggBandoTape-Setup.exe"
+    }
+  ]
+}
