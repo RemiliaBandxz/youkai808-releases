@@ -1006,7 +1006,8 @@
       "store_product_ids": [
         808003
       ],
-      "buy_url": "https://koumakandigital.xyz/#autosnip"
+      "buy_url": "https://koumakandigital.xyz/#autosnip",
+      "icon": "hub-art/autosnip-icon.png"
     }
   ]
 }
