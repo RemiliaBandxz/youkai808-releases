@@ -375,6 +375,22 @@
       "buy_url": "",
       "store_product_ids": [],
       "clips": []
+    },
+    {
+      "id": "youkaibeat",
+      "name": "Youkai Beat",
+      "registry": "Youkai Beat",
+      "includes": "VST3 \u00b7 Windows",
+      "tagline": "The Clean Beat Mixer \u2014 A Finished Beat With Room For Your Vocal.",
+      "about": "A Clean, Normal Beat Mix In One Plugin: Even Tone, A Steady 808 With A Punchy Kick, Glue, Mono Bass, A Pocket For Your Vocal And Loudness Without Crushing It.",
+      "wip": true,
+      "beta": true,
+      "image": "hub-art/youkaibeat.png",
+      "versions": "youkaibeat-versions.json",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "clips": []
     }
   ],
   "programs": [
