@@ -1,11 +1,11 @@
 {
   "product": "Kitsune Tune",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.4",
+  "latest": "0.9.5",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.4",
+      "version": "0.9.5",
       "windows": "releases/KitsuneTune-Setup.exe"
     }
   ]
