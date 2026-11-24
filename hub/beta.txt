@@ -1,4 +1,5 @@
 # Live Youkai Digital BETA tester key IDs. Delete a line to turn that code off.
+3BJTK4
 3MPU2F
 6NE8AA
 8ZE5VN
