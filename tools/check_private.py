@@ -20,7 +20,7 @@ def tokens(text):
 PRIVATE = {  # hash -> plugin number in PRIVATE-PLUGINS.md (add with --hash; skip plain words like "crisp")
     "520f7ff763abcde4303b": 1, "f1612e261af9ae3d9db5": 1,  # 1 Funayurei Ride
     "1f84757f677403988376": 2, "1eaf5a0c8d66470ca852": 2,  # 2 Kamaitachi Crisp
-    "32c7ada94b157d1ab6c6": 3, "eff697877c231efafc87": 3, "8afc840e55be3e56667c": 3,  # 3 Bandxzz (ex Rokurokubi Tune)
+    "32c7ada94b157d1ab6c6": 3, "eff697877c231efafc87": 3, "8afc840e55be3e56667c": 3, "01a10fbaa7a4a66e1865": 3,  # 3 Bandxzz Bend Tune (ex Rokurokubi Tune)
 }
 BINARY = (".exe", ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".mp3", ".ogg", ".wav", ".mp4", ".zip", ".dmg", ".pkg", ".woff", ".woff2", ".ttf")
 
