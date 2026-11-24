@@ -208,6 +208,14 @@
    "product_id": "pro_01m86v4g2jys48kf7317z2b1fq",
    "price_id": "pri_01m86v4g7r0fmr5q2qj8bnavgh",
    "buyable": false
+  },
+  {
+   "name": "AutoSnip",
+   "slug": "autosnip",
+   "usd": 20,
+   "product_id": "pro_01m87y5mjnp6cz6bjer69xdtzd",
+   "price_id": "pri_01m87y5nt3rs2kk76gp1qd6mgk",
+   "buyable": true
   }
  ]
 }
