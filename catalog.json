@@ -266,10 +266,10 @@
     },
     {
       "id": "tanukijuice",
-      "name": "Tanuki Juice",
-      "registry": "Tanuki Juice",
+      "name": "MagikaMusic",
+      "registry": "MagikaMusic",
       "includes": "VST3 \u00b7 Windows",
-      "tagline": "One JUICE Knob That Makes Any Sound Better, Not Just Louder.",
+      "tagline": "Crank One Knob And It Just Sounds Good. Like Magic.",
       "about": "One Big JUICE Knob That Makes A Sound Better, Not Just Louder. It Squeezes, Warms And Adds Air, Then Turns Itself Back Down So You Hear The Difference Honestly.",
       "wip": true,
       "beta": true,

@@ -1,11 +1,11 @@
 {
-  "product": "Tanuki Juice",
+  "product": "MagikaMusic",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.4",
+  "latest": "1.0.0",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.4",
+      "version": "1.0.0",
       "windows": "releases/TanukiJuice-Setup.exe"
     }
   ]
