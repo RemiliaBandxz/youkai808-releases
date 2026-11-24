@@ -1,8 +1,8 @@
 'use strict';
 (function(){
   // Account server URL. Empty = accounts not deployed yet (page shows "Almost Here").
-  var API = '';
-  var TURNSTILE_SITEKEY = ''; // Cloudflare Turnstile site key (public). Empty = no bot check widget.
+  var API = 'https://koumakan-accounts.sannyo-arena.workers.dev';
+  var TURNSTILE_SITEKEY = '0x4AAAAAAGQJWtcHRR5B_Nx7'; // Cloudflare Turnstile site key (public). Empty = no bot check widget.
   var PRODUCTS = {
     youkai808:  { name: 'Youkai808',   img: '../img/p/youkai808.webp' },
     melodyveil: { name: 'Melody Veil', img: '../img/p/melodyveil.webp' }

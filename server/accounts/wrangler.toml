@@ -5,7 +5,7 @@ compatibility_date = "2026-11-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "koumakan-accounts"
-database_id = "FILL_ME_AFTER_wrangler_d1_create"
+database_id = "de389d1c-e8cf-40db-a2a3-5810311da660"
 
 [vars]
 SITE_ORIGIN = "https://koumakandigital.xyz"
