@@ -517,7 +517,9 @@ async function oauth(env, req, p, step) {
   }
   const fail = (msg) => back(env, 'oautherr=' + encodeURIComponent(msg));
   const cookie = ((req.headers.get('Cookie') || '').match(/(?:^|;\s*)kd_oauth=([^;]+)/) || [])[1] || '';
-  if (!url.searchParams.get('code') || !safeEq(cookie, p + '.' + (url.searchParams.get('state') || ''))) return fail('Sign-In Expired. Try Again.');
+  if (url.searchParams.get('error')) return fail('Sign-In Was Cancelled Or Blocked (' + url.searchParams.get('error').slice(0, 40) + ').');
+  if (!url.searchParams.get('code')) return fail('Sign-In Expired. Try Again.');
+  if (!safeEq(cookie, p + '.' + (url.searchParams.get('state') || ''))) return fail(cookie ? 'Sign-In Expired. Try Again.' : 'Your Browser Blocked The Sign-In Cookie. Try Again.');
   if (await hit(env, 'oa:' + (req.headers.get('CF-Connecting-IP') || ''), 20)) return fail(TOO_MANY);
   const tr = await fetch(OAUTH[p].token, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ client_id: env[P + '_ID'], client_secret: env[P + '_SECRET'], code: url.searchParams.get('code'), redirect_uri: redirect, grant_type: 'authorization_code' }) });
