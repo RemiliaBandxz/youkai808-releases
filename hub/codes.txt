@@ -1,5 +1,6 @@
 # Live Youkai Digital code IDs. Delete a line to turn that code off.
 3QR3D2
+4Z78G7
 7YKHJ8
 92F2X7
 L7BSMU
