@@ -971,25 +971,6 @@
       "clips": []
     },
     {
-      "id": "kitsunetune",
-      "for": [
-        "vocals"
-      ],
-      "name": "Kitsune Tune",
-      "registry": "Kitsune Tune",
-      "includes": "VST3 · Windows",
-      "tagline": "Autotune That Snaps The Vocal To Key.",
-      "about": "Autotune That Snaps The Vocal To The Right Notes. It Can Take Its Key Automatically From The Mix Assistant So The Whole Mix Stays In Tune.",
-      "wip": true,
-      "beta": true,
-      "image": "hub-art/kitsunetune.png",
-      "versions": "kitsunetune-versions.json",
-      "price": "",
-      "buy_url": "",
-      "store_product_ids": [],
-      "clips": []
-    },
-    {
       "id": "rvcfaker",
       "name": "RVC Faker",
       "registry": "RVC Faker",

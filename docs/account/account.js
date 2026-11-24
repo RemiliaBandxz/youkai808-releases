@@ -33,7 +33,6 @@
     bunshindouble: { name: "Bunshin Double", img: '../img/p/bunshindouble.webp', dl: 'releases/BunshinDouble-Setup.exe', beta: 1 },
     yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', dl: 'releases/YamabikoEcho-Setup.exe', beta: 1 },
     raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', dl: 'releases/RaijuClip-Setup.exe', beta: 1 },
-    kitsunetune: { name: "Kitsune Tune", img: '../img/p/kitsunetune.webp', dl: 'releases/KitsuneTune-Setup.exe', beta: 1 },
     all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' }, // one code unlocks everything
     beta:       { name: 'Beta Tester', img: '../img/koumakan-logo.webp' }
   };
