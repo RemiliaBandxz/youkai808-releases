@@ -407,13 +407,15 @@ async function adminList(env, h, req) {
       (SELECT COUNT(*) FROM purchases WHERE status!='active') AS disabled`).first();
   return json(h, 200, { purchases: results, stats });
 }
+// Free key ("comp"). With an email it shows up in that person's account; blank email = an unclaimed code
+// she hands out (Cash App sales) that works in the Hub right away or gets attached to an account via /redeem.
 // Free key ("comp") for any email; shows up in that person's account once their email is verified.
 async function adminGrant(env, h, req) {
   const u = await owner(env, req);
   if (u === 'mfa') return json(h, 403, { error: 'Turn On 2FA To Use The Owner Panel.' });
   if (!u) return notFound(h);
   const b = await readBody(req), email = normEmail(b.email), product = String(b.product || '');
-  if (!validEmail(email)) return json(h, 400, { error: 'Enter A Real Email Address.' });
+  if (email && !validEmail(email)) return json(h, 400, { error: 'Enter A Real Email Address, Or Leave It Blank For A Code.' });
   if (!PRODUCT_IDS[product]) return json(h, 400, { error: 'Pick A Plugin.' });
   const key = newKey(), txn = 'comp_' + rand(8);
   await env.DB.prepare('INSERT INTO purchases(txn_id,product,email,user_id,created,license_key) VALUES(?,?,?,NULL,?,?)')
@@ -433,9 +435,21 @@ async function adminSetStatus(env, h, req) {
   return json(h, 200, { ok: true });
 }
 
+// Buyer attaches an unclaimed code (made in the owner panel) to their account. Each code can be claimed once.
+async function redeem(env, h, req) {
+  const u = await currentUser(env, req);
+  if (!u) return json(h, 401, { error: 'Not Logged In.' });
+  if (await hit(env, 'rd:' + u.id, 10)) return json(h, 429, { error: TOO_MANY });
+  const key = String((await readBody(req)).code || '').trim().toUpperCase();
+  const r = await env.DB.prepare("UPDATE purchases SET user_id=?, email=? WHERE license_key=? AND user_id IS NULL AND email='' AND status='active'")
+    .bind(u.id, u.email, key).run();
+  if (!r.meta.changes) return json(h, 400, { error: 'That Code Is Wrong Or Already Used.' });
+  return json(h, 200, { ok: true });
+}
+
 const ROUTES = { '/signup': signup, '/login': login, '/logout': logout, '/me': me,
   '/password': changePassword, '/free-computers': freeComputers, '/forgot': forgot, '/reset': reset,
-  '/verify': verify, '/resend-verify': resendVerify,
+  '/verify': verify, '/resend-verify': resendVerify, '/redeem': redeem,
   '/admin/2fa/start': admin2faStart, '/admin/2fa/confirm': admin2faConfirm, '/admin/list': adminList,
   '/admin/grant': adminGrant, '/admin/status': adminSetStatus };
 const GETS = new Set(['/me', '/admin/list']);

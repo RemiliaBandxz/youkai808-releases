@@ -175,8 +175,15 @@
     e.preventDefault(); var f=this; busy(f,true);
     call('/admin/grant',{email:$('g-email').value.trim(), product:$('g-prod').value}).then(function(j){
       busy(f,false);
-      if (j.license_key){ say('m-grant','Key Made: ' + j.license_key + ' (Shows Up In Their Account Once They Confirm Their Email)', true); $('g-email').value=''; adminList(''); }
+      if (j.license_key){ say('m-grant','Key Made: ' + j.license_key + ($('g-email').value.trim() ? ' (Shows Up In Their Account Once They Confirm Their Email)' : ' (Send It To Them. Works In The Hub Or Redeem On Here)'), true); $('g-email').value=''; adminList(''); }
       else say('m-grant', j.error || 'Something Went Wrong.');
+    });
+  };
+  $('f-redeem').onsubmit = function(e){
+    e.preventDefault(); var f=this; busy(f,true);
+    call('/redeem',{code:$('rd-code').value}).then(function(j){
+      busy(f,false);
+      if (j.ok){ $('rd-code').value=''; loadMe(); say('m-redeem','Added To Your Account.', true); } else say('m-redeem', j.error || 'Something Went Wrong.');
     });
   };
   $('f-find').onsubmit = function(e){ e.preventDefault(); adminList($('q').value.trim()); };

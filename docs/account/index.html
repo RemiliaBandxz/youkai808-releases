@@ -77,6 +77,7 @@
   .soon{max-width:520px;margin:0 auto;text-align:center}
   .soon p{color:var(--muted);margin-top:10px}
   .adm{margin-bottom:22px}
+  .redeem{margin-top:18px;padding:18px 20px;align-items:center}
   .adm h2{font-size:24px;margin-bottom:12px;color:var(--pink)}
   .stats{display:flex;gap:18px;flex-wrap:wrap;font:700 13px "Space Mono",monospace;color:var(--muted);margin-bottom:14px}
   .stats b{color:var(--text);font-size:18px}
@@ -172,9 +173,9 @@
       <div id="adm-main" hidden>
         <div class="stats" id="adm-stats"></div>
         <form id="f-grant" class="inline" novalidate>
-          <input id="g-email" type="email" placeholder="Email To Give A Free Key" aria-label="Email">
+          <input id="g-email" type="email" placeholder="Their Email (Or Blank For A Code)" aria-label="Email">
           <select id="g-prod" aria-label="Plugin"><option value="youkai808">Youkai808</option><option value="melodyveil">Melody Veil</option></select>
-          <button class="btn primary sm">Give Free Key</button>
+          <button class="btn primary sm">Make Key</button>
         </form>
         <div class="msg" id="m-grant" role="alert"></div>
         <form id="f-find" class="inline" novalidate>
@@ -185,6 +186,12 @@
       </div>
     </section>
     <div class="grid" id="owned"></div>
+    <form id="f-redeem" class="card inline redeem" novalidate>
+      <label for="rd-code" style="flex-basis:100%;margin:0">Got A Code? Add It To Your Account</label>
+      <input id="rd-code" placeholder="KD-XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" autocomplete="off" spellcheck="false">
+      <button class="btn primary sm">Redeem</button>
+      <div class="msg" id="m-redeem" role="alert" style="flex-basis:100%;margin:0"></div>
+    </form>
     <div class="card empty" id="none" hidden>
       <h3>No Plugins Yet</h3>
       <p style="margin-top:6px">Anything You Buy With This Email Shows Up Here.</p>
