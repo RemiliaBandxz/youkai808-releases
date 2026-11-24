@@ -408,6 +408,22 @@
       "buy_url": "",
       "store_product_ids": [],
       "clips": []
+    },
+    {
+      "id": "suzumesilk",
+      "name": "Suzume Silk",
+      "registry": "Suzume Silk",
+      "includes": "VST3 \u00b7 Windows",
+      "tagline": "Smooths Out Harsh, Ringing, Buzzy Sound, Then Makes It Warm.",
+      "about": "A Soothe-Style Resonance Smoother With Tape And Tube Warmth And A Dynamic Fill Chorus. De-Grain Cleans Up The Buzz On AI-Voice High Notes So Vocals Sit Smooth And Warm.",
+      "wip": true,
+      "beta": true,
+      "image": "hub-art/suzumesilk.png",
+      "versions": "suzumesilk-versions.json",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "clips": []
     }
   ],
   "programs": [
