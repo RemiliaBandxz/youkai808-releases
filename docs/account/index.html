@@ -76,6 +76,20 @@
   details form{max-width:420px;margin-top:14px}
   .soon{max-width:520px;margin:0 auto;text-align:center}
   .soon p{color:var(--muted);margin-top:10px}
+  .adm{margin-bottom:22px}
+  .adm h2{font-size:24px;margin-bottom:12px;color:var(--pink)}
+  .stats{display:flex;gap:18px;flex-wrap:wrap;font:700 13px "Space Mono",monospace;color:var(--muted);margin-bottom:14px}
+  .stats b{color:var(--text);font-size:18px}
+  .inline{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .inline input{flex:1 1 220px;margin:0}
+  .inline .btn{width:auto}
+  select{font:15px var(--sans);color:var(--text);background:#0c0509;border:1px solid var(--line);border-radius:2px;padding:10px}
+  .tbl{overflow-x:auto;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{font:700 11px "Space Mono",monospace;text-transform:uppercase;color:var(--muted)}
+  td code{font:600 11px ui-monospace,Consolas,monospace}
+  tr.dis td{opacity:.5}
   [hidden]{display:none!important}
 </style>
 </head>
@@ -106,6 +120,10 @@
         <input id="a-email" type="email" autocomplete="email" required>
         <label for="a-pw">Password</label>
         <input id="a-pw" type="password" autocomplete="current-password" minlength="10" required>
+        <div id="code-box" hidden>
+          <label for="a-code">2FA Code</label>
+          <input id="a-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}">
+        </div>
         <div id="ts" class="ts"></div>
         <div class="msg" id="m-auth" role="alert"></div>
         <button class="btn primary" id="b-auth">Log In</button>
@@ -139,6 +157,33 @@
       <button type="button" class="link" id="b-resend">Send The Link Again</button>
       <div class="msg ok" id="m-verify"></div>
     </div>
+    <section class="card adm" id="admin" hidden>
+      <h2>Owner Panel</h2>
+      <div id="adm-2fa" hidden>
+        <p class="sub" style="text-align:left">Turn On 2FA To Unlock This Panel. Open Your Authenticator App (Google Authenticator, Authy, 2FAS), Add An Account, Pick "Enter A Setup Key", And Paste This Key:</p>
+        <div class="key"><code id="adm-secret">…</code></div>
+        <form id="f-2fa" novalidate style="max-width:320px;margin-top:14px">
+          <label for="adm-code">6-Digit Code From The App</label>
+          <input id="adm-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
+          <div class="msg" id="m-2fa" role="alert"></div>
+          <button class="btn primary">Turn On 2FA</button>
+        </form>
+      </div>
+      <div id="adm-main" hidden>
+        <div class="stats" id="adm-stats"></div>
+        <form id="f-grant" class="inline" novalidate>
+          <input id="g-email" type="email" placeholder="Email To Give A Free Key" aria-label="Email">
+          <select id="g-prod" aria-label="Plugin"><option value="youkai808">Youkai808</option><option value="melodyveil">Melody Veil</option></select>
+          <button class="btn primary sm">Give Free Key</button>
+        </form>
+        <div class="msg" id="m-grant" role="alert"></div>
+        <form id="f-find" class="inline" novalidate>
+          <input id="q" type="search" placeholder="Search Email Or Key" aria-label="Search">
+          <button class="btn ghost sm">Search</button>
+        </form>
+        <div class="tbl"><table><thead><tr><th>Email</th><th>Plugin</th><th>Key</th><th>PCs</th><th>Date</th><th></th></tr></thead><tbody id="adm-rows"></tbody></table></div>
+      </div>
+    </section>
     <div class="grid" id="owned"></div>
     <div class="card empty" id="none" hidden>
       <h3>No Plugins Yet</h3>
