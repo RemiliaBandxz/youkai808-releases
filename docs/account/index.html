@@ -63,6 +63,9 @@
   .off{color:#ff8f8f;font-size:13px;margin-top:10px}
   .ts{margin:0 0 12px;min-height:0}
   .notice{margin-bottom:18px;padding:18px 20px}
+  #b-hub{background:url(../img/ui/connect_off.webp) center/100% 100% no-repeat;border:0;box-shadow:none;width:240px;height:74px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:0 4px 0 58px;margin-right:10px;font-size:14px;color:#fff;font-weight:700;letter-spacing:.08em;text-shadow:0 1px 3px #000}
+  #b-hub:hover,#b-hub:focus-visible,#b-hub:active{background-image:url(../img/ui/connect_on.webp);background-color:transparent}
+  #hub-link .row{align-items:center}
   .notice p{color:var(--muted);font-size:14px;margin:4px 0 0}
   .notice .link{margin:10px 0 0}
   .empty{text-align:center;color:var(--muted)}
@@ -168,7 +171,7 @@
     <div class="card notice" id="hub-link" hidden>
       <strong>Connect The Youkai Digital Hub?</strong>
       <p>Your Hub Is Asking To Log In As You. Only Connect If The Code In The Hub Says <b id="hub-code"></b>.</p>
-      <div class="row" style="margin-top:12px"><button type="button" class="btn primary sm" id="b-hub">Connect Hub</button><button type="button" class="btn ghost sm" id="b-hub-no">Not Me</button></div>
+      <div class="row" style="margin-top:12px"><button type="button" class="btn" id="b-hub">Connect</button><button type="button" class="btn ghost sm" id="b-hub-no">Not Me</button></div>
       <div class="msg" id="m-hub" role="alert"></div>
     </div>
     <section class="card adm" id="admin" hidden>
