@@ -8,7 +8,7 @@
   "bundle": {
     "id": "bundle",
     "name": "Everything Bundle",
-    "store_product_ids": []
+    "store_product_ids": [808000]
   },
   "products": [
     {
