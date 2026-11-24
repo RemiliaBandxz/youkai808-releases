@@ -1,5 +1,5 @@
 {
- "_note": "Paddle LIVE one-time USD prices (2026-11-24). buyable=false means WIP/Coming Soon: site + Hub must NOT show a buy button. Free (not on Paddle): satori, youkaidetune, yureistop, hitodamagate. Private plugins never listed.",
+ "_note": "Paddle LIVE one-time USD prices (2026-11-24). buyable=false means WIP/Coming Soon: site + Hub must NOT show a buy button. Free (not on Paddle): satori, youkaidetune, yureistop, hitodamagate. Private plugins never listed. Kitsune Tune removed 2026-11-24 (plugin cut; Paddle product archived).",
  "prices": [
   {
    "name": "Youkai808",
@@ -143,14 +143,6 @@
    "usd": 15,
    "product_id": "pro_01m86v4ch1pav0h9cqs56q69ge",
    "price_id": "pri_01m86v4cpaxqzq1wvk36f14cb3",
-   "buyable": false
-  },
-  {
-   "name": "Kitsune Tune",
-   "slug": "kitsunetune",
-   "usd": 10,
-   "product_id": "pro_01m86v4cxr4515h0dqc0pmpdnz",
-   "price_id": "pri_01m86v4d2rpdkaezj09ezdtfw2",
    "buyable": false
   },
   {
