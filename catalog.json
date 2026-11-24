@@ -186,7 +186,7 @@
     },
     {
       "id": "mononokewash",
-      "name": "Mononoke Wash",
+      "name": "Mononoke Ambient",
       "registry": "Mononoke Wash",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Melts Any Melody Into A Dreamy Floating Bed.",
@@ -202,7 +202,7 @@
     },
     {
       "id": "nuephase",
-      "name": "Nue Phase",
+      "name": "Nue Chorus",
       "registry": "Nue Phase",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Thick Chorus And Flanger That Never Thins Your Sound Out.",
@@ -218,7 +218,7 @@
     },
     {
       "id": "nurikabe",
-      "name": "Nurikabe",
+      "name": "Nurikabe Saturator",
       "registry": "Nurikabe",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Saturation That Turns A Thin Vocal Into A Wall Of Body.",
@@ -250,7 +250,7 @@
     },
     {
       "id": "sukima",
-      "name": "Sukima",
+      "name": "Sukima Vocal Pocket",
       "registry": "Sukima",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Opens A Pocket In Your Beat So Your Vocal Sits In Front.",
@@ -298,7 +298,7 @@
     },
     {
       "id": "umibozuir",
-      "name": "Umibozu IR",
+      "name": "Umibozu Room Verb",
       "registry": "Umibozu IR",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Convolution Reverb With 13 Real Spaces, Booth To Cave.",
@@ -314,7 +314,7 @@
     },
     {
       "id": "yureistop",
-      "name": "Yurei Stop",
+      "name": "Yurei Tapestop",
       "registry": "Yurei Stop",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Tempo-Synced Tapestops, Spinbacks, Scratches And Stutter Rolls.",
@@ -330,7 +330,7 @@
     },
     {
       "id": "satori",
-      "name": "Satori",
+      "name": "Satori Brain",
       "registry": "Satori",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "The Mix Brain: Sets Every Track's Volume So Vocals Sit Over The Beat.",
@@ -346,7 +346,7 @@
     },
     {
       "id": "koishi",
-      "name": "Koishi",
+      "name": "Koishi Ears",
       "registry": "Koishi",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Free Ears For SATORI: Tells It What Each Track Is And How Loud.",
@@ -362,7 +362,7 @@
     },
     {
       "id": "youkaivocal",
-      "name": "Youkai Vocal",
+      "name": "Youkai Vocal Chain",
       "registry": "Youkai Vocal",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "The Whole Rap Vocal Chain In One Plugin.",
@@ -378,7 +378,7 @@
     },
     {
       "id": "youkaibeat",
-      "name": "Youkai Beat",
+      "name": "Youkai Beat Mix",
       "registry": "Youkai Beat",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "The Clean Beat Mixer \u2014 A Finished Beat With Room For Your Vocal.",
@@ -394,7 +394,7 @@
     },
     {
       "id": "youkaidetune",
-      "name": "Youkai Detune",
+      "name": "Youkai Retune",
       "registry": "Youkai Detune",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "One Knob That Moves Your Beat To 452 Or 428.",
@@ -411,7 +411,7 @@
     },
     {
       "id": "suzumesilk",
-      "name": "Suzume Silk",
+      "name": "Suzume Smoother",
       "registry": "Suzume Silk",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Smooths Out Harsh, Ringing, Buzzy Sound, Then Makes It Warm.",
@@ -427,7 +427,7 @@
     },
     {
       "id": "tsukumovibe",
-      "name": "Tsukumo Vibe",
+      "name": "Tsukumo Vibrato",
       "registry": "Tsukumo Vibe",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Auto Vibrato On The Notes You Hold.",
@@ -459,7 +459,7 @@
     },
     {
       "id": "ittancut",
-      "name": "Ittan Cut",
+      "name": "Ittan EQ",
       "registry": "Ittan Cut",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Cuts The Mud And Boxiness Out Of A Vocal.",
@@ -507,7 +507,7 @@
     },
     {
       "id": "hotarushine",
-      "name": "Hotaru Shine",
+      "name": "Hotaru Air",
       "registry": "Hotaru Shine",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Adds Presence And Air So The Vocal Shines Up Top.",
