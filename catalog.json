@@ -236,7 +236,7 @@
     },
     {
       "id": "onimaster",
-      "name": "Oni Master",
+      "name": "Youkai Mastering Suite",
       "registry": "Oni Master",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "A Subtle Auto Master That Makes The Vocal Loud And Clear.",
@@ -333,7 +333,7 @@
     },
     {
       "id": "satori",
-      "name": "Satori Brain",
+      "name": "Youkai Mix Assistant",
       "registry": "Satori",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "The Mix Brain: Sets Every Track's Volume So Vocals Sit Over The Beat.",
@@ -350,11 +350,11 @@
     },
     {
       "id": "koishi",
-      "name": "Koishi Ears",
+      "name": "Koishi Link",
       "registry": "Koishi",
       "includes": "VST3 \u00b7 Windows",
-      "tagline": "Free Ears For SATORI: Tells It What Each Track Is And How Loud.",
-      "about": "Free Ears For SATORI. It Does Nothing To The Sound By Itself. It Tells SATORI What A Track Is And How Loud It Is, So Tracks Without A Youkai Plugin On Them Get Levelled Too.",
+      "tagline": "Free Ears For The Mix Assistant: Tells It What Each Track Is And How Loud.",
+      "about": "Free Ears For The Mix Assistant. It Does Nothing To The Sound By Itself. It Tells The Mix Assistant What A Track Is And How Loud It Is, So Tracks Without A Youkai Plugin On Them Get Levelled Too.",
       "wip": true,
       "beta": true,
       "image": "hub-art/koishi.png",
@@ -415,7 +415,7 @@
     },
     {
       "id": "suzumesilk",
-      "name": "Suzume Smoother",
+      "name": "Suzume Resonance Tamer",
       "registry": "Suzume Silk",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Smooths Out Harsh, Ringing, Buzzy Sound, Then Makes It Warm.",
@@ -496,7 +496,7 @@
     },
     {
       "id": "jorogumocomp",
-      "name": "Jorogumo Comp",
+      "name": "Jorogumo VC-1 Comp",
       "registry": "Jorogumo Comp",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Holds The Vocal Steady So Every Word Sits Level.",
@@ -560,7 +560,7 @@
     },
     {
       "id": "raijuclip",
-      "name": "Raiju Clip",
+      "name": "Youkai Soft Clipper SC-1",
       "registry": "Raiju Clip",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "A Clipper That Catches The Peaks. Goes Last.",
@@ -580,7 +580,7 @@
       "registry": "Kitsune Tune",
       "includes": "VST3 \u00b7 Windows",
       "tagline": "Autotune That Snaps The Vocal To Key.",
-      "about": "Autotune That Snaps The Vocal To The Right Notes. It Can Take Its Key Automatically From SATORI So The Whole Mix Stays In Tune.",
+      "about": "Autotune That Snaps The Vocal To The Right Notes. It Can Take Its Key Automatically From The Mix Assistant So The Whole Mix Stays In Tune.",
       "wip": true,
       "beta": true,
       "image": "hub-art/kitsunetune.png",
