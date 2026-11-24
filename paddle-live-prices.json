@@ -1,0 +1,221 @@
+{
+ "_note": "Paddle LIVE one-time USD prices (2026-11-24). buyable=false means WIP/Coming Soon: site + Hub must NOT show a buy button. Free (not on Paddle): satori, youkaidetune, yureistop, hitodamagate. Private plugins never listed.",
+ "prices": [
+  {
+   "name": "Youkai808",
+   "slug": "youkai808",
+   "usd": 30,
+   "product_id": "pro_01m82zxwmxe31168kbejjfrffx",
+   "price_id": "pri_01m8302mqfw0qcw3vemcqbftax",
+   "buyable": true
+  },
+  {
+   "name": "Melody Veil",
+   "slug": "melodyveil",
+   "usd": 20,
+   "product_id": "pro_01m8303nx4r75zmyckkzn4f9fw",
+   "price_id": "pri_01m8304kea64hve92h7v29e5f7",
+   "buyable": true
+  },
+  {
+   "name": "Oni Master",
+   "slug": "onimaster",
+   "usd": 25,
+   "product_id": "pro_01m86v1pzwhxk2szw32e4rwn9p",
+   "price_id": "pri_01m86v36ym1vj95rzgsx5n16cv",
+   "buyable": false
+  },
+  {
+   "name": "MagikaMusic",
+   "slug": "tanukijuice",
+   "usd": 20,
+   "product_id": "pro_01m86v3pmp00z3xv5fq07t2bkk",
+   "price_id": "pri_01m86v4776z3spefpvcajnb7gw",
+   "buyable": false
+  },
+  {
+   "name": "Youkai Beat Mix",
+   "slug": "youkaibeat",
+   "usd": 20,
+   "product_id": "pro_01m86v47ekznk9qgrs0fmjt3a9",
+   "price_id": "pri_01m86v47ka2h90wj3dd1wm4ndq",
+   "buyable": false
+  },
+  {
+   "name": "Youkai Vocal Chain",
+   "slug": "youkaivocal",
+   "usd": 20,
+   "product_id": "pro_01m86v47v3mdjd8vxx482tvygy",
+   "price_id": "pri_01m86v4800wtkpyx4k961j5h14",
+   "buyable": false
+  },
+  {
+   "name": "Kirin Verb",
+   "slug": "kirinverb",
+   "usd": 15,
+   "product_id": "pro_01m86v487akdmhznv6erxpnn6j",
+   "price_id": "pri_01m86v48c1werkw72n6qc5k1ez",
+   "buyable": false
+  },
+  {
+   "name": "Umibozu Room Verb",
+   "slug": "umibozuir",
+   "usd": 15,
+   "product_id": "pro_01m86v48kkq3t7bv1h256rqg1h",
+   "price_id": "pri_01m86v48rfwrjae0an897sfskh",
+   "buyable": false
+  },
+  {
+   "name": "Sukima Vocal Pocket",
+   "slug": "sukima",
+   "usd": 15,
+   "product_id": "pro_01m86v490as2z2v62zxsrqxtkj",
+   "price_id": "pri_01m86v4953jd321zdf7ts4aqsz",
+   "buyable": false
+  },
+  {
+   "name": "Mononoke Ambient",
+   "slug": "mononokewash",
+   "usd": 15,
+   "product_id": "pro_01m86v49cf6xjr77ghrbm2cx63",
+   "price_id": "pri_01m86v49hfqaqnn4p2a9esf0jt",
+   "buyable": false
+  },
+  {
+   "name": "Kodama Adlib",
+   "slug": "kodamaadlib",
+   "usd": 15,
+   "product_id": "pro_01m86v49spaj6f888q7wnkxt9a",
+   "price_id": "pri_01m86v49yx9fkmv06ejxj5b336",
+   "buyable": false
+  },
+  {
+   "name": "Nue Chorus",
+   "slug": "nuephase",
+   "usd": 15,
+   "product_id": "pro_01m86v4a67pdh7yszgj4ex3kst",
+   "price_id": "pri_01m86v4ab4f8v1gbzgp0d7g66h",
+   "buyable": false
+  },
+  {
+   "name": "Nurikabe Saturator",
+   "slug": "nurikabe",
+   "usd": 15,
+   "product_id": "pro_01m86v4ajc3sb3wmnxd49pyceg",
+   "price_id": "pri_01m86v4ar2zer00ne63j0wc0cq",
+   "buyable": false
+  },
+  {
+   "name": "Plugg Bando Tape",
+   "slug": "bandotape",
+   "usd": 15,
+   "product_id": "pro_01m86v4az1xn0ym40p90n7stpc",
+   "price_id": "pri_01m86v4b3tzy9dqdtx0hnxt9ge",
+   "buyable": false
+  },
+  {
+   "name": "Tengu Hats",
+   "slug": "tenguhats",
+   "usd": 15,
+   "product_id": "pro_01m86v4bbqdbm7w0611aswz4kk",
+   "price_id": "pri_01m86v4bgkjdjw4gbmrxrwn0x8",
+   "buyable": false
+  },
+  {
+   "name": "Suzume Smoother",
+   "slug": "suzumesilk",
+   "usd": 15,
+   "product_id": "pro_01m86v4bqz2vzeq4vt0tkmwv3f",
+   "price_id": "pri_01m86v4bxcx5fbr6nhj6fd4dwq",
+   "buyable": false
+  },
+  {
+   "name": "Tsukumo Vibrato",
+   "slug": "tsukumovibe",
+   "usd": 15,
+   "product_id": "pro_01m86v4c4y8swmscrcetvvbm2k",
+   "price_id": "pri_01m86v4c9t6w0j0fxeb8cyvbhw",
+   "buyable": false
+  },
+  {
+   "name": "Koishi Ears",
+   "slug": "koishi",
+   "usd": 15,
+   "product_id": "pro_01m86v4ch1pav0h9cqs56q69ge",
+   "price_id": "pri_01m86v4cpaxqzq1wvk36f14cb3",
+   "buyable": false
+  },
+  {
+   "name": "Kitsune Tune",
+   "slug": "kitsunetune",
+   "usd": 10,
+   "product_id": "pro_01m86v4cxr4515h0dqc0pmpdnz",
+   "price_id": "pri_01m86v4d2rpdkaezj09ezdtfw2",
+   "buyable": false
+  },
+  {
+   "name": "Ittan EQ",
+   "slug": "ittancut",
+   "usd": 10,
+   "product_id": "pro_01m86v4d9z4ahe4qb6nzfv5vfs",
+   "price_id": "pri_01m86v4df445vzd3jrwxybe435",
+   "buyable": false
+  },
+  {
+   "name": "Orochi De-Ess",
+   "slug": "orochideess",
+   "usd": 10,
+   "product_id": "pro_01m86v4dp129z2yp7c78rhyzkb",
+   "price_id": "pri_01m86v4dtx8ea03ehnx6kjgvxk",
+   "buyable": false
+  },
+  {
+   "name": "Jorogumo Comp",
+   "slug": "jorogumocomp",
+   "usd": 10,
+   "product_id": "pro_01m86v4e26fjfar20bqveny12h",
+   "price_id": "pri_01m86v4e7j5cdd6kmsqacet8v5",
+   "buyable": false
+  },
+  {
+   "name": "Hotaru Air",
+   "slug": "hotarushine",
+   "usd": 10,
+   "product_id": "pro_01m86v4efbvsg6rkq8vxjm7r3y",
+   "price_id": "pri_01m86v4em95psf4bxjn2bat337",
+   "buyable": false
+  },
+  {
+   "name": "Bunshin Double",
+   "slug": "bunshindouble",
+   "usd": 10,
+   "product_id": "pro_01m86v4ew1bfpc46af3rrpy540",
+   "price_id": "pri_01m86v4f12eeqtxek5pv55f6n6",
+   "buyable": false
+  },
+  {
+   "name": "Yamabiko Echo",
+   "slug": "yamabikoecho",
+   "usd": 10,
+   "product_id": "pro_01m86v4f8rcfgex9h0kts4gwmx",
+   "price_id": "pri_01m86v4fdva9w86qwymk5xfkdb",
+   "buyable": false
+  },
+  {
+   "name": "Raiju Clip",
+   "slug": "raijuclip",
+   "usd": 10,
+   "product_id": "pro_01m86v4fnpvpcxc2yq2heyc7mt",
+   "price_id": "pri_01m86v4ftpk0mvkat3d4hbapht",
+   "buyable": false
+  },
+  {
+   "name": "All Plugins",
+   "slug": "all",
+   "usd": 79,
+   "product_id": "pro_01m86v4g2jys48kf7317z2b1fq",
+   "price_id": "pri_01m86v4g7r0fmr5q2qj8bnavgh",
+   "buyable": false
+  }
+ ]
+}
