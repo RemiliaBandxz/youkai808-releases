@@ -424,6 +424,22 @@
       "buy_url": "",
       "store_product_ids": [],
       "clips": []
+    },
+    {
+      "id": "tsukumovibe",
+      "name": "Tsukumo Vibe",
+      "registry": "Tsukumo Vibe",
+      "includes": "VST3 \u00b7 Windows",
+      "tagline": "Auto Vibrato On The Notes You Hold.",
+      "about": "Adds Natural Vibrato Automatically On The Vocal Notes You Hold, So Sustained Words Breathe Instead Of Sitting Flat. Depth, Speed And How Fast It Kicks In Are Yours To Set.",
+      "wip": true,
+      "beta": true,
+      "image": "hub-art/tsukumovibe.png",
+      "versions": "tsukumovibe-versions.json",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "clips": []
     }
   ],
   "programs": [
