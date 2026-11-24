@@ -584,6 +584,22 @@
       "buy_url": "",
       "store_product_ids": [],
       "clips": []
+    },
+    {
+      "id": "rokurokubitune",
+      "name": "Rokurokubi Tune",
+      "registry": "Rokurokubi Tune",
+      "includes": "VST3 \u00b7 Windows",
+      "tagline": "The Bendy Autotune: Glides Into Every Note, Swings Past It, Warm And Dark.",
+      "about": "Autotune With Bend. Your Voice Slides Into Each Note And Swings A Little Past It Before It Settles, Then Gets A Warm, Dark, Lowpassed Tone. Built From Measuring Rushhy Bandxz's Vocal On No Jimmy Choo. Follows The Song Key From SATORI.",
+      "wip": true,
+      "beta": true,
+      "image": "hub-art/rokurokubitune.png",
+      "versions": "rokurokubitune-versions.json",
+      "price": "",
+      "buy_url": "",
+      "store_product_ids": [],
+      "clips": []
     }
   ],
   "programs": [
