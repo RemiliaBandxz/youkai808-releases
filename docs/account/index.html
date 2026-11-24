@@ -11,10 +11,10 @@
 <link rel="icon" href="../img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Grenze+Gotisch:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--ink:#07030a;--surface:#130810;--surface2:#1c0b17;--line:#3a1427;--text:#fbeef4;--muted:#c09aae;--crimson:#d3123f;--pink:#ff7aa8;
-    --sans:"Inter",system-ui,sans-serif;--display:"Cinzel",Georgia,serif}
+    --sans:"Archivo",system-ui,sans-serif;--display:"Grenze Gotisch",Georgia,serif}
   *{box-sizing:border-box}
   body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(211,18,63,.35),transparent 70%)}
@@ -24,15 +24,15 @@
   .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
   .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:18px;white-space:nowrap}
   .brand img{width:40px;height:40px}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px var(--sans);padding:12px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;color:var(--text);white-space:nowrap}
-  .btn.primary{background:linear-gradient(180deg,#e8204f,#b30d34);color:#fff;box-shadow:0 6px 24px rgba(211,18,63,.4)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 13px "Space Mono",monospace;letter-spacing:.08em;text-transform:uppercase;padding:12px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer;color:var(--text);white-space:nowrap}
+  .btn.primary{background:#c8102e;color:#fff;box-shadow:4px 4px 0 #4a0613}
   .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03)}
   .btn.ghost:hover{border-color:var(--pink)}
   .btn.sm{padding:9px 16px;font-size:14px}
   .btn[disabled]{opacity:.6;cursor:wait}
   main.wrap{padding-top:48px;padding-bottom:80px}
   h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.15;margin:0}
-  .card{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:18px;padding:28px}
+  .card{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:2px;padding:28px}
   .auth{max-width:420px;margin:0 auto}
   .auth h1{font-size:28px;text-align:center;margin-bottom:6px}
   .sub{color:var(--muted);text-align:center;margin:0 0 22px;font-size:15px}
@@ -40,7 +40,7 @@
   .tabs button{flex:1;border:0;background:none;color:var(--muted);font:700 14px var(--sans);padding:9px;border-radius:999px;cursor:pointer}
   .tabs button.on{background:var(--crimson);color:#fff}
   label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px}
-  input{width:100%;font:16px var(--sans);color:var(--text);background:#0c0509;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:16px}
+  input{width:100%;font:16px var(--sans);color:var(--text);background:#0c0509;border:1px solid var(--line);border-radius:2px;padding:12px 14px;margin-bottom:16px}
   input:focus{outline:2px solid var(--pink);outline-offset:1px;border-color:transparent}
   form .btn{width:100%}
   .msg{min-height:22px;font-size:14px;margin:-4px 0 12px;color:#ff8f8f}
