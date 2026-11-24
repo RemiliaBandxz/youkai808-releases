@@ -1,0 +1,13 @@
+name: Site copy matches catalog
+on:
+  pull_request:
+    paths: ['catalog.json', 'docs/index.html', 'tools/sync_site_copy.py']
+  push:
+    branches: [main]
+    paths: ['catalog.json', 'docs/index.html', 'tools/sync_site_copy.py']
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/sync_site_copy.py --check
