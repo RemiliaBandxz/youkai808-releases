@@ -3,9 +3,37 @@
   // Account server URL. Empty = accounts not deployed yet (page shows "Almost Here").
   var API = 'https://koumakan-accounts.sannyo-arena.workers.dev';
   var TURNSTILE_SITEKEY = '0x4AAAAAAGQJWtcHRR5B_Nx7'; // Cloudflare Turnstile site key (public). Empty = no bot check widget.
-  var PRODUCTS = {
-    youkai808:  { name: 'Youkai808',   img: '../img/p/youkai808.webp' },
-    melodyveil: { name: 'Melody Veil', img: '../img/p/melodyveil.webp' },
+  var PRODUCTS = { // mirrors catalog.json; the owner and All Plugins codes unlock every one
+    youkai808: { name: "Youkai808", img: '../img/p/youkai808.webp' },
+    melodyveil: { name: "Melody Veil", img: '../img/p/melodyveil.webp' },
+    bandotape: { name: "Plugg Bando Tape", img: '../img/p/bandotape.webp' },
+    kirinverb: { name: "Kirin Verb", img: '../img/p/kirinverb.webp' },
+    kodamaadlib: { name: "Kodama Adlib", img: '../img/p/kodamaadlib.webp' },
+    mononokewash: { name: "Mononoke Ambient", img: '../img/p/mononokewash.webp' },
+    nuephase: { name: "Nue Chorus", img: '../img/p/nuephase.webp' },
+    nurikabe: { name: "Nurikabe Saturator", img: '../img/p/nurikabe.webp' },
+    onimaster: { name: "Oni Master", img: '../img/p/onimaster.webp' },
+    sukima: { name: "Sukima Vocal Pocket", img: '../img/p/sukima.webp' },
+    tanukijuice: { name: "MagikaMusic", img: '../img/p/tanukijuice.webp' },
+    tenguhats: { name: "Tengu Hats", img: '../img/p/tenguhats.webp' },
+    umibozuir: { name: "Umibozu Room Verb", img: '../img/p/umibozuir.webp' },
+    yureistop: { name: "Yurei Tapestop", img: '../img/p/yureistop.webp' },
+    satori: { name: "Satori Brain", img: '../img/p/satori.webp', beta: 1 },
+    koishi: { name: "Koishi Ears", img: '../img/p/koishi.webp', beta: 1 },
+    youkaivocal: { name: "Youkai Vocal Chain", img: '../img/p/youkaivocal.webp', beta: 1 },
+    youkaibeat: { name: "Youkai Beat Mix", img: '../img/p/youkaibeat.webp', beta: 1 },
+    youkaidetune: { name: "Youkai Retune", img: '../img/p/youkaidetune.webp', beta: 1 },
+    suzumesilk: { name: "Suzume Smoother", img: '../img/p/suzumesilk.webp', beta: 1 },
+    tsukumovibe: { name: "Tsukumo Vibrato", img: '../img/p/tsukumovibe.webp', beta: 1 },
+    hitodamagate: { name: "Hitodama Gate", img: '../img/p/hitodamagate.webp', beta: 1 },
+    ittancut: { name: "Ittan EQ", img: '../img/p/ittancut.webp', beta: 1 },
+    orochideess: { name: "Orochi De-Ess", img: '../img/p/orochideess.webp', beta: 1 },
+    jorogumocomp: { name: "Jorogumo Comp", img: '../img/p/jorogumocomp.webp', beta: 1 },
+    hotarushine: { name: "Hotaru Air", img: '../img/p/hotarushine.webp', beta: 1 },
+    bunshindouble: { name: "Bunshin Double", img: '../img/p/bunshindouble.webp', beta: 1 },
+    yamabikoecho: { name: "Yamabiko Echo", img: '../img/p/yamabikoecho.webp', beta: 1 },
+    raijuclip: { name: "Raiju Clip", img: '../img/p/raijuclip.webp', beta: 1 },
+    kitsunetune: { name: "Kitsune Tune", img: '../img/p/kitsunetune.webp', beta: 1 },
     all:        { name: 'All Plugins', img: '../img/koumakan-logo.webp' } // one code unlocks everything
   };
   var $ = function(id){ return document.getElementById(id); };
@@ -144,7 +172,7 @@
   }
 
   // ---- Owner panel (the server refuses all of this unless the account is the owner AND logged in with 2FA) ----
-  var PNAME = {youkai808:'Youkai808', melodyveil:'Melody Veil', all:'All Plugins'};
+  var PNAME = {}; Object.keys(PRODUCTS).forEach(function(k){ PNAME[k]=PRODUCTS[k].name; });
   function ownerPanel(me){
     $('adm-2fa').hidden = me.mfa; $('adm-main').hidden = !me.mfa;
     if (!me.mfa) {
