@@ -15,7 +15,9 @@
   "products": [
     {
       "id": "youkai808",
-      "for": ["bass"],
+      "for": [
+        "bass"
+      ],
       "demo": false,
       "name": "Youkai808",
       "registry": "Youkai808",
@@ -104,7 +106,10 @@
     },
     {
       "id": "melodyveil",
-      "for": ["melody", "beat"],
+      "for": [
+        "melody",
+        "beat"
+      ],
       "demo": false,
       "name": "Melody Veil",
       "registry": "Melody Veil",
@@ -151,7 +156,10 @@
     },
     {
       "id": "bandotape",
-      "for": ["beat", "fx"],
+      "for": [
+        "beat",
+        "fx"
+      ],
       "name": "Plugg Bando Tape",
       "registry": "Plugg Bando Tape",
       "includes": "VST3 · Windows",
@@ -189,7 +197,11 @@
     },
     {
       "id": "kirinverb",
-      "for": ["vocals", "melody", "fx"],
+      "for": [
+        "vocals",
+        "melody",
+        "fx"
+      ],
       "name": "Kirin Verb",
       "registry": "Kirin Verb",
       "includes": "VST3 · Windows",
@@ -224,7 +236,9 @@
     },
     {
       "id": "kodamaadlib",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Kodama Adlib",
       "registry": "Kodama Adlib",
       "includes": "VST3 · Windows",
@@ -260,7 +274,10 @@
     },
     {
       "id": "mononokewash",
-      "for": ["melody", "fx"],
+      "for": [
+        "melody",
+        "fx"
+      ],
       "name": "Mononoke Ambient",
       "registry": "Mononoke Wash",
       "includes": "VST3 · Windows",
@@ -296,7 +313,11 @@
     },
     {
       "id": "nuephase",
-      "for": ["vocals", "melody", "fx"],
+      "for": [
+        "vocals",
+        "melody",
+        "fx"
+      ],
       "name": "Nue Chorus",
       "registry": "Nue Phase",
       "includes": "VST3 · Windows",
@@ -332,7 +353,10 @@
     },
     {
       "id": "nurikabe",
-      "for": ["vocals", "fx"],
+      "for": [
+        "vocals",
+        "fx"
+      ],
       "name": "Nurikabe Saturator",
       "registry": "Nurikabe",
       "includes": "VST3 · Windows",
@@ -368,12 +392,14 @@
     },
     {
       "id": "onimaster",
-      "for": ["master"],
+      "for": [
+        "master"
+      ],
       "name": "Youkai Mastering Suite",
       "registry": "Oni Master",
       "includes": "VST3 · Windows",
-      "tagline": "A Subtle Auto Master That Makes Your Vocal Loud And Clear, Ready To Upload.",
-      "about": "Bounced Songs That Sound Quiet Next To Everything On SoundCloud, Or Loud With The Vocal Buried? The Mastering Suite Listens To Your Full Song, Then Brings It Up To A Loudness Target While Keeping The Vocal Loud And Clear On Top Of The Beat, Without Crushing It. Pick A TARGET, Leave AUTO LEVEL On And You're Done. Goes Last On The Master, After The Mix Assistant If You Use It.",
+      "tagline": "Full Mastering Suite For Your Whole Song, With A Master Assistant That Sets It Up For Your Genre.",
+      "about": "Full Mastering Suite For Your Whole Song: Master Assistant, Match EQ, Dynamic EQ, 3-Band Compression, Stereo Imager, Exciter, 808 Clip And A Maximizer With A LUFS Target. Genre Styles: Plugg, Jugg, Ambient Rap, Rage, Hyper, Wavy, Dark. Goes Last On The Master, After The Mix Assistant If You Use It.",
       "wip": true,
       "beta": false,
       "image": "hub-art/onimaster.png",
@@ -384,24 +410,27 @@
       "clips": [],
       "category": "Mastering",
       "features": [
-        "TARGET - LOUD VOCALS, CRISPY Or PRESENT",
-        "AUTO LEVEL - Brings The Song To The Loudness Target (Off = The Limiter Only Catches Peaks)",
-        "Learns The Song From A Few Seconds Of The Hook, RELEARN When You Change The Mix",
-        "Tone: Low End, Mud, Vocal, Air, De-Harsh",
-        "Punch + Loudness: Glue, 808 Clip, 808 Split, Saturation, Ceiling, Width",
-        "A/B At The Same Loudness Before You Bounce",
-        "Presets Like UTIL | Streaming Safe -14, UTIL | SoundCloud Loud, LOUD VOCALS | Soft Rapper, PRESENT | Dark Beat Lift, CRISPY | Phone Speaker Ready",
-        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
+        "ASSIST - The Master Assistant Listens To Your Song And Sets Everything Up For Your Genre",
+        "Genre Styles: Plugg, Jugg, Ambient Rap, Rage, Hyper, Wavy, Dark",
+        "EQ - Match EQ And Dynamic EQ",
+        "DYNAMICS - 3-Band Compression",
+        "IMAGER - Stereo Width",
+        "EXCITER - Adds Shine And Bite",
+        "MAXIMIZER - Loudness With A LUFS Target, Plus 808 Clip",
+        "AUTO LEVEL And A/B At The Same Loudness Before You Bounce",
+        "HOW TO Tab Built In, And A Mix Coach That Tells You What To Fix"
       ],
       "tips": [
-        "It's Built To Stay Subtle. Want It Louder? Raise The Output A Little At A Time.",
-        "PRESENT Is The Fix When Your Vocal Gets Lost Inside The Beat.",
+        "Put It Last On The Master, After The Mix Assistant If You Use It.",
+        "Take Any Limiter Off Your Master Before You Use It.",
         "Use A/B To Compare At The Same Loudness Before You Bounce."
       ]
     },
     {
       "id": "sukima",
-      "for": ["beat"],
+      "for": [
+        "beat"
+      ],
       "name": "Sukima Vocal Pocket",
       "registry": "Sukima",
       "includes": "VST3 · Windows",
@@ -436,7 +465,11 @@
     },
     {
       "id": "tanukijuice",
-      "for": ["vocals", "beat", "melody"],
+      "for": [
+        "vocals",
+        "beat",
+        "melody"
+      ],
       "name": "MagikaMusic",
       "registry": "MagikaMusic",
       "includes": "VST3 · Windows",
@@ -473,7 +506,9 @@
     },
     {
       "id": "tenguhats",
-      "for": ["drums"],
+      "for": [
+        "drums"
+      ],
       "name": "Tengu Hats",
       "registry": "Tengu Hats",
       "includes": "VST3 · Windows",
@@ -509,7 +544,12 @@
     },
     {
       "id": "umibozuir",
-      "for": ["vocals", "melody", "drums", "fx"],
+      "for": [
+        "vocals",
+        "melody",
+        "drums",
+        "fx"
+      ],
       "name": "Umibozu Room Verb",
       "registry": "Umibozu IR",
       "includes": "VST3 · Windows",
@@ -547,7 +587,11 @@
     },
     {
       "id": "yureistop",
-      "for": ["beat", "melody", "fx"],
+      "for": [
+        "beat",
+        "melody",
+        "fx"
+      ],
       "name": "Yurei Tapestop",
       "registry": "Yurei Stop",
       "includes": "VST3 · Windows",
@@ -583,7 +627,9 @@
     },
     {
       "id": "satori",
-      "for": ["beat"],
+      "for": [
+        "beat"
+      ],
       "name": "Youkai Mix Assistant",
       "registry": "Satori",
       "includes": "VST3 · Windows",
@@ -620,7 +666,9 @@
     },
     {
       "id": "koishi",
-      "for": ["beat"],
+      "for": [
+        "beat"
+      ],
       "name": "Koishi Link",
       "registry": "Koishi",
       "includes": "VST3 · Windows",
@@ -637,7 +685,9 @@
     },
     {
       "id": "youkaivocal",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Youkai Vocal Chain",
       "registry": "Youkai Vocal",
       "includes": "VST3 · Windows",
@@ -654,7 +704,10 @@
     },
     {
       "id": "youkaibeat",
-      "for": ["beat", "master"],
+      "for": [
+        "beat",
+        "master"
+      ],
       "name": "Youkai Beat Mix",
       "registry": "Youkai Beat",
       "includes": "VST3 · Windows",
@@ -671,7 +724,10 @@
     },
     {
       "id": "youkaidetune",
-      "for": ["beat", "melody"],
+      "for": [
+        "beat",
+        "melody"
+      ],
       "name": "Youkai Retune",
       "registry": "Youkai Detune",
       "includes": "VST3 · Windows",
@@ -704,7 +760,10 @@
     },
     {
       "id": "suzumesilk",
-      "for": ["vocals", "melody"],
+      "for": [
+        "vocals",
+        "melody"
+      ],
       "name": "Suzume Resonance Tamer",
       "registry": "Suzume Silk",
       "includes": "VST3 · Windows",
@@ -721,7 +780,9 @@
     },
     {
       "id": "tsukumovibe",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Tsukumo Vibrato",
       "registry": "Tsukumo Vibe",
       "includes": "VST3 · Windows",
@@ -738,7 +799,9 @@
     },
     {
       "id": "hitodamagate",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Hitodama Gate",
       "registry": "Hitodama Gate",
       "includes": "VST3 · Windows",
@@ -772,7 +835,9 @@
     },
     {
       "id": "ittancut",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Ittan EQ",
       "registry": "Ittan Cut",
       "includes": "VST3 · Windows",
@@ -789,7 +854,9 @@
     },
     {
       "id": "orochideess",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Orochi De-Ess",
       "registry": "Orochi De-Ess",
       "includes": "VST3 · Windows",
@@ -806,7 +873,9 @@
     },
     {
       "id": "jorogumocomp",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Jorogumo VC-1 Comp",
       "registry": "Jorogumo Comp",
       "includes": "VST3 · Windows",
@@ -823,7 +892,9 @@
     },
     {
       "id": "hotarushine",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Hotaru Air",
       "registry": "Hotaru Shine",
       "includes": "VST3 · Windows",
@@ -840,7 +911,9 @@
     },
     {
       "id": "bunshindouble",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Bunshin Double",
       "registry": "Bunshin Double",
       "includes": "VST3 · Windows",
@@ -857,7 +930,10 @@
     },
     {
       "id": "yamabikoecho",
-      "for": ["vocals", "fx"],
+      "for": [
+        "vocals",
+        "fx"
+      ],
       "name": "Yamabiko Echo",
       "registry": "Yamabiko Echo",
       "includes": "VST3 · Windows",
@@ -874,7 +950,12 @@
     },
     {
       "id": "raijuclip",
-      "for": ["vocals", "drums", "bass", "master"],
+      "for": [
+        "vocals",
+        "drums",
+        "bass",
+        "master"
+      ],
       "name": "Youkai Soft Clipper SC-1",
       "registry": "Raiju Clip",
       "includes": "VST3 · Windows",
@@ -891,7 +972,9 @@
     },
     {
       "id": "kitsunetune",
-      "for": ["vocals"],
+      "for": [
+        "vocals"
+      ],
       "name": "Kitsune Tune",
       "registry": "Kitsune Tune",
       "includes": "VST3 · Windows",
