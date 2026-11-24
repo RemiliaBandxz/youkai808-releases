@@ -92,7 +92,9 @@ async function useToken(env, token, kind) {
   return r && r.user_id;
 }
 // Purchases a user may see: ones made while logged in (user_id), plus ones under their email once that email is verified.
-const OWNS = '(p.user_id=?1 OR (p.email=?2 AND (SELECT verified FROM users WHERE id=?1)=1))';
+// No email sender yet = nobody can verify, so the email match counts on its own until RESEND_API_KEY is set.
+// shortcut: without a mailer, signing up first with a buyer's email shows their keys; set RESEND_API_KEY to turn verification back on.
+const owns = (env) => env.RESEND_API_KEY ? '(p.user_id=?1 OR (p.email=?2 AND (SELECT verified FROM users WHERE id=?1)=1))' : '(p.user_id=?1 OR p.email=?2)';
 const json = (h, status, body) => new Response(JSON.stringify(body), { status, headers: { ...h, 'Content-Type': 'application/json' } });
 
 // Rate limit: count the attempt FIRST in one atomic upsert, then decide, so parallel bursts can't slip past.
@@ -208,9 +210,9 @@ async function me(env, h, req) {
   if (!u) return json(h, 401, { error: 'Not Logged In.' });
   const { results } = await env.DB.prepare(`SELECT p.product, p.created, p.license_key, p.status,
       (SELECT COUNT(*) FROM instances i WHERE i.license_key=p.license_key) AS used
-    FROM purchases p WHERE ${OWNS} ORDER BY p.created DESC`).bind(u.id, u.email).all();
+    FROM purchases p WHERE ${owns(env)} ORDER BY p.created DESC`).bind(u.id, u.email).all();
   results.forEach((r) => { r.limit = ACTIVATION_LIMIT; });
-  return json(h, 200, { id: u.id, email: u.email, created: u.created, verified: !!u.verified, mail: !!env.RESEND_API_KEY,
+  return json(h, 200, { id: u.id, email: u.email, created: u.created, verified: !!u.verified || !env.RESEND_API_KEY, mail: !!env.RESEND_API_KEY,
     owner: u.role === 'owner', has2fa: !!u.has2fa, mfa: !!u.mfa, purchases: results });
 }
 
@@ -244,7 +246,7 @@ async function freeComputers(env, h, req) {
   const u = await currentUser(env, req);
   if (!u) return json(h, 401, { error: 'Not Logged In.' });
   const key = String((await readBody(req)).license_key || '');
-  const p = await env.DB.prepare(`SELECT reset_at FROM purchases p WHERE ${OWNS} AND p.license_key=?3`).bind(u.id, u.email, key).first();
+  const p = await env.DB.prepare(`SELECT reset_at FROM purchases p WHERE ${owns(env)} AND p.license_key=?3`).bind(u.id, u.email, key).first();
   if (!p) return json(h, 404, { error: 'That Key Is Not On Your Account.' });
   const wait = p.reset_at + RESET_DAYS * 86400 - now();
   if (wait > 0) return json(h, 429, { error: `You Can Do This Again In ${Math.ceil(wait / 86400)} Day(s). Email Support If You're Stuck.` });
