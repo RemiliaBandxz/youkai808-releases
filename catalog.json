@@ -977,6 +977,9 @@
       "includes": "VST3 · Windows",
       "tagline": "Puts The Crisp S Back Into AI (RVC) Vocals.",
       "about": "Makes AI (RVC) Vocals Sound High-Def Again: Finds Your S, T, SH And F Sounds And Lays Fresh, Crisp S On Top Of Them, Plus A Little Air On The Rest. Put It Right After RVC Or Your De-Esser.",
+      "for": [
+        "vocals"
+      ],
       "wip": true,
       "beta": true,
       "image": "hub-art/rvcfaker.png",
