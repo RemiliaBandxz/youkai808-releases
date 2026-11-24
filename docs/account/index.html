@@ -77,6 +77,8 @@
   .soon{max-width:520px;margin:0 auto;text-align:center}
   .soon p{color:var(--muted);margin-top:10px}
   .adm{margin-bottom:22px}
+  .qr{background:#fff;padding:10px;width:max-content;max-width:100%;border-radius:2px}
+  .qr svg{display:block;width:220px;height:220px}
   .redeem{margin-top:18px;padding:18px 20px;align-items:center}
   .adm h2{font-size:24px;margin-bottom:12px;color:var(--pink)}
   .stats{display:flex;gap:18px;flex-wrap:wrap;font:700 13px "Space Mono",monospace;color:var(--muted);margin-bottom:14px}
@@ -172,7 +174,9 @@
     <section class="card adm" id="admin" hidden>
       <h2>Owner Panel</h2>
       <div id="adm-2fa" hidden>
-        <p class="sub" style="text-align:left">Turn On 2FA To Unlock This Panel. Open Your Authenticator App (Google Authenticator, Authy, 2FAS), Add An Account, Pick "Enter A Setup Key", And Paste This Key:</p>
+        <p class="sub" style="text-align:left">Turn On 2FA To Unlock This Panel. Open Google Authenticator (Free On Any Phone), Tap +, Then Scan This QR Code:</p>
+        <div id="adm-qr" class="qr" role="img" aria-label="2FA setup QR code"></div>
+        <p class="sub" style="text-align:left;font-size:13px;margin:12px 0 6px">Can't Scan? Pick "Enter A Setup Key" And Paste This Instead:</p>
         <div class="key"><code id="adm-secret">…</code></div>
         <form id="f-2fa" novalidate style="max-width:320px;margin-top:14px">
           <label for="adm-code">6-Digit Code From The App</label>
@@ -232,6 +236,7 @@
 </main>
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<script src="qrcode.js"></script>
 <script src="account.js"></script>
 </body>
 </html>

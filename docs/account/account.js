@@ -138,7 +138,10 @@
     $('adm-2fa').hidden = me.mfa; $('adm-main').hidden = !me.mfa;
     if (!me.mfa) {
       if (me.has2fa) { $('adm-2fa').hidden = true; $('adm-main').hidden = false; $('adm-stats').textContent = 'Log Out And Back In With Your 2FA Code To Use This.'; return; }
-      call('/admin/2fa/start',{}).then(function(j){ $('adm-secret').textContent = j.secret || j.error || 'Something Went Wrong.'; });
+      call('/admin/2fa/start',{}).then(function(j){
+        $('adm-secret').textContent = j.secret || j.error || 'Something Went Wrong.';
+        if (j.uri && window.qrcode) { var q = qrcode(0, 'M'); q.addData(j.uri); q.make(); $('adm-qr').innerHTML = q.createSvgTag({cellSize: 4, margin: 0}); } // uri comes from our server, svg is built by the lib
+      });
       return;
     }
     adminList('');
