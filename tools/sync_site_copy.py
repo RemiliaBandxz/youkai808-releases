@@ -73,7 +73,9 @@ def render(src, products):
 
 
 if __name__ == '__main__':
-    products = [p for p in json.load(open(CAT, encoding='utf-8'))['products'] if not p.get('beta')]
+    cat = json.load(open(CAT, encoding='utf-8'))
+    prog = {p['id'] for p in cat.get('programs', [])}  # programs are hand-built site cards
+    products = [p for p in cat['products'] if not p.get('beta') and p['id'] not in prog]
     old = open(SITE, encoding='utf-8').read()
     new = render(old, products)
     bad = problems(products)
