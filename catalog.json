@@ -1,9 +1,9 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.58",
+    "version": "1.59",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
-    "size": 60119040,
+    "size": 60119552,
     "mac": "",
     "owner_pcs": [
       "b0c162ebf196520feec40c4c1ebcfe34525a0988d8db9b1847f904beba1c6a0f"
@@ -17,25 +17,6 @@
     ]
   },
   "products": [
-    {
-      "id": "autosnip",
-      "name": "AutoSnip",
-      "includes": "Standalone \u00b7 Windows",
-      "tagline": "Drop Your Clips In, Get A Finished TikTok Edit Out.",
-      "about": "Beat-Synced Edits Cut To Your Song, Rotoscope And Chroma Key Transitions, Real Color Grading With Your LUTs, Film Grain, Sharpen, Green-Screen Effects, Your Logo, And Quick Preview So You Watch It Before You Render.",
-      "wip": false,
-      "image": "hub-art/autosnip.png",
-      "registry": "AutoSnip",
-      "uninstall_key": "{6B0E5C2A-7A43-4F3B-9C55-A0705E1F0001}_is1",
-      "silent_args": "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART",
-      "versions": "autosnip-versions.json",
-      "store_product_ids": [
-        808003
-      ],
-      "price": "$30",
-      "buy_url": "https://koumakandigital.xyz/#autosnip",
-      "icon": "hub-art/autosnip-icon.png"
-    },
     {
       "id": "youkai808",
       "for": [

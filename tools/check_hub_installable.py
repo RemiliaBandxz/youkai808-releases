@@ -11,7 +11,7 @@ What the Hub (1.58+) understands, per versions file: latest + versions[].windows
 windows_parts, and "size" (bytes, required for release-asset downloads). Programs (catalog "programs") also need silent_args + registry/uninstall_key so the
 Hub can install quietly and read back the version.
 """
-import json, os, sys, urllib.request
+import json, os, struct, sys, urllib.request
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 online = "--online" in sys.argv
 cat = json.load(open(os.path.join(root, "catalog.json"), encoding="utf-8"))
@@ -20,6 +20,27 @@ progs = {p.get("id") for p in cat.get("programs", [])}
 
 def public(p):
     return not (p.get("beta") or p.get("wip") or p.get("owner_only"))
+
+def hub_ver(label):
+    """Same as the Hub's parseVer: 2-4 numeric parts, minor/patch capped at 99. 0 = the Hub can't read it."""
+    t = str(label).strip().lstrip("vV").split(".")
+    if not 2 <= len(t) <= 4 or not all(x.isdigit() for x in t[:3]): return 0
+    return int(t[0]) * 10000 + min(int(t[1]), 99) * 100 + (min(int(t[2]), 99) if len(t) > 2 else 0)
+
+def rcdata_ids(path):
+    """RT_RCDATA ids in a Windows exe. The Hub's plugin UPDATE pulls the VST3 out of RCDATA 101."""
+    d = open(path, "rb").read()
+    pe = struct.unpack_from("<I", d, 0x3c)[0]
+    if d[pe:pe + 4] != b"PE\0\0": return []
+    nsec, optsz = struct.unpack_from("<H", d, pe + 6)[0], struct.unpack_from("<H", d, pe + 20)[0]
+    opt = pe + 24; dd = opt + (112 if struct.unpack_from("<H", d, opt)[0] == 0x20b else 96)
+    rva = struct.unpack_from("<I", d, dd + 16)[0]; base = None
+    for i in range(nsec):
+        sh = opt + optsz + 40 * i; vs, va = struct.unpack_from("<II", d, sh + 8); raw = struct.unpack_from("<I", d, sh + 20)[0]
+        if rva and va <= rva < va + max(vs, 1): base = raw + rva - va
+    if base is None: return []
+    ents = lambda off: [struct.unpack_from("<II", d, base + off + 16 + 8 * i) for i in range(sum(struct.unpack_from("<HH", d, base + off + 12)))]
+    return next(([i for i, _ in ents(o & 0x7fffffff)] for n, o in ents(0) if n == 10 and o & 0x80000000), [])
 
 def first_kb(url):
     req = urllib.request.Request(url, headers={"Range": "bytes=0-1023", "User-Agent": "youkai-hub-check"})
@@ -69,6 +90,27 @@ for kind in ("products", "programs"):
 hub = cat.get("hub", {}); hf = os.path.join(root, "hub", "YoukaiDigitalHub-Setup.exe")
 if hub.get("windows", "").endswith("hub/YoukaiDigitalHub-Setup.exe") and os.path.isfile(hf) and hub.get("size") != os.path.getsize(hf):
     errs.append(f"hub: catalog hub.size {hub.get('size')} != hub/YoukaiDigitalHub-Setup.exe ({os.path.getsize(hf)}) - update hub.size when you publish a Hub")
+
+# UPDATABLE (2026-11-25: Remilia stuck on AutoSnip 0.3.4, "Couldn't fetch the updates"). Every listed item, WIP included
+# (the owner sees those): versions the Hub can read, newest first so an update is offered, and the right update path:
+# an app (silent_args) must be in "programs" (old Hubs put a products-only app in the VST3 batch); a plugin's latest
+# installer must carry the VST3 as RCDATA 101 or UPDATE EVERYTHING can't stage it.
+for p in cat.get("products", []) + cat.get("programs", []):
+    pid, vf = p.get("id", "?"), p.get("versions", "")
+    if not vf or not os.path.isfile(os.path.join(root, vf)): continue
+    v = json.load(open(os.path.join(root, vf), encoding="utf-8"))
+    nums = [hub_ver(x.get("version", "")) for x in v.get("versions", [])]
+    if 0 in nums: errs.append(f"{pid}: a version label the Hub can't read: {[x.get('version') for x in v['versions']]}")
+    elif nums and (hub_ver(v.get("latest", "")) != max(nums) or len(set(nums)) != len(nums)):
+        errs.append(f"{pid}: 'latest' {v.get('latest')} must be the single highest version, or the Hub won't offer the update")
+    if p.get("silent_args") and (pid not in progs or p in cat.get("products", [])):
+        errs.append(f"{pid}: an app (silent_args) belongs ONLY in catalog 'programs'; Hubs before 1.59 put a products-listed app in the VST3 batch and UPDATE EVERYTHING fails")
+    latest = next((x for x in v.get("versions", []) if x.get("version") == v.get("latest")), {})
+    w = latest.get("windows", "")
+    if not p.get("silent_args") and w and not w.startswith("http") and not latest.get("windows_parts"):
+        f = os.path.join(root, w)
+        if os.path.isfile(f) and 101 not in rcdata_ids(f):
+            errs.append(f"{pid} {v.get('latest')}: {w} has no VST3 payload (RCDATA 101); the Hub's UPDATE can't install it")
 
 if errs:
     print("HUB-INSTALLABLE CHECK FAILED:"); [print("  -", e) for e in errs]; sys.exit(1)
