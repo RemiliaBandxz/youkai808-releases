@@ -1,0 +1,24 @@
+name: Publish AutoSnip installer
+# Reassembles the committed split parts into a public Release asset the Hub can download
+# (youkai808-source is private, so its release assets 404 for users). Runs on demand.
+on:
+  workflow_dispatch:
+    inputs:
+      version: { description: "AutoSnip version, e.g. 0.2.8", required: true }
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          v="${{ github.event.inputs.version }}"
+          f="AutoSnip-v$v-Setup.exe"
+          cat releases/autosnip/$f.* > "$f"
+          tag="autosnip-v$v"
+          gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            && gh release upload "$tag" "$f" --clobber -R "$GITHUB_REPOSITORY" \
+            || gh release create "$tag" "$f" -R "$GITHUB_REPOSITORY" --title "AutoSnip $v" --notes "AutoSnip installer for the Youkai Hub."
+          echo "asset: https://github.com/$GITHUB_REPOSITORY/releases/download/$tag/$f"
