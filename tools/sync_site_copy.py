@@ -24,10 +24,16 @@ def copy(p):
     return f'<p class="lede">{e(p["tagline"])}</p><p>{e(p["about"])}</p>{inside(p)}'
 
 
+def free_url(p):
+    """Direct link to the newest Windows installer, so a free plugin needs no Hub and no account."""
+    v = json.load(open(os.path.join(ROOT, p['versions']), encoding='utf-8'))
+    return v['download_base'] + next(x['windows'] for x in v['versions'] if x['version'] == v['latest'])
+
+
 def small_card(p, kind):
     tags = f'<span class="tag live">Free</span><span class="tag">{e(p["category"].replace("Free · ", ""))}</span>' if kind == 'free' \
         else f'<span class="tag">{e(p["category"])}</span>'
-    btn = '<a class="btn ghost" href="#hub">Get It Free In The Hub</a>' if kind == 'free' else ''
+    btn = f'<a class="btn ghost" href="{e(free_url(p))}">Download Free (No Account)</a>' if kind == 'free' else ''
     return (f'      <article class="card {kind}-card">\n'
             f'        <div class="shot"><img src="img/p/{p["id"]}.webp" alt="{e(p["name"])} plugin screenshot" loading="lazy"></div>\n'
             f'        <div class="body"><div class="tags">{tags}</div><h3>{e(p["name"])}</h3>{copy(p)}{btn}</div>\n'
