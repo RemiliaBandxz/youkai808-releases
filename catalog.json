@@ -400,7 +400,16 @@
       "price": "",
       "buy_url": "",
       "store_product_ids": [],
-      "clips": [],
+      "clips": [
+        {
+          "label": "BEFORE",
+          "url": "hub-clips/onimaster_counter_before.ogg"
+        },
+        {
+          "label": "AFTER",
+          "url": "hub-clips/onimaster_counter_after.ogg"
+        }
+      ],
       "category": "Mastering",
       "features": [
         "ASSIST - The Master Assistant Listens To Your Song And Sets Everything Up For Your Genre",
