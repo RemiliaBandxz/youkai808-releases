@@ -6,3 +6,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash tools/check_installers.sh
+      - name: Every public catalog item is installable by the Hub (links fetched for real)
+        run: python3 tools/check_hub_installable.py --online
