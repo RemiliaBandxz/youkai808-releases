@@ -1,7 +1,7 @@
 {
   "publisher": "YoukaiDigital",
   "hub": {
-    "version": "1.56",
+    "version": "1.57",
     "windows": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/hub/YoukaiDigitalHub-Setup.exe",
     "mac": "",
     "owner_pcs": [
@@ -966,6 +966,7 @@
       "store_product_ids": [
         808003
       ],
+      "price": "$30",
       "buy_url": "https://koumakandigital.xyz/#autosnip",
       "icon": "hub-art/autosnip-icon.png"
     }
