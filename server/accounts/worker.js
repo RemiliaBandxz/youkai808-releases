@@ -371,6 +371,26 @@ async function paddleWebhook(env, req) {
   return new Response('ok');
 }
 
+// Gumroad -> us (AutoSnip card checkout until Paddle approves). Ping URL carries ?k=GUMROAD_PING_SECRET (set in Cloudflare, not in git).
+const GUMROAD_PRODUCTS = { ezcvtl: 'autosnip' }; // Gumroad product permalink -> our product id
+async function gumroadPing(env, req) {
+  if (!env.GUMROAD_PING_SECRET || !safeEq(new URL(req.url).searchParams.get('k') || '', env.GUMROAD_PING_SECRET)) return new Response('bad key', { status: 401 });
+  const f = Object.fromEntries(new URLSearchParams(await req.text())), id = f.sale_id || f.order_number;
+  if (!id) return new Response('no sale', { status: 400 });
+  const txn = 'gr_' + id;
+  if (f.refunded === 'true' || f.disputed === 'true' || f.chargebacked === 'true') { // refund/dispute -> key stops working
+    await env.DB.prepare("UPDATE purchases SET status='disabled' WHERE txn_id=?").bind(txn).run();
+    return new Response('ok');
+  }
+  const product = GUMROAD_PRODUCTS[f.product_permalink];
+  const email = normEmail(f.email || '');
+  if (!product) return new Response('ignored'); // some other Gumroad product
+  if (!email) return new Response('no email', { status: 400 }); // Gumroad retries
+  await env.DB.prepare('INSERT OR IGNORE INTO purchases(txn_id,product,email,user_id,created,license_key) VALUES(?,?,?,?,?,?)')
+    .bind(txn, product, email, null, now(), newKey()).run(); // OR IGNORE = retried pings don't mint a second key
+  return new Response('ok');
+}
+
 // ---- Owner panel. Every route checks role='owner' in the DB AND a session that passed 2FA. ----
 async function owner(env, req, needMfa = true) {
   const u = await currentUser(env, req);
@@ -617,6 +637,7 @@ export default {
     const path = new URL(req.url).pathname, h = cors(env, req);
     try {
       if (path === '/paddle-webhook' && req.method === 'POST') return await paddleWebhook(env, req);
+      if (path === '/gumroad-ping' && req.method === 'POST') return await gumroadPing(env, req);
       const lic = path.match(/^\/v1\/licenses\/(activate|validate|deactivate)$/);
       if (lic && req.method === 'POST') return await licenseApi(env, req, lic[1]);
       const oa = path.match(/^\/oauth\/(\w+)\/(start|callback)$/);
