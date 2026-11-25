@@ -17,7 +17,7 @@ e = html.escape
 
 def inside(p):
     lis = ''.join(f'<li>{e(f)}</li>' for f in p.get('features', []))
-    return f'<details class="inside"><summary>What\'s Inside</summary><ul>{lis}</ul></details>'
+    return f'<details class="inside" open><summary>What\'s Inside</summary><ul>{lis}</ul></details>'
 
 
 def copy(p):
