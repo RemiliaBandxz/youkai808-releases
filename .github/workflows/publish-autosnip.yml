@@ -35,6 +35,7 @@ jobs:
           e = next((x for x in d["versions"] if x["version"] == v), None)
           if e is None: e = {"version": v}; d["versions"].insert(0, e)
           e["windows"], e["size"] = url, size
+          d["latest"] = v  # the in-app updater checks `latest`; bump it or a freshly published version never offers the update
           json.dump(d, open("autosnip-versions.json", "w"), indent=2); open("autosnip-versions.json", "a").write("\n")
           PY
       - name: Drop the parts (the public release asset is the source of truth now)
