@@ -2,7 +2,7 @@
 
 Cloudflare Worker + D1 (free tier). Powers koumakandigital.xyz/account/ and the Hub's license checks.
 
-- Email + password accounts (PBKDF2-SHA256, salted; 30-day sessions; lockout after 8 bad tries / 15 min).
+- Email + password accounts (PBKDF2-SHA256, salted; sessions last a year and renew on every visit, so sign-in lasts until Sign Out or a password change; lockout after 8 bad tries / 15 min).
 - `POST /paddle-webhook`: verifies `Paddle-Signature`, on `transaction.completed` saves the purchase and mints a `KD-` license key;
   approved refund/chargeback `adjustment.*` disables the key.
 - My Plugins page shows each key, how many computers use it (limit 3), and "Free Up Computers" (once per 7 days).

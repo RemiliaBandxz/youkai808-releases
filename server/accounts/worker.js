@@ -11,7 +11,7 @@ const PRICES = { // Paddle price id -> product slug. Only the map matching PADDL
 const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002, autosnip: 808003, all: 808000 };
 const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', autosnip: 'AutoSnip', all: 'All Plugins', beta: 'Beta Tester' };
 const ACTIVATION_LIMIT = 3, RESET_DAYS = 7;
-const SESSION_DAYS = 30, PBKDF2_ITERS = 100000, MAX_FAILS = 8, FAIL_WINDOW = 15 * 60;
+const SESSION_DAYS = 365, PBKDF2_ITERS = 100000, MAX_FAILS = 8, FAIL_WINDOW = 15 * 60;
 const enc = new TextEncoder();
 const now = () => Math.floor(Date.now() / 1000);
 const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
@@ -157,7 +157,7 @@ async function unseal(env, blob) {
 async function currentUser(env, req) {
   const t = (req.headers.get('Authorization') || '').replace(/^Bearer /, '');
   if (!/^[0-9a-f]{64}$/.test(t)) return null;
-  return env.DB.prepare('SELECT u.id, u.email, u.created, u.verified, u.role, (u.totp_secret IS NOT NULL) AS has2fa, s.mfa FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?')
+  return env.DB.prepare('SELECT u.id, u.email, u.created, u.verified, u.role, (u.totp_secret IS NOT NULL) AS has2fa, s.mfa, s.token_hash, s.expires FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires>?')
     .bind(await sha256(t), now()).first();
 }
 
@@ -209,6 +209,10 @@ async function login(env, h, req) {
 async function me(env, h, req) {
   const u = await currentUser(env, req);
   if (!u) return json(h, 401, { error: 'Not Logged In.' });
+  // Stay signed in until Sign Out: every visit pushes a normal session's expiry forward (at most one write a day).
+  // Owner 2FA sessions (mfa=1) keep their fixed 1-day life.
+  if (!u.mfa && u.expires < now() + (SESSION_DAYS - 1) * 86400)
+    await env.DB.prepare('UPDATE sessions SET expires=? WHERE token_hash=?').bind(now() + SESSION_DAYS * 86400, u.token_hash).run();
   const { results } = await env.DB.prepare(`SELECT p.product, p.created, p.license_key, p.status,
       (SELECT COUNT(*) FROM instances i WHERE i.license_key=p.license_key) AS used
     FROM purchases p WHERE ${owns(env)} ORDER BY p.created DESC`).bind(u.id, u.email).all();
