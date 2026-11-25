@@ -264,13 +264,32 @@ async function freeComputers(env, h, req) {
   return json(h, 200, { ok: true });
 }
 
+// Gumroad's own license key (8-8-8-8 hex, no KD- prefix): verify it with Gumroad, then keep it as a normal purchase so the
+// 3-computer limit, refunds and the account page all work the same as for KD- keys. Gumroad's verify call needs no secret.
+const GUMROAD_PRODUCT_ID = 'TpixrYoPZyupvMe71jhQ6A=='; // AutoSnip (permalink ezcvtl)
+async function gumroadKey(env, key) {
+  if (!/^[0-9A-F]{8}(-[0-9A-F]{8}){3}$/.test(key)) return null;
+  let j; try {
+    const r = await fetch('https://api.gumroad.com/v2/licenses/verify', { method: 'POST',
+      body: new URLSearchParams({ product_id: GUMROAD_PRODUCT_ID, license_key: key, increment_uses_count: 'false' }) });
+    j = await r.json();
+  } catch { return null; }
+  const pu = j && j.success && j.purchase;
+  if (!pu) return null;
+  const bad = pu.refunded || pu.chargebacked || pu.disputed;
+  await env.DB.prepare('INSERT OR IGNORE INTO purchases(txn_id,product,email,user_id,created,license_key,status) VALUES(?,?,?,?,?,?,?)')
+    .bind('grk_' + (pu.sale_id || pu.id || key), 'autosnip', normEmail(pu.email), null, now(), key, bad ? 'disabled' : 'active').run();
+  return { product: 'autosnip', status: bad ? 'disabled' : 'active' };
+}
+
 // Lemon-Squeezy-compatible license API, so the Hub's Y8Store.h only needs its apiHost pointed here.
 // Form-encoded POSTs: activate(license_key, instance_name), validate(license_key, instance_id), deactivate(license_key, instance_id).
 async function licenseApi(env, req, action) {
   const h = { ...SECURE, 'Content-Type': 'application/json' }, out = (b, s = 200) => new Response(JSON.stringify(b), { status: s, headers: h });
   let f; try { f = await req.formData(); } catch { return out({ error: 'Bad request.' }, 400); }
   const key = String(f.get('license_key') || '').trim().toUpperCase();
-  const p = await env.DB.prepare('SELECT product, status FROM purchases WHERE license_key=?').bind(key).first();
+  let p = await env.DB.prepare('SELECT product, status FROM purchases WHERE license_key=?').bind(key).first();
+  if (!p && action === 'activate') p = await gumroadKey(env, key); // a license key straight off a Gumroad receipt
   const meta = p ? { product_id: PRODUCT_IDS[p.product], product_name: NAMES[p.product], customer_name: '' } : null;
   const lk = (used) => ({ key, status: p.status === 'active' ? 'active' : 'disabled', activation_limit: limitFor(p.product), activation_usage: used });
   const count = async () => (await env.DB.prepare('SELECT COUNT(*) AS n FROM instances WHERE license_key=?').bind(key).first()).n;
@@ -385,11 +404,11 @@ async function gumroadPing(env, req) {
     return new Response('ok');
   }
   const product = GUMROAD_PRODUCTS[String(f.product_permalink || '').split('/').pop().split('?')[0]]; // Gumroad sends a full URL or just the permalink
-  const email = normEmail(f.email || '');
+  const email = normEmail(f.email || ''), gk = /^[0-9A-F]{8}(-[0-9A-F]{8}){3}$/i.test(f.license_key || '') ? f.license_key.toUpperCase() : null; // the key printed on their Gumroad receipt
   if (!product) return new Response('ignored'); // some other Gumroad product
   if (!email) return new Response('no email', { status: 400 }); // Gumroad retries
   await env.DB.prepare('INSERT OR IGNORE INTO purchases(txn_id,product,email,user_id,created,license_key) VALUES(?,?,?,?,?,?)')
-    .bind(txn, product, email, null, now(), newKey()).run(); // OR IGNORE = retried pings don't mint a second key
+    .bind(txn, product, email, null, now(), gk || newKey()).run(); // OR IGNORE = retried pings don't mint a second key
   return new Response('ok');
 }
 
