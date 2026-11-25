@@ -6,7 +6,8 @@
   "versions": [
     {
       "version": "0.3.1",
-      "windows": "https://github.com/RemiliaBandxz/youkai808-releases/releases/download/autosnip-v0.3.1/AutoSnip-v0.3.1-Setup.exe"
+      "windows": "https://github.com/RemiliaBandxz/youkai808-releases/releases/download/autosnip-v0.3.1/AutoSnip-v0.3.1-Setup.exe",
+      "size": 296870910
     },
     {
       "version": "0.3.0",

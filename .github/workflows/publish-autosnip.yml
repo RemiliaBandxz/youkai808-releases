@@ -27,11 +27,23 @@ jobs:
           code=$(curl -sS -o /dev/null -w '%{http_code}' -L -r 0-0 "$url")
           echo "asset $url -> $code"
           [ "$code" = "200" ] || [ "$code" = "206" ] || { echo "::error::update link is not publicly downloadable ($code)"; exit 1; }
+          # the Hub refuses a cut-off download only when it knows the real size
+          python3 - "$v" "$url" "$(stat -c%s "$f")" <<'PY'
+          import json, sys
+          v, url, size = sys.argv[1], sys.argv[2], int(sys.argv[3])
+          d = json.load(open("autosnip-versions.json"))
+          e = next((x for x in d["versions"] if x["version"] == v), None)
+          if e is None: e = {"version": v}; d["versions"].insert(0, e)
+          e["windows"], e["size"] = url, size
+          json.dump(d, open("autosnip-versions.json", "w"), indent=2); open("autosnip-versions.json", "a").write("\n")
+          PY
       - name: Drop the parts (the public release asset is the source of truth now)
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           v="${{ github.event.inputs.version }}"
           git config user.name github-actions; git config user.email actions@github.com
-          git rm -q releases/autosnip/AutoSnip-v$v-Setup.exe.* 2>/dev/null || exit 0
-          git commit -qm "AutoSnip $v: parts published as a release asset, removed from tree"
+          git rm -q releases/autosnip/AutoSnip-v$v-Setup.exe.* 2>/dev/null || true
+          git add autosnip-versions.json
+          git diff --cached --quiet && exit 0
+          git commit -qm "AutoSnip $v: release asset published (url + size), parts removed from tree"
           git push origin HEAD:main
