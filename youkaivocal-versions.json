@@ -1,11 +1,11 @@
 {
   "product": "Youkai Vocal Chain",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.11",
+  "latest": "0.9.12",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.11",
+      "version": "0.9.12",
       "windows": "releases/YoukaiVocal-Setup.exe"
     }
   ]
