@@ -690,7 +690,7 @@
         "beat",
         "melody"
       ],
-      "name": "Youkai Retune",
+      "name": "Youkai Detuner",
       "registry": "Youkai Detune",
       "includes": "VST3 · Windows",
       "tagline": "Free. One Knob Moves Your Whole Beat To 452 Or 428 Without Touching The Tempo.",
@@ -704,7 +704,7 @@
       "buy_url": "",
       "store_product_ids": [],
       "clips": [],
-      "category": "Free · Retune",
+      "category": "Free · Detune",
       "features": [
         "A4 HZ - The One Knob: 452, 428 Or Anywhere Between (Double-Click Jumps Back To 452)",
         "BEAT IS AT - Tell It Where The Beat Already Sits",
