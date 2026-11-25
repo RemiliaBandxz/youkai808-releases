@@ -6,13 +6,7 @@
   "versions": [
     {
       "version": "0.2.7",
-      "windows": "https://github.com/RemiliaBandxz/youkai808-source/releases/download/autosnip-v0.2.7/AutoSnip-v0.2.7-Setup.exe",
-      "windows_parts": [
-        "releases/autosnip/AutoSnip-v0.2.7-Setup.exe.001",
-        "releases/autosnip/AutoSnip-v0.2.7-Setup.exe.002",
-        "releases/autosnip/AutoSnip-v0.2.7-Setup.exe.003"
-      ],
-      "size": 295057133
+      "windows": "https://github.com/RemiliaBandxz/youkai808-releases/releases/download/autosnip-v0.2.7/AutoSnip-v0.2.7-Setup.exe"
     },
     {
       "version": "0.2.6",
