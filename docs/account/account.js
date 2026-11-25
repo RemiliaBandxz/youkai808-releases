@@ -21,7 +21,7 @@
     koishi: { name: "Koishi Ears", img: '../img/p/koishi.webp', dl: 'releases/Koishi-Setup.exe', beta: 1 },
     youkaivocal: { name: "Youkai Vocal Chain", img: '../img/p/youkaivocal.webp', dl: 'releases/YoukaiVocal-Setup.exe', beta: 1 },
     youkaibeat: { name: "Youkai Beat Mix", img: '../img/p/youkaibeat.webp', dl: 'releases/YoukaiBeat-Setup.exe', beta: 1 },
-    youkaidetune: { name: "Youkai Retune", img: '../img/p/youkaidetune.webp', dl: 'releases/YoukaiDetune-Setup.exe', beta: 1 },
+    youkaidetune: { name: "Youkai Detuner", img: '../img/p/youkaidetune.webp', dl: 'releases/YoukaiDetune-Setup.exe', beta: 1 },
     suzumesilk: { name: "Suzume Smoother", img: '../img/p/suzumesilk.webp', dl: 'releases/SuzumeSilk-Setup.exe', beta: 1 },
     tsukumovibe: { name: "Tsukumo Vibrato", img: '../img/p/tsukumovibe.webp', dl: 'releases/TsukumoVibe-Setup.exe', beta: 1 },
     hitodamagate: { name: "Hitodama Gate", img: '../img/p/hitodamagate.webp', dl: 'releases/HitodamaGate-Setup.exe', beta: 1 },
