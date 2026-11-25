@@ -11,6 +11,8 @@ const PRICES = { // Paddle price id -> product slug. Only the map matching PADDL
 const PRODUCT_IDS = { youkai808: 808001, melodyveil: 808002, autosnip: 808003, all: 808000 };
 const NAMES = { youkai808: 'Youkai808', melodyveil: 'Melody Veil', autosnip: 'AutoSnip', all: 'All Plugins', beta: 'Beta Tester' };
 const ACTIVATION_LIMIT = 3, RESET_DAYS = 7;
+// Only AutoSnip (works without the Hub) keeps the per-computer cap; plugins follow the account via the Hub, so they're uncapped.
+const limitFor = (product) => (product === 'autosnip' ? ACTIVATION_LIMIT : 100000);
 const SESSION_DAYS = 365, PBKDF2_ITERS = 100000, MAX_FAILS = 8, FAIL_WINDOW = 15 * 60;
 const enc = new TextEncoder();
 const now = () => Math.floor(Date.now() / 1000);
@@ -216,7 +218,7 @@ async function me(env, h, req) {
   const { results } = await env.DB.prepare(`SELECT p.product, p.created, p.license_key, p.status,
       (SELECT COUNT(*) FROM instances i WHERE i.license_key=p.license_key) AS used
     FROM purchases p WHERE ${owns(env)} ORDER BY p.created DESC`).bind(u.id, u.email).all();
-  results.forEach((r) => { r.limit = ACTIVATION_LIMIT; });
+  results.forEach((r) => { r.limit = limitFor(r.product); });
   return json(h, 200, { id: u.id, email: u.email, created: u.created, verified: !!u.verified || !env.RESEND_API_KEY, mail: !!env.RESEND_API_KEY,
     owner: u.role === 'owner', has2fa: !!u.has2fa, mfa: !!u.mfa, purchases: results });
 }
@@ -270,7 +272,7 @@ async function licenseApi(env, req, action) {
   const key = String(f.get('license_key') || '').trim().toUpperCase();
   const p = await env.DB.prepare('SELECT product, status FROM purchases WHERE license_key=?').bind(key).first();
   const meta = p ? { product_id: PRODUCT_IDS[p.product], product_name: NAMES[p.product], customer_name: '' } : null;
-  const lk = (used) => ({ key, status: p.status === 'active' ? 'active' : 'disabled', activation_limit: ACTIVATION_LIMIT, activation_usage: used });
+  const lk = (used) => ({ key, status: p.status === 'active' ? 'active' : 'disabled', activation_limit: limitFor(p.product), activation_usage: used });
   const count = async () => (await env.DB.prepare('SELECT COUNT(*) AS n FROM instances WHERE license_key=?').bind(key).first()).n;
 
   if (action === 'activate') {
@@ -279,7 +281,7 @@ async function licenseApi(env, req, action) {
     // Always a fresh secret instance id (never hand back another machine's id); the limit check + insert is one statement.
     const inst = { id: crypto.randomUUID(), name: String(f.get('instance_name') || '').slice(0, 100) };
     const r = await env.DB.prepare(`INSERT INTO instances(id,license_key,name,created) SELECT ?1,?2,?3,?4
-      WHERE (SELECT COUNT(*) FROM instances WHERE license_key=?2) < ?5`).bind(inst.id, key, inst.name, now(), ACTIVATION_LIMIT).run();
+      WHERE (SELECT COUNT(*) FROM instances WHERE license_key=?2) < ?5`).bind(inst.id, key, inst.name, now(), limitFor(p.product)).run();
     if (!r.meta.changes) return out({ activated: false, error: 'This license key has reached the activation limit.' }, 400);
     return out({ activated: true, error: null, license_key: lk(await count()), instance: inst, meta });
   }
@@ -382,7 +384,7 @@ async function gumroadPing(env, req) {
     await env.DB.prepare("UPDATE purchases SET status='disabled' WHERE txn_id=?").bind(txn).run();
     return new Response('ok');
   }
-  const product = GUMROAD_PRODUCTS[f.product_permalink];
+  const product = GUMROAD_PRODUCTS[String(f.product_permalink || '').split('/').pop().split('?')[0]]; // Gumroad sends a full URL or just the permalink
   const email = normEmail(f.email || '');
   if (!product) return new Response('ignored'); // some other Gumroad product
   if (!email) return new Response('no email', { status: 400 }); // Gumroad retries
