@@ -30,8 +30,12 @@ def free_url(p):
     return v['download_base'] + next(x['windows'] for x in v['versions'] if x['version'] == v['latest'])
 
 
+ICONS = {"Vocal": "vocals", "Retune": "master", "Tapestop": "fx", "Beat": "beat", "Master": "master"}  # category keyword -> img/kd/icon_*.webp
+
+
 def small_card(p, kind):
-    tags = f'<span class="tag live">Free</span><span class="tag">{e(p["category"].replace("Free · ", ""))}</span>' if kind == 'free' \
+    icon = next((v for k, v in ICONS.items() if k in p['category']), 'fx')
+    tags = f'<img class="badge" src="img/kd/badge_free.webp" alt="Free" width="84" height="28"><img class="cat" src="img/kd/icon_{icon}.webp" alt="" height="30"><span class="tag">{e(p["category"].replace("Free · ", ""))}</span>' if kind == 'free' \
         else f'<span class="tag">{e(p["category"])}</span>'
     btn = f'<a class="btn ghost" href="{e(free_url(p))}" download>Download</a>' if kind == 'free' else ''
     return (f'      <article class="card {kind}-card">\n'
