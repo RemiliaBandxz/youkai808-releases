@@ -1,0 +1,11 @@
+name: autosnip-latest
+on:
+  push: {paths: ['autosnip-versions.json', 'docs/download/autosnip/**']}
+  workflow_dispatch:
+  schedule: [{cron: '17 * * * *'}]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/check_autosnip_latest.py
