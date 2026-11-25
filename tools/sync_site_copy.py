@@ -33,7 +33,7 @@ def free_url(p):
 def small_card(p, kind):
     tags = f'<span class="tag live">Free</span><span class="tag">{e(p["category"].replace("Free · ", ""))}</span>' if kind == 'free' \
         else f'<span class="tag">{e(p["category"])}</span>'
-    btn = f'<a class="btn ghost" href="{e(free_url(p))}">Download Free (No Account)</a>' if kind == 'free' else ''
+    btn = f'<a class="btn ghost" href="{e(free_url(p))}" download>Download</a>' if kind == 'free' else ''
     return (f'      <article class="card {kind}-card">\n'
             f'        <div class="shot"><img src="img/p/{p["id"]}.webp" alt="{e(p["name"])} plugin screenshot" loading="lazy"></div>\n'
             f'        <div class="body"><div class="tags">{tags}</div><h3>{e(p["name"])}</h3>{copy(p)}{btn}</div>\n'
