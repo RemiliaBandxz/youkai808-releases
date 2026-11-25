@@ -18,7 +18,6 @@
     tenguhats: { name: "Tengu Hats", img: '../img/p/tenguhats.webp', dl: 'releases/TenguHats-Setup.exe' },
     umibozuir: { name: "Umibozu Room Verb", img: '../img/p/umibozuir.webp', dl: 'releases/UmibozuIR-Setup.exe' },
     yureistop: { name: "Yurei Tapestop", img: '../img/p/yureistop.webp', dl: 'releases/YureiStop-Setup.exe' },
-    satori: { name: "Satori Brain", img: '../img/p/satori.webp', dl: 'releases/Satori-Setup.exe', beta: 1 },
     koishi: { name: "Koishi Ears", img: '../img/p/koishi.webp', dl: 'releases/Koishi-Setup.exe', beta: 1 },
     youkaivocal: { name: "Youkai Vocal Chain", img: '../img/p/youkaivocal.webp', dl: 'releases/YoukaiVocal-Setup.exe', beta: 1 },
     youkaibeat: { name: "Youkai Beat Mix", img: '../img/p/youkaibeat.webp', dl: 'releases/YoukaiBeat-Setup.exe', beta: 1 },

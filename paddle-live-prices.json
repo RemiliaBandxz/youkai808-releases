@@ -1,5 +1,5 @@
 {
- "_note": "Paddle LIVE one-time USD prices (2026-11-24). buyable=false means WIP/Coming Soon: site + Hub must NOT show a buy button. Free (not on Paddle): satori, youkaidetune, yureistop, hitodamagate. Private plugins never listed. Kitsune Tune removed 2026-11-24 (plugin cut; Paddle product archived).",
+ "_note": "Paddle LIVE one-time USD prices (2026-11-24). buyable=false means WIP/Coming Soon: site + Hub must NOT show a buy button. Free (not on Paddle): youkaidetune, yureistop, hitodamagate. Private plugins never listed. Mix Assistant (satori) hidden from everyone 2026-11-25. Kitsune Tune removed 2026-11-24 (plugin cut; Paddle product archived).",
  "prices": [
   {
    "name": "Youkai808",
