@@ -1,11 +1,11 @@
 {
   "product": "Youkai Mix Assistant",
   "publisher": "YoukaiDigital",
-  "latest": "0.9.17",
+  "latest": "0.9.18",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.9.17",
+      "version": "0.9.18",
       "windows": "releases/Satori-Setup.exe"
     }
   ]
