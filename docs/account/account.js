@@ -142,7 +142,7 @@
             var r=document.createRange(); r.selectNodeContents(code); var sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); cp.textContent='Ctrl+C';}); };
           k.appendChild(code); k.appendChild(cp); b.appendChild(k);
           var use=document.createElement('div'); use.className='use';
-          var n=document.createElement('span'); n.textContent='Used On '+p.used+' Of '+p.limit+' Computers';
+          var n=document.createElement('span'); n.textContent = p.limit > 100 ? 'Active On '+p.used+' Computer'+(p.used===1?'':'s') : 'Used On '+p.used+' Of '+p.limit+' Computers';
           use.appendChild(n);
           if (p.used > 0) {
             var fr=document.createElement('button'); fr.type='button'; fr.className='link'; fr.textContent='Free Up Computers';
