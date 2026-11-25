@@ -57,8 +57,7 @@
         "Osc shaping: POSITION, GLIDE, PUNCH, ATTACK, DECAY, RELEASE, TENSION, TUNE",
         "ADVANCED tab: Tone, Input, Bass Guard freq, Mono Sub, Width, L/R Spread, Ceiling, Soft Attack, Limiter, Soft Clip, HQ 2x oversampling",
         "Hover anything in the plugin for a plain-English explanation",
-        "VST3, CLAP & AU",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing"
+        "VST3, CLAP & AU"
       ],
       "tips": [
         "Want insanely crazy 808s? Stack 3-4 distortion slots in a row and crank DRIVE - each one eats the last lol",
@@ -132,7 +131,6 @@
         "LEAD (6th octave) + COUNTER (5th octave) - turn up the real lead or the counter melody",
         "ON: MELODY BUS / WHOLE BEAT switch (or AUTO, it listens)",
         "SOUND SCAN - names the melody sound (bell, pluck, pad...) and tells you how loud it should sit",
-        "Youkai Link - The Mix Assistant on the master sets its level; link groups A-D",
         "Only cuts what's too loud: clean beats stay untouched",
         "Evens out melodies that jump in level (that one loud piano)",
         "Mono low end so the 808 stays centred",
@@ -185,7 +183,6 @@
         "LEARN REF + MATCH - Copy The Tone Of A Reference Beat",
         "Mix Coach + EQ PRESETS - Saves FL Studio EQ Settings That Match What It Heard",
         "Presets Like KAYY | Warped Cassette, KAYY | YouTube Rip, RAW | Soup, XANGANG | December Bounce, XANGANG | Ready To Rap",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -263,7 +260,6 @@
         "DUCK - Route Your Main Vocal In And The Adlibs Duck Under It",
         "Advanced: Width, Pan Mode, Sweep Rate, Throw Time, Repeats, Tone, Drive, Low Cut, High Cut",
         "17 Presets Like Phone Call, Radio Ghost, Megaphone Hype, Demon Under, Chipmunk Up, Throw Every Line, Ducked Under Lead",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -302,7 +298,6 @@
         "WOBBLE - Warped Tape Feel",
         "Advanced: Swell, Pre-Delay, Low Cut, High Cut, Width, Shimmer, Voices, Dry",
         "40+ Presets For Melody, Bells, Pads, Keys, Guitar And Vocal Chops, Like Melody | Glaze, Bells | Plugg Haze, Melody | Warped Cassette, Pad | Endless Cloud",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -342,7 +337,6 @@
         "Mono Safe, So It Won't Vanish On A Phone",
         "Advanced: Mix, Delay Time, Spread, Wet Cut, Sync, Drive, Duck, Shape",
         "13 Presets Like Vocal | Thick Hook, Vocal | Jet Flange, Vocal | Underwater Adlib, Melody | Seasick Lo-Fi, 808 | Wide Top, Guitar | Dream Chorus",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -381,7 +375,6 @@
         "Auto Gain, So Louder Never Fools You",
         "Advanced: Body Hz, Harsh Hz, Density, S-Guard, Low Cut, Air, Width",
         "15 Presets Like Phone Mic | Fill It In, Whisper Rap | Body Up, After RVC | Body Back, Crunch | Rage Grit, Doubles | Thick Stack",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -399,7 +392,7 @@
       "registry": "Oni Master",
       "includes": "VST3 · Windows",
       "tagline": "Full Mastering Suite For Your Whole Song, With A Master Assistant That Sets It Up For Your Genre.",
-      "about": "Full Mastering Suite For Your Whole Song: Master Assistant, Match EQ, Dynamic EQ, 3-Band Compression, Stereo Imager, Exciter, 808 Clip And A Maximizer With A LUFS Target. Genre Styles: Plugg, Jugg, Ambient Rap, Rage, Hyper, Wavy, Dark. Goes Last On The Master, After The Mix Assistant If You Use It.",
+      "about": "Full Mastering Suite For Your Whole Song: Master Assistant, Match EQ, Dynamic EQ, 3-Band Compression, Stereo Imager, Exciter, 808 Clip And A Maximizer With A LUFS Target. Genre Styles: Plugg, Jugg, Ambient Rap, Rage, Hyper, Wavy, Dark.",
       "wip": true,
       "beta": true,
       "image": "hub-art/onimaster.png",
@@ -421,7 +414,6 @@
         "HOW TO Tab Built In, And A Mix Coach That Tells You What To Fix"
       ],
       "tips": [
-        "Put It Last On The Master, After The Mix Assistant If You Use It.",
         "Take Any Limiter Off Your Master Before You Use It.",
         "Use A/B To Compare At The Same Loudness Before You Bounce."
       ]
@@ -454,7 +446,6 @@
         "MONO CHECK - Hear It Like A Phone Or Club Speaker",
         "Advanced: Focus Shift, Pocket Depth, Split Low, Split High, Room Size, Distance, Attack, Un-Wash, Shine Freq, Width, Move Release",
         "Presets For Rap, Melodic, Plugg, Rage, Trap, Adlibs, High Voice And Vocal Key",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -494,7 +485,6 @@
         "A/B At The Same Volume",
         "Advanced: Mix, Warmth, Air, De-Harsh, Speed, Groove, Deep, Mono Bass, Clip, Ceiling, Auto Vol, Track Is",
         "16 Presets Like Vocal | Glossy Lead, Vocal | After RVC Fix, Beat | Goodizer Loud, 808 | Phone Growl, Sample | Dusty Glue, MAX JUICE",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -533,7 +523,6 @@
         "A/B - Plain 8Th Notes At The Same Level, So You Hear What The Pattern Adds",
         "Advanced: Volume, Decay, Tone, Humanize, Pan Move, Stutter, Grid, Roll Type, Bars, Pattern #, MIDI Note, Sound",
         "11 Presets Like Plugg | Slow Bounce, Hook | Roll City, Triplet Flow, Rage | Chaos, Under Vocal | Bounce, MIDI Only | Your Sampler",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -575,7 +564,6 @@
         "REVERSE - Flips The Space Into A Swell Before A Drop",
         "Advanced: Low Cut, High Cut, Width, Early, De-Ess, Mono Low, Duck Back",
         "48 Presets: Vocal, Adlib, Melody, High Voice And A Full Ambience Bank (Glaze Wash, Heaven Shimmer, Octave Down Abyss, Tape Wash)",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -616,52 +604,12 @@
         "AUTO - Hits Every 2, 4 Or 8 Bars Right Before The Downbeat",
         "Advanced: Return, Scratch, Fade, MIDI Keys, Output",
         "11 Presets Like Beat | Drop Before Hook, Beat | Power Down 2 Bars, Beat | Tape Start Intro, Vocal | Adlib Rewind, Vocal | Scratch Tag, Vocal | Transformer",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
         "A STOP Right Before The Hook Drops Hits Hard.",
         "CURVE Changes How Fast The Tape Slows Down.",
         "Automate The TRIGGER Parameter In Your DAW So It Lands In The Exact Same Spot Every Time."
-      ]
-    },
-    {
-      "id": "satori",
-      "for": [
-        "beat"
-      ],
-      "name": "Youkai Mix Assistant",
-      "registry": "Satori",
-      "includes": "VST3 · Windows",
-      "tagline": "Free. The Mix Brain: Sets Every Track's Level So Your Vocal Sits Right Over The Beat.",
-      "about": "Free. Leveling A Mix Is Where Most Sessions Die. Put The Mix Assistant On Your Master, Put A Youkai Plugin Last On Each Track, Play The Loudest Part For About 20 Seconds And Press LEVEL IT. It Sets Every Linked Track's Volume For The VIBE You Pick, Sends The Song Key To Every Linked Plugin, And Lets Linked Plugins Hear Each Other For Sidechain Ducking With No Routing. Don't Like It? Press UNDO. Goes On The Master, Before The Mastering Suite.",
-      "wip": false,
-      "beta": false,
-      "free": true,
-      "image": "hub-art/satori.png",
-      "versions": "satori-versions.json",
-      "price": "",
-      "buy_url": "",
-      "store_product_ids": [],
-      "clips": [],
-      "category": "Free · Mix Brain",
-      "features": [
-        "LEVEL IT - Sets Every Linked Track's Volume In One Press",
-        "UNDO - Puts Every Fader Back",
-        "VIBE - Rage, Melodic, Dark, Hyper, Wavy, Rushhy, Plugg, Vocal Up Or Levels Only, Measured From 100+ Real Songs",
-        "VOCAL, ADLIBS + MIX LEVEL - Nudge Where The Vocals Sit",
-        "SET UP = ALL - Also Sets Every Youkai Vocal Plugin For Its Role And Your Vibe",
-        "SONG KEY + SCALE - Sent To Every Linked Plugin",
-        "LATENCY - Asks Every Linked Plugin For Zero Latency While You Record",
-        "FL MIXER - With The Youkai Brain Script, Moves Only The Volume Faders Of Tracks With No Youkai Plugin",
-        "CLONE - Copies A Reverb, Delay, Compressor, EQ Or Soundgoodizer From Your FL Mixer Or An Ableton Preset Onto The Matching Youkai Plugin (It Only Reads Them)",
-        "A Living Eye: Sleepy When It's Silent, Angry When The Mix Is Off, Calm When It's Good",
-        "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
-      ],
-      "tips": [
-        "Play The Song Again For Half A Minute After You Re-Record Or Swap The Beat: It Forgets Old Takes By Itself.",
-        "SET UP = ALL Also Sets Every Youkai Vocal Plugin For Its Role And Your Vibe.",
-        "Using The Mastering Suite? Mix Assistant First On The Master, Mastering Suite After It."
       ]
     },
     {
@@ -672,8 +620,8 @@
       "name": "Koishi Link",
       "registry": "Koishi",
       "includes": "VST3 · Windows",
-      "tagline": "Free Ears For The Mix Assistant: Tells It What Each Track Is And How Loud.",
-      "about": "Free Ears For The Mix Assistant. It Does Nothing To The Sound By Itself. It Tells The Mix Assistant What A Track Is And How Loud It Is, So Tracks Without A Youkai Plugin On Them Get Levelled Too.",
+      "tagline": "Free Vocal Ears: Learns Your Raw Vocal And Sets Up Your Youkai Plugins For It.",
+      "about": "Put It On Your Raw Vocal, Press LEARN And Rap For About 30 Seconds, Then Press BUILD. It Sets The Youkai Plugins On That Track For Your Voice. It Does Nothing To The Sound By Itself.",
       "wip": true,
       "beta": true,
       "image": "hub-art/koishi.png",
@@ -749,7 +697,6 @@
         "QUALITY - Cleaner Or Lighter On Your CPU",
         "BYPASS - Hear The Beat Untouched, Same Timing",
         "Record Mode Preset - Less Delay While You Track Through It",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
@@ -824,7 +771,6 @@
         "CLOSE - Keeps Word Endings From Getting Cut",
         "A/B To Compare",
         "Presets: Clean | Bedroom Mic, Clean | Dead Silent, Clean | Keep Breaths, Adlib | Tight, Rumble Only",
-        "Youkai Link: The Mix Assistant On Your Master Sets Its Level For You, No Routing",
         "HOW TO Tab Built In, And Every Control Explains Itself When You Hover It"
       ],
       "tips": [
