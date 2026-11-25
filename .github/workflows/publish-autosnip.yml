@@ -1,6 +1,6 @@
 name: Publish AutoSnip installer
-# Reassembles the committed split parts into a public Release asset the Hub can download
-# (youkai808-source is private, so its release assets 404 for users). Runs on demand.
+# youkai808-source is private, so its release assets 404 for users. This reassembles the committed
+# split parts into a PUBLIC Release asset the Hub downloads, verifies the link, then removes the parts.
 on:
   workflow_dispatch:
     inputs:
@@ -12,13 +12,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { token: "${{ github.token }}" }
       - env: { GH_TOKEN: "${{ github.token }}" }
         run: |
+          set -e
           v="${{ github.event.inputs.version }}"
-          f="AutoSnip-v$v-Setup.exe"
+          f="AutoSnip-v$v-Setup.exe"; tag="autosnip-v$v"
+          ls releases/autosnip/$f.* >/dev/null   # fail loudly if the parts aren't committed
           cat releases/autosnip/$f.* > "$f"
-          tag="autosnip-v$v"
           gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
             && gh release upload "$tag" "$f" --clobber -R "$GITHUB_REPOSITORY" \
             || gh release create "$tag" "$f" -R "$GITHUB_REPOSITORY" --title "AutoSnip $v" --notes "AutoSnip installer for the Youkai Hub."
-          echo "asset: https://github.com/$GITHUB_REPOSITORY/releases/download/$tag/$f"
+          url="https://github.com/$GITHUB_REPOSITORY/releases/download/$tag/$f"
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -L -r 0-0 "$url")
+          echo "asset $url -> $code"
+          [ "$code" = "200" ] || [ "$code" = "206" ] || { echo "::error::update link is not publicly downloadable ($code)"; exit 1; }
+      - name: Drop the parts (the public release asset is the source of truth now)
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          v="${{ github.event.inputs.version }}"
+          git config user.name github-actions; git config user.email actions@github.com
+          git rm -q releases/autosnip/AutoSnip-v$v-Setup.exe.* 2>/dev/null || exit 0
+          git commit -qm "AutoSnip $v: parts published as a release asset, removed from tree"
+          git push origin HEAD:main
