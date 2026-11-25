@@ -382,7 +382,7 @@ async function gumroadPing(env, req) {
     await env.DB.prepare("UPDATE purchases SET status='disabled' WHERE txn_id=?").bind(txn).run();
     return new Response('ok');
   }
-  const product = GUMROAD_PRODUCTS[f.product_permalink];
+  const product = GUMROAD_PRODUCTS[String(f.product_permalink || '').split('/').pop().split('?')[0]]; // Gumroad sends a full URL or just the permalink
   const email = normEmail(f.email || '');
   if (!product) return new Response('ignored'); // some other Gumroad product
   if (!email) return new Response('no email', { status: 400 }); // Gumroad retries
