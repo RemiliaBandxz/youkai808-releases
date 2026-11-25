@@ -49,6 +49,7 @@ def problems(products):
     for p in products:
         words = len(p.get('about', '').split())
         if not p.get('category'): out.append(f'{p["id"]}: no category')
+        if p.get('wip'): out.append(f'{p["id"]}: WIP but public. Every "wip": true plugin must also be "beta": true (Remilia 2026-11-25: only show the ready ones)')
         if words < 40: out.append(f'{p["id"]}: about is only {words} words (40+ so it says what it does, the problem it fixes and where it goes)')
         if len(p.get('features', [])) < 4: out.append(f'{p["id"]}: needs 4+ features (real controls/presets from the plugin)')
         if len(p.get('tips', [])) < 2: out.append(f'{p["id"]}: needs 2+ tips')
