@@ -1,18 +1,22 @@
 {
   "product": "AutoSnip",
   "publisher": "YoukaiDigital",
-  "latest": "0.2.4",
+  "latest": "0.2.5",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "0.2.4",
-      "windows": "https://github.com/RemiliaBandxz/youkai808-source/releases/download/autosnip-v0.2.4/AutoSnip-v0.2.4-Setup.exe",
+      "version": "0.2.5",
+      "windows": "https://github.com/RemiliaBandxz/youkai808-source/releases/download/autosnip-v0.2.5/AutoSnip-v0.2.5-Setup.exe",
       "windows_parts": [
-        "releases/autosnip/AutoSnip-v0.2.4-Setup.exe.001",
-        "releases/autosnip/AutoSnip-v0.2.4-Setup.exe.002",
-        "releases/autosnip/AutoSnip-v0.2.4-Setup.exe.003"
+        "releases/autosnip/AutoSnip-v0.2.5-Setup.exe.001",
+        "releases/autosnip/AutoSnip-v0.2.5-Setup.exe.002",
+        "releases/autosnip/AutoSnip-v0.2.5-Setup.exe.003"
       ],
-      "size": 284098627
+      "size": 291643975
+    },
+    {
+      "version": "0.2.4",
+      "windows": "https://github.com/RemiliaBandxz/youkai808-source/releases/download/autosnip-v0.2.4/AutoSnip-v0.2.4-Setup.exe"
     },
     {
       "version": "0.2.2",
