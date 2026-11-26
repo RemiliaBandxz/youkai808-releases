@@ -1,11 +1,11 @@
 {
   "product": "Youkai Mastering Suite",
   "publisher": "YoukaiDigital",
-  "latest": "2.2.0",
+  "latest": "2.2.1",
   "download_base": "https://github.com/RemiliaBandxz/youkai808-releases/raw/main/",
   "versions": [
     {
-      "version": "2.2.0",
+      "version": "2.2.1",
       "windows": "releases/OniMaster-Setup.exe"
     }
   ]
